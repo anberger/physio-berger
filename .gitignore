@@ -1,0 +1,13 @@
+# Node / Dependencies
+node_modules/
+npm-debug.log*
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.sublime-*

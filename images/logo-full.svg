@@ -1,0 +1,21 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="100 170 824 720" fill="none">
+  <g stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Top Arc of Circle -->
+    <path d="M 318 413 A 194 194 0 1 1 704 413" />
+    <!-- Bottom Arc of Circle -->
+    <path d="M 698 451 A 194 194 0 0 1 324 451" />
+    <!-- Heartbeat and Mountain Line -->
+    <path d="M 250 432 H 376 L 392 391 L 409 481 L 425 432 H 454 L 477 388 L 486 398 L 530 331 L 586 411 L 610 378 L 655 432 H 770" />
+  </g>
+
+  <!-- Typography -->
+  <text x="512" y="705" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="52" font-weight="300" letter-spacing="0.32em" fill="currentColor">PHYSIOTHERAPIE</text>
+
+  <!-- Monia Berger with Left and Right Lines -->
+  <line x1="152" y1="766" x2="295" y2="766" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+  <text x="512" y="777" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="34" font-weight="300" letter-spacing="0.28em" fill="currentColor">MONIA BERGER</text>
+  <line x1="729" y1="766" x2="872" y2="766" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+
+  <!-- Subtitle Line -->
+  <text x="512" y="846" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="19" font-weight="300" letter-spacing="0.22em" fill="currentColor">BEWEGUNG &nbsp;|&nbsp; GESUNDHEIT &nbsp;|&nbsp; LEBENSQUALITÄT</text>
+</svg>

@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physiotherapie Monia Berger | Fritzens & Hausbesuche</title>
+  
+  <!-- SEO & Local Search Meta Tags -->
+  <meta name="description" content="Ganzheitliche Physiotherapie in Fritzens, Wattens, Hall in Tirol & Schwaz. Praxisbehandlungen & Hausbesuche. Wahltherapeutin aller Kassen. Gehdistanz zur S-Bahn Fritzens-Wattens.">
+  <meta name="keywords" content="Physiotherapie Fritzens, Physiotherapeutin Fritzens, Physiotherapie Wattens, Physiotherapie Hall in Tirol, Physiotherapie Schwaz, Hausbesuche Physiotherapie Fritzens, Monia Berger, Wahltherapie ÖGK BVAEB SVS, S-Bahn Fritzens-Wattens">
+  <meta name="author" content="Monia Berger - Physiotherapie">
+  <meta name="robots" content="index, follow">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_AT">
+  <meta property="og:title" content="Physiotherapie Monia Berger | Fritzens & Hausbesuche">
+  <meta property="og:description" content="Physiotherapie in Fritzens, Wattens & Hausbesuche (Hall, Schwaz & Umgebung). Wahltherapie aller Kassen.">
+  <meta property="og:image" content="images/monia-berger.jpeg">
+  
+  <!-- Favicon / Logo Icon -->
+  <link rel="icon" type="image/svg+xml" href="images/logo-mountain-pulse.svg">
+  
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Alex Brush (Elegante, dezente Handschrift) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            headerSage: '#B0B8A6',     // Exact header color from reference screenshot
+            headerSageDark: '#9AA490',
+            darkMoss: '#4D5847',       // Exact dark olive green from reference screenshot
+            darkMossLight: '#596552',
+            darkMossDeep: '#3F493A',
+            cardBg: '#F7F8F5',         // Ultra-subtle calm background tint
+            borderMuted: '#E2E6DF',
+            charcoal: '#2D352B',
+            mutedText: '#626E60'
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            handwritten: ['Alex Brush', 'cursive']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #FFFFFF;
+      color: #2D352B;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-handwritten {
+      font-family: 'Alex Brush', cursive;
+    }
+    .clean-card-shadow {
+      box-shadow: 0 4px 20px -4px rgba(77, 88, 71, 0.06);
+    }
+    /* Ruhige, hochwertige Kartenfarben: Milde Erdtöne, klare Kontraste, kein giftgrüner Schleier */
+    .leaflet-tile-pane {
+      filter: saturate(35%) sepia(10%) hue-rotate(10deg) contrast(96%) brightness(99%);
+    }
+    /* Scroll-Interception auf der Karte komplett verhindern */
+    #interactiveMap {
+      pointer-events: none;
+    }
+    .leaflet-marker-icon, .leaflet-popup {
+      pointer-events: auto;
+    }
+    .leaflet-popup-content-wrapper {
+      border-radius: 14px !important;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15) !important;
+      border: 1px solid #E2E6DF !important;
+    }
+  </style>
+
+  <!-- Structured Data JSON-LD (SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Physiotherapist",
+    "name": "Physiotherapie Monia Berger",
+    "image": "images/monia-berger.jpeg",
+    "description": "Ganzheitliche Physiotherapie & Hausbesuche in Fritzens, Wattens, Hall in Tirol, Schwaz und Umgebung. Wahltherapeutin aller Kassen.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Bichlweg 17b",
+      "addressLocality": "Fritzens",
+      "postalCode": "6122",
+      "addressRegion": "Tirol",
+      "addressCountry": "AT"
+    },
+    "areaServed": ["Fritzens", "Wattens", "Hall in Tirol", "Schwaz", "Volders", "Baumkirchen"],
+    "medicalSpecialty": "Physiotherapy",
+    "priceRange": "$$"
+  }
+  </script>
+</head>
+<body class="selection:bg-headerSage selection:text-white flex flex-col min-h-screen">
+
+  <!-- ==================== MINIMAL HEADER (#B0B8A6, oben ausgeblendet, erscheint beim Runterscrollen) ==================== -->
+  <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 bg-headerSage text-white shadow-md transition-all duration-500 ease-in-out -translate-y-full opacity-0 pointer-events-none">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo (Neues Kreis-Emblem – kräftigere Linienstärke) -->
+      <a href="#" class="flex items-center group text-white hover:opacity-90 transition-opacity" title="Physiotherapie Monia Berger" aria-label="Physiotherapie Monia Berger Startseite">
+        <svg class="h-11 sm:h-12 w-auto text-white shrink-0 drop-shadow-sm" viewBox="240 195 544 415" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 318 413 A 194 194 0 1 1 704 413" />
+          <path d="M 698 451 A 194 194 0 0 1 324 451" />
+          <path d="M 250 432 H 376 L 392 391 L 409 481 L 425 432 H 454 L 477 388 L 486 398 L 530 331 L 586 411 L 610 378 L 655 432 H 770" />
+        </svg>
+      </a>
+
+      <!-- Quick Navigation -->
+      <nav class="hidden md:flex items-center gap-7 lg:gap-8 text-base lg:text-[17px] font-medium text-white">
+        <a href="#ablauf" class="hover:text-white/80 transition-colors py-1">Ablauf & Kasse</a>
+        <a href="#hausbesuche" class="hover:text-white/80 transition-colors py-1">Hausbesuche</a>
+        <a href="#anreise" class="hover:text-white/80 transition-colors py-1">Lage & S-Bahn</a>
+        <a href="#kontakt" class="px-5 py-2 rounded-md bg-white text-darkMoss text-sm uppercase tracking-wider font-semibold hover:bg-white/90 shadow-sm transition-all">
+          Termin anfragen
+        </a>
+      </nav>
+
+      <!-- Mobile Button -->
+      <a href="#kontakt" class="md:hidden px-4 py-1.5 rounded-md bg-white text-darkMoss text-sm font-semibold shadow-sm">
+        Termin anfragen
+      </a>
+    </div>
+  </header>
+
+  <!-- ==================== FULLSCREEN HERO SLIDER (ECHTER VOLLBILD-HERO) ==================== -->
+  <section class="relative w-full h-screen min-h-[560px] overflow-hidden bg-darkMoss select-none">
+    <div id="heroSlider" class="relative w-full h-full group">
+      
+      <!-- Slide 1: Close-up Cervical Spine & Neck Mobilization (An 1. Stelle) -->
+      <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100">
+        <img 
+          src="images/hero-close-neck.jpg" 
+          alt="Sanfte Mobilisation der Halswirbelsäule – Nahaufnahme Hände" 
+          class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
+          loading="eager"
+        >
+        <div class="absolute inset-0 bg-black/25"></div>
+      </div>
+
+      <!-- Slide 2: Close-up Spine & Back Therapy (An 2. Stelle) -->
+      <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none">
+        <img 
+          src="images/hero-close-spine.jpg" 
+          alt="Gezielte manuelle Physiotherapie – Nahaufnahme Hände und Rücken" 
+          class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
+          loading="lazy"
+        >
+        <div class="absolute inset-0 bg-black/25"></div>
+      </div>
+
+      <!-- Slide 3: Close-up Joint & Knee Mobilization -->
+      <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none">
+        <img 
+          src="images/hero-close-joint.jpg" 
+          alt="Gelenkmobilisation und Bewegungstherapie – Nahaufnahme Kniegelenk" 
+          class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
+          loading="lazy"
+        >
+        <div class="absolute inset-0 bg-black/25"></div>
+      </div>
+
+      <!-- Dunkler, atmosphärischer Farbverlauf über dem gesamten Hero Slider -->
+      <div class="absolute inset-0 z-10 bg-gradient-to-b from-[#2A3327]/80 via-black/35 to-[#2A3327]/85 pointer-events-none"></div>
+
+      <!-- Fullscreen Hero Content Overlay: WEISSES LOGO MIT DUNKLEM HINTERGRUND -->
+      <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 sm:px-6 pointer-events-none">
+        
+        <!-- Das vollständige Logo (Strahlendes Weiß mit dezentem Schatten) -->
+        <div class="w-full max-w-[320px] sm:max-w-[440px] md:max-w-[540px] lg:max-w-[620px] mx-auto text-white drop-shadow-lg select-none">
+          <svg class="w-full h-auto text-white" viewBox="100 170 824 720" fill="none">
+            <g stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Top Arc of Circle -->
+              <path d="M 318 413 A 194 194 0 1 1 704 413" />
+              <!-- Bottom Arc of Circle -->
+              <path d="M 698 451 A 194 194 0 0 1 324 451" />
+              <!-- Heartbeat and Mountain Line -->
+              <path d="M 250 432 H 376 L 392 391 L 409 481 L 425 432 H 454 L 477 388 L 486 398 L 530 331 L 586 411 L 610 378 L 655 432 H 770" />
+            </g>
+
+            <!-- Typography -->
+            <text x="512" y="705" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="52" font-weight="300" letter-spacing="0.32em" fill="currentColor">PHYSIOTHERAPIE</text>
+
+            <!-- Monia Berger with Left and Right Rules -->
+            <line x1="152" y1="766" x2="295" y2="766" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+            <text x="512" y="777" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="34" font-weight="300" letter-spacing="0.28em" fill="currentColor">MONIA BERGER</text>
+            <line x1="729" y1="766" x2="872" y2="766" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+
+            <!-- Subtitle Line -->
+            <text x="512" y="846" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="19" font-weight="300" letter-spacing="0.22em" fill="currentColor">BEWEGUNG &nbsp;|&nbsp; GESUNDHEIT &nbsp;|&nbsp; LEBENSQUALITÄT</text>
+          </svg>
+        </div>
+
+      </div>
+
+      <!-- Navigation Arrows (Dezent & filigran in Weiß) -->
+      <button id="sliderPrev" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/20 hover:bg-black/45 backdrop-blur-xs text-white/80 hover:text-white flex items-center justify-center transition-all opacity-60 hover:opacity-100 cursor-pointer shadow-sm" aria-label="Vorheriges Bild">
+        <i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.5]"></i>
+      </button>
+      <button id="sliderNext" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/20 hover:bg-black/45 backdrop-blur-xs text-white/80 hover:text-white flex items-center justify-center transition-all opacity-60 hover:opacity-100 cursor-pointer shadow-sm" aria-label="Nächstes Bild">
+        <i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.5]"></i>
+      </button>
+
+      <!-- Pagination Indicators (Dezent unten rechts in Weiß) -->
+      <div class="absolute bottom-6 sm:bottom-8 right-6 sm:right-10 flex items-center gap-1.5 z-30">
+        <button class="slider-dot w-7 h-2 rounded-full bg-white transition-all cursor-pointer" aria-label="Folie 1"></button>
+        <button class="slider-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all cursor-pointer" aria-label="Folie 2"></button>
+        <button class="slider-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all cursor-pointer" aria-label="Folie 3"></button>
+      </div>
+
+      <!-- Bouncing Scroll Down Indicator (Zentriert mit großzügigem Freiraum) -->
+      <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-30">
+        <a href="#willkommen" class="flex flex-col items-center gap-2 text-white/85 hover:text-white transition-all cursor-pointer group" aria-label="Nach unten scrollen">
+          <span class="text-[10px] sm:text-xs uppercase tracking-[0.28em] font-medium text-white/90 group-hover:text-white transition-colors">
+            Scroll nach unten
+          </span>
+          <i data-lucide="chevron-down" class="w-4 h-4 text-white animate-bounce"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== PHILOSOPHIE / WILLKOMMEN SECTION ==================== -->
+  <section id="willkommen" class="py-16 sm:py-24 lg:py-28 px-4 text-center bg-[#EFF3EC] border-y border-[#E2E8DE]/50">
+    <div class="max-w-4xl mx-auto space-y-2">
+      <span class="font-handwritten text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] text-charcoal block select-none leading-tight">
+        Das Leben besteht in der Bewegung
+      </span>
+      <p class="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-[#4D5847]/80 font-semibold pt-1">
+        Praxis in Fritzens &amp; Hausbesuche · Wahltherapeutin aller Kassen
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== FULLSCREEN PROFILE & CONTACT SECTION ==================== -->
+  <section id="profil" class="w-full bg-darkMoss text-white overflow-hidden">
+    <div class="w-full grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[480px] lg:min-h-[560px]">
+      
+      <!-- Left: Authentic Portrait / Treatment Photo (Fullscreen Edge-to-Edge) -->
+      <div class="lg:col-span-5 relative min-h-[380px] sm:min-h-[460px] lg:min-h-full">
+        <img 
+          src="images/monia-berger.jpeg" 
+          alt="Monia Berger – Physiotherapeutin in Fritzens" 
+          class="absolute inset-0 w-full h-full object-cover object-center"
+          loading="eager"
+        >
+      </div>
+
+      <!-- Right: Core Information & Quick Actions -->
+      <div class="lg:col-span-7 px-6 py-12 sm:px-12 sm:py-16 lg:px-16 xl:px-24 flex flex-col justify-center space-y-6">
+        
+        <div>
+          <span class="text-xs uppercase tracking-widest text-headerSage font-semibold block mb-2">
+            Physiotherapie · Fritzens & Mobil
+          </span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl text-white font-normal tracking-tight">
+            Monia Berger
+          </h2>
+          <p class="text-white/80 text-sm sm:text-base mt-1.5 font-light">
+            Physiotherapeutin · Wahltherapeutin
+          </p>
+        </div>
+
+        <p class="text-base sm:text-lg text-white/90 font-light leading-relaxed max-w-2xl">
+          Ganzheitliche physiotherapeutische Betreuung bei orthopädischen Beschwerden, Schmerzen und nach Operationen. In ruhiger Praxisatmosphäre in Fritzens oder als <strong>mobiler Hausbesuch</strong> direkt bei Ihnen vor Ort.
+        </p>
+
+        <!-- Direct Contact Triggers (Prominent & Fast) -->
+        <div class="pt-2 flex flex-wrap gap-3">
+          <a href="tel:+436601234567" class="inline-flex items-center gap-2 px-5 py-3 rounded bg-white text-darkMoss text-xs sm:text-sm uppercase tracking-wider font-semibold hover:bg-white/90 shadow-sm transition-all">
+            <i data-lucide="phone" class="w-4 h-4"></i>
+            <span>+43 660 1234567</span>
+          </a>
+          <a href="https://wa.me/436601234567?text=Hallo%20Monia,%20ich%20m%C3%B6chte%20gerne%20einen%20Physiotherapie-Termin%20anfragen." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 rounded bg-headerSage/25 border border-headerSage/50 text-white text-xs sm:text-sm uppercase tracking-wider font-medium hover:bg-headerSage/40 transition-all">
+            <i data-lucide="message-circle" class="w-4 h-4 text-headerSage"></i>
+            <span>WhatsApp</span>
+          </a>
+          <a href="mailto:kontakt@physio-monia.at?subject=Terminanfrage%20Physiotherapie" class="inline-flex items-center gap-2 px-5 py-3 rounded border border-white/30 text-white text-xs sm:text-sm uppercase tracking-wider font-medium hover:bg-white/10 transition-all">
+            <i data-lucide="mail" class="w-4 h-4"></i>
+            <span>E-Mail senden</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== MAIN CONTENT: 3 PRAXISINFOS (BREITER & WENIGER KASTIG) ==================== -->
+  <main class="max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 w-full py-16 sm:py-20 flex-grow">
+
+    <!-- ==================== DIE 3 WICHTIGSTEN PRAXISINFOS ==================== -->
+    <section id="ablauf" class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+      
+      <!-- Box 1: Beim ersten Termin -->
+      <div class="relative bg-[#FAFBF9]/90 hover:bg-white rounded-3xl p-8 lg:p-10 border border-borderMuted/30 hover:border-headerSage/40 shadow-[0_2px_16px_-4px_rgba(77,88,71,0.03)] hover:shadow-[0_20px_45px_-12px_rgba(77,88,71,0.09)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+        
+        <div>
+          <div class="flex items-center justify-between">
+            <div class="w-11 h-11 rounded-xl bg-headerSage/15 text-darkMoss flex items-center justify-center group-hover:bg-darkMoss group-hover:text-white transition-all duration-300 shadow-xs">
+              <i data-lucide="file-check-2" class="w-5 h-5"></i>
+            </div>
+            <span class="text-3xl font-light text-headerSage/35 group-hover:text-headerSage/60 transition-colors select-none font-serif tracking-tighter">01</span>
+          </div>
+
+          <span class="text-[11px] uppercase tracking-[0.2em] text-mutedText/80 font-semibold block mt-6 mb-1.5">
+            Erstbehandlung
+          </span>
+          <h2 class="text-xl sm:text-2xl font-normal text-charcoal tracking-tight">
+            Beim ersten Termin
+          </h2>
+
+          <p class="text-sm text-mutedText leading-relaxed font-light mt-3">
+            Für eine gezielte Befundung und den optimalen Therapiestart bringen Sie bitte mit:
+          </p>
+
+          <ul class="space-y-3 mt-5 text-xs sm:text-[13px] text-charcoal/90 font-light">
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-headerSage shrink-0 mt-0.5"></i>
+              <span><strong>Ärztliche Verordnung</strong> (Haus- oder Facharzt)</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-headerSage shrink-0 mt-0.5"></i>
+              <span>Vorhandene <strong>Befunde</strong> (MRT, Röntgen, OP-Berichte)</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-headerSage shrink-0 mt-0.5"></i>
+              <span>Bequeme Kleidung</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-6 mt-8 border-t border-borderMuted/40 flex items-center justify-between">
+          <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-headerSage/15 text-darkMoss text-xs font-medium">
+            <i data-lucide="clock" class="w-3.5 h-3.5 text-darkMoss"></i>
+            <span>45 oder 60 Min. Einheiten</span>
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Box 2: Kostenübernahme (Wahlarztprinzip) -->
+      <div class="relative bg-[#FAFBF9]/90 hover:bg-white rounded-3xl p-8 lg:p-10 border border-borderMuted/30 hover:border-headerSage/40 shadow-[0_2px_16px_-4px_rgba(77,88,71,0.03)] hover:shadow-[0_20px_45px_-12px_rgba(77,88,71,0.09)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+        
+        <div>
+          <div class="flex items-center justify-between">
+            <div class="w-11 h-11 rounded-xl bg-headerSage/15 text-darkMoss flex items-center justify-center group-hover:bg-darkMoss group-hover:text-white transition-all duration-300 shadow-xs">
+              <i data-lucide="receipt" class="w-5 h-5"></i>
+            </div>
+            <span class="text-3xl font-light text-headerSage/35 group-hover:text-headerSage/60 transition-colors select-none font-serif tracking-tighter">02</span>
+          </div>
+
+          <span class="text-[11px] uppercase tracking-[0.2em] text-mutedText/80 font-semibold block mt-6 mb-1.5">
+            Rückerstattung
+          </span>
+          <h2 class="text-xl sm:text-2xl font-normal text-charcoal tracking-tight">
+            Kostenübernahme & Kasse
+          </h2>
+
+          <p class="text-sm text-mutedText leading-relaxed font-light mt-3">
+            Als Wahltherapeutin begleite ich Sie individuell. Nach Begleichung der Honorarnote:
+          </p>
+
+          <ul class="space-y-3 mt-5 text-xs sm:text-[13px] text-charcoal/90 font-light">
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-headerSage shrink-0 mt-0.5"></i>
+              <span><strong>Gesetzliche Kasse:</strong> Einreichung bei ÖGK, BVAEB oder SVS für Teilrückerstattung</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i data-lucide="check" class="w-4 h-4 text-headerSage shrink-0 mt-0.5"></i>
+              <span><strong>Zusatzversicherung:</strong> Deckt in der Regel die verbleibenden Restkosten</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-6 mt-8 border-t border-borderMuted/40 flex items-center justify-between">
+          <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-headerSage/15 text-darkMoss text-xs font-medium">
+            <i data-lucide="smartphone" class="w-3.5 h-3.5 text-darkMoss"></i>
+            <span>Bequem per App einreichbar</span>
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Box 3: Hausbesuche -->
+      <div id="hausbesuche" class="relative bg-[#FAFBF9]/90 hover:bg-white rounded-3xl p-8 lg:p-10 border border-borderMuted/30 hover:border-headerSage/40 shadow-[0_2px_16px_-4px_rgba(77,88,71,0.03)] hover:shadow-[0_20px_45px_-12px_rgba(77,88,71,0.09)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+        
+        <div>
+          <div class="flex items-center justify-between">
+            <div class="w-11 h-11 rounded-xl bg-headerSage/15 text-darkMoss flex items-center justify-center group-hover:bg-darkMoss group-hover:text-white transition-all duration-300 shadow-xs">
+              <i data-lucide="home" class="w-5 h-5"></i>
+            </div>
+            <span class="text-3xl font-light text-headerSage/35 group-hover:text-headerSage/60 transition-colors select-none font-serif tracking-tighter">03</span>
+          </div>
+
+          <span class="text-[11px] uppercase tracking-[0.2em] text-mutedText/80 font-semibold block mt-6 mb-1.5">
+            Vor Ort bei Ihnen
+          </span>
+          <h2 class="text-xl sm:text-2xl font-normal text-charcoal tracking-tight">
+            Hausbesuche
+          </h2>
+
+          <p class="text-sm text-mutedText leading-relaxed font-light mt-3">
+            Bei eingeschränkter Mobilität oder nach Operationen behandle ich Sie gerne direkt in Ihrem vertrauten Zuhause.
+          </p>
+
+          <p class="text-xs sm:text-[13px] text-charcoal/90 leading-relaxed font-light mt-4">
+            <strong>Einsatzgebiet:</strong> Fritzens, Wattens, Volders, Baumkirchen, Hall in Tirol, Schwaz &amp; Umgebung.
+          </p>
+
+          <!-- Schlanker Praxis-Tipp ohne Kasten-in-Kasten-Optik -->
+          <div class="mt-5 pl-3.5 border-l-2 border-headerSage/70 text-xs text-mutedText leading-relaxed font-light">
+            <strong class="text-charcoal font-medium block mb-0.5">Praxis-Tipp:</strong>
+            Vermerk <em>„Hausbesuch erforderlich“</em> auf der Verordnung sichert die anteilige Kassenübernahme der Wegpauschale.
+          </div>
+        </div>
+
+        <div class="pt-6 mt-8 border-t border-borderMuted/40 flex items-center justify-between">
+          <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-headerSage/15 text-darkMoss text-xs font-medium">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5 text-darkMoss"></i>
+            <span>Fritzens &amp; Umgebung</span>
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==================== FULLSCREEN MAP & ANREISE SECTION ==================== -->
+  <section id="anreise" class="w-full relative min-h-[600px] sm:min-h-[680px] flex items-center overflow-hidden">
+    
+    <!-- Fullscreen Interactive Leaflet Map -->
+    <div id="interactiveMap" class="absolute inset-0 w-full h-full z-10"></div>
+    
+    <!-- Feiner Helligkeitsverlauf (kein grüner Schleier) -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/10 pointer-events-none z-[11]"></div>
+
+    <!-- Floating Content Overlay auf der linken Seite (Rechts frei für volle Sicht auf den Marker) -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 w-full py-10 sm:py-16 pointer-events-none">
+      <div class="w-full max-w-md lg:max-w-lg bg-white/95 backdrop-blur-md rounded-2xl border border-white/80 shadow-[0_16px_40px_-8px_rgba(45,53,43,0.22)] p-6 sm:p-8 space-y-5 pointer-events-auto">
+        
+        <!-- Information, Address & Direct Route Triggers -->
+        <div class="space-y-3">
+          <div class="flex items-center gap-2 text-darkMoss">
+            <i data-lucide="train" class="w-4 h-4 text-darkMoss"></i>
+            <span class="text-xs uppercase tracking-wider font-semibold">Öffentliche Erreichbarkeit &amp; Lage</span>
+          </div>
+          
+          <h3 class="text-2xl sm:text-3xl font-normal text-charcoal tracking-tight">
+            Nur wenige Minuten zur S-Bahn Station Fritzens-Wattens
+          </h3>
+          
+          <p class="text-xs sm:text-sm text-mutedText leading-relaxed font-light">
+            Die Praxis am <strong>Bichlweg 17b, 6122 Fritzens</strong> liegt in ruhiger Lage und in unmittelbarer Gehdistanz zur S-Bahn. Regelmäßige Züge im dichten Takt aus Richtung Hall/Innsbruck sowie Schwaz/Wörgl. Kostenfreie Parkmöglichkeiten direkt vor Ort.
+          </p>
+        </div>
+
+        <!-- Kompakte S-Bahn Fahrzeiten -->
+        <div class="bg-cardBg/95 p-4 rounded-xl border border-borderMuted space-y-2.5 text-xs">
+          <div class="text-[11px] uppercase tracking-wider font-semibold text-mutedText pb-1 border-b border-borderMuted flex items-center justify-between">
+            <span>S-Bahn Fahrzeiten</span>
+            <span class="text-darkMoss font-bold">S4 / S5 / REX</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2 text-center pt-0.5">
+            <div class="p-2 rounded-lg bg-white border border-borderMuted/60 shadow-xs">
+              <span class="block text-[10px] text-mutedText">Hall i. T.</span>
+              <span class="font-bold text-darkMoss text-xs">ca. 8 Min.</span>
+            </div>
+            <div class="p-2 rounded-lg bg-white border border-borderMuted/60 shadow-xs">
+              <span class="block text-[10px] text-mutedText">Schwaz</span>
+              <span class="font-bold text-darkMoss text-xs">ca. 10 Min.</span>
+            </div>
+            <div class="p-2 rounded-lg bg-white border border-borderMuted/60 shadow-xs">
+              <span class="block text-[10px] text-mutedText">Innsbruck</span>
+              <span class="font-bold text-darkMoss text-xs">ca. 16 Min.</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between pt-1 text-mutedText text-[11px]">
+            <span class="flex items-center gap-1.5"><i data-lucide="footprints" class="w-3.5 h-3.5 text-headerSage"></i> Fußweg ab Bahnhof Fritzens-Wattens:</span>
+            <span class="font-semibold text-charcoal">ca. 6 Minuten</span>
+          </div>
+        </div>
+
+        <!-- Buttons Google Maps & VVT (mit hinterlegter Adresse) -->
+        <div class="pt-1 flex flex-wrap gap-2.5">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Bichlweg+17b,+6122+Fritzens" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-darkMoss hover:bg-darkMossDeep text-white text-xs font-medium shadow-sm transition-all group">
+            <i data-lucide="map" class="w-4 h-4 text-headerSage group-hover:text-white transition-colors"></i>
+            <span>Route in Google Maps</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-70"></i>
+          </a>
+          <a href="https://smartride.vvt.at/?destination=Bichlweg+17b,+6122+Fritzens" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-headerSage/20 hover:bg-headerSage/35 text-darkMoss border border-headerSage/50 text-xs font-medium transition-all group">
+            <i data-lucide="compass" class="w-4 h-4 text-darkMoss"></i>
+            <span>VVT SmartRide</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-70"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ==================== SCHLANKE TERMINVEREINBARUNG & FORMULAR ==================== -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 w-full py-16 flex-grow">
+    <section id="kontakt" class="p-6 sm:p-10 rounded-xl bg-white border border-borderMuted clean-card-shadow">
+      <div class="max-w-xl mx-auto space-y-6">
+        
+        <div class="text-center space-y-1">
+          <span class="text-xs uppercase tracking-widest text-mutedText font-semibold block">Kontakt</span>
+          <h2 class="text-2xl sm:text-3xl text-charcoal font-normal">
+            Termin anfragen
+          </h2>
+          <p class="text-xs sm:text-sm text-mutedText font-light">
+            Senden Sie mir eine kurze Nachricht – Sie erhalten innerhalb von 24 Stunden eine Rückmeldung.
+          </p>
+        </div>
+
+        <form id="quickForm" class="space-y-4">
+          
+          <!-- Behandlungsart Umschalter -->
+          <div class="grid grid-cols-2 gap-3">
+            <label class="cursor-pointer text-center p-2.5 rounded border border-borderMuted bg-cardBg text-xs font-semibold text-charcoal hover:border-darkMoss has-[:checked]:bg-darkMoss has-[:checked]:text-white has-[:checked]:border-darkMoss transition-all">
+              <input type="radio" name="loc" value="Praxis Fritzens" class="sr-only" checked>
+              <span>Praxis Fritzens</span>
+            </label>
+            <label class="cursor-pointer text-center p-2.5 rounded border border-borderMuted bg-cardBg text-xs font-semibold text-charcoal hover:border-darkMoss has-[:checked]:bg-darkMoss has-[:checked]:text-white has-[:checked]:border-darkMoss transition-all">
+              <input type="radio" name="loc" value="Mobiler Hausbesuch" class="sr-only">
+              <span>Mobiler Hausbesuch</span>
+            </label>
+          </div>
+
+          <!-- Name & Telefon -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label for="name" class="block text-[11px] uppercase tracking-wider font-semibold text-charcoal mb-1">Name *</label>
+              <input type="text" id="name" required placeholder="Vor- und Nachname" class="w-full px-3 py-2 rounded border border-borderMuted text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-darkMoss">
+            </div>
+            <div>
+              <label for="phone" class="block text-[11px] uppercase tracking-wider font-semibold text-charcoal mb-1">Telefon *</label>
+              <input type="tel" id="phone" required placeholder="+43 6xx ..." class="w-full px-3 py-2 rounded border border-borderMuted text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-darkMoss">
+            </div>
+          </div>
+
+          <!-- E-Mail -->
+          <div>
+            <label for="email" class="block text-[11px] uppercase tracking-wider font-semibold text-charcoal mb-1">E-Mail *</label>
+            <input type="email" id="email" required placeholder="ihre.email@beispiel.at" class="w-full px-3 py-2 rounded border border-borderMuted text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-darkMoss">
+          </div>
+
+          <!-- Nachricht -->
+          <div>
+            <label for="msg" class="block text-[11px] uppercase tracking-wider font-semibold text-charcoal mb-1">Anliegen / Verordnung (optional)</label>
+            <textarea id="msg" rows="3" placeholder="z.B. Schulterschmerzen, Verordnung für 6x Physiotherapie liegt vor..." class="w-full px-3 py-2 rounded border border-borderMuted text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-darkMoss"></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="w-full py-3 rounded bg-darkMoss hover:bg-darkMossLight text-white text-xs uppercase tracking-wider font-semibold shadow-sm transition-colors flex items-center justify-center gap-2">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i>
+            <span>Termin unverbindlich anfragen</span>
+          </button>
+
+          <p class="text-[11px] text-center text-mutedText">
+            🔒 Vertrauliche Datenverarbeitung nach DSGVO.
+          </p>
+        </form>
+
+        <!-- Success note -->
+        <div id="formSuccess" class="hidden p-3 rounded bg-cardBg border border-headerSage text-xs text-darkMoss text-center">
+          Vielen Dank! Ihr E-Mail-Entwurf wurde vorbereitet / Ihre Anfrage wird zeitnah beantwortet.
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MINIMAL FOOTER (THERAPIE AM PLATEAU STIL) ==================== -->
+  <footer class="bg-cardBg border-t border-borderMuted py-8 text-xs text-mutedText">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      
+      <!-- 3 Columns (Phone, Address, Mail) like Therapie am Plateau -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center pb-6 border-b border-borderMuted">
+        
+        <!-- Col 1: Phone -->
+        <div class="space-y-1">
+          <div class="w-7 h-7 rounded-full bg-headerSage/20 text-darkMoss flex items-center justify-center mx-auto mb-2">
+            <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+          </div>
+          <strong class="block text-charcoal font-semibold">Telefon / WhatsApp</strong>
+          <a href="tel:+436601234567" class="hover:text-darkMoss transition-colors">+43 660 1234567</a>
+        </div>
+
+        <!-- Col 2: Address -->
+        <div class="space-y-1">
+          <div class="w-7 h-7 rounded-full bg-headerSage/20 text-darkMoss flex items-center justify-center mx-auto mb-2">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+          </div>
+          <strong class="block text-charcoal font-semibold">Praxisstandort</strong>
+          <span>Bichlweg 17b, 6122 Fritzens</span>
+        </div>
+
+        <!-- Col 3: Email -->
+        <div class="space-y-1">
+          <div class="w-7 h-7 rounded-full bg-headerSage/20 text-darkMoss flex items-center justify-center mx-auto mb-2">
+            <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+          </div>
+          <strong class="block text-charcoal font-semibold">E-Mail</strong>
+          <a href="mailto:kontakt@physio-monia.at" class="hover:text-darkMoss transition-colors">kontakt@physio-monia.at</a>
+        </div>
+
+      </div>
+
+      <!-- Footer Logo Branding (Neues Kreis-Emblem nach Vorlage) -->
+      <div class="pt-6 pb-6 flex justify-center border-b border-borderMuted">
+        <svg class="w-16 sm:w-20 h-auto text-darkMoss/75" viewBox="240 195 544 415" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 318 413 A 194 194 0 1 1 704 413" />
+          <path d="M 698 451 A 194 194 0 0 1 324 451" />
+          <path d="M 250 432 H 376 L 392 391 L 409 481 L 425 432 H 454 L 477 388 L 486 398 L 530 331 L 586 411 L 610 378 L 655 432 H 770" />
+        </svg>
+      </div>
+
+      <!-- Subfooter: Legal info & Copyright -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-mutedText/80 gap-3">
+        <div>
+          &copy; 2026 Physiotherapie Monia Berger · Wahltherapeutin (MTD-Gesetz, Österreich)
+        </div>
+        <div class="flex gap-4">
+          <a href="#" onclick="alert('Impressum: Physiotherapie Monia Berger, Bichlweg 17b, 6122 Fritzens. Kontakt: kontakt@physio-monia.at, Tel: +43 660 1234567.'); return false;" class="hover:text-charcoal transition-colors">Impressum</a>
+          <a href="#" onclick="alert('Datenschutz: Ihre personenbezogenen Daten werden vertraulich gemäß DSGVO ausschließlich zur Kontaktaufnahme verarbeitet.'); return false;" class="hover:text-charcoal transition-colors">Datenschutz</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ==================== FLOATING WHATSAPP BUTTON (IN DER CI DER WEBSITE) ==================== -->
+  <a href="https://wa.me/436601234567?text=Hallo%20Monia,%20ich%20m%C3%B6chte%20gerne%20einen%20Physiotherapie-Termin%20anfragen." target="_blank" rel="noopener noreferrer" class="fixed bottom-5 right-5 z-40 flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-darkMoss text-white border border-headerSage/40 text-xs uppercase tracking-wider font-semibold shadow-lg hover:bg-darkMossDeep hover:border-headerSage transition-all" title="WhatsApp Chat">
+    <i data-lucide="message-circle" class="w-4 h-4 text-headerSage"></i>
+    <span class="hidden sm:inline">WhatsApp</span>
+  </a>
+
+  <!-- ==================== SCRIPT ==================== -->
+  <script>
+    lucide.createIcons();
+
+    // Header Scroll Reveal: oben unsichtbar, erscheint beim Herabscrollen
+    const mainHeader = document.getElementById('mainHeader');
+    function handleHeaderScroll() {
+      if (!mainHeader) return;
+      if (window.scrollY > 80) {
+        mainHeader.classList.remove('-translate-y-full', 'opacity-0', 'pointer-events-none');
+        mainHeader.classList.add('translate-y-0', 'opacity-100');
+      } else {
+        mainHeader.classList.add('-translate-y-full', 'opacity-0', 'pointer-events-none');
+        mainHeader.classList.remove('translate-y-0', 'opacity-100');
+      }
+    }
+    window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+    handleHeaderScroll(); // Initiale Prüfung beim Laden
+
+    // Hero Slider Functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    let slideTimer;
+
+    function showSlide(index) {
+      if (!slides.length) return;
+      currentSlide = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        if (i === currentSlide) {
+          slide.classList.remove('opacity-0', 'pointer-events-none');
+          slide.classList.add('opacity-100');
+        } else {
+          slide.classList.add('opacity-0', 'pointer-events-none');
+          slide.classList.remove('opacity-100');
+        }
+      });
+      dots.forEach((dot, i) => {
+        if (i === currentSlide) {
+          dot.classList.add('bg-white', 'w-7');
+          dot.classList.remove('bg-white/40', 'w-2');
+        } else {
+          dot.classList.remove('bg-white', 'w-7');
+          dot.classList.add('bg-white/40', 'w-2');
+        }
+      });
+    }
+
+    function nextSlide() { showSlide(currentSlide + 1); }
+    function prevSlide() { showSlide(currentSlide - 1); }
+
+    function startAutoSlide() {
+      stopAutoSlide();
+      slideTimer = setInterval(nextSlide, 5000);
+    }
+    function stopAutoSlide() {
+      if (slideTimer) clearInterval(slideTimer);
+    }
+
+    document.getElementById('sliderNext')?.addEventListener('click', () => {
+      nextSlide();
+      startAutoSlide();
+    });
+    document.getElementById('sliderPrev')?.addEventListener('click', () => {
+      prevSlide();
+      startAutoSlide();
+    });
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        showSlide(idx);
+        startAutoSlide();
+      });
+    });
+
+    const sliderEl = document.getElementById('heroSlider');
+    sliderEl?.addEventListener('mouseenter', stopAutoSlide);
+    sliderEl?.addEventListener('mouseleave', startAutoSlide);
+
+    startAutoSlide();
+
+    // Form Handling
+    const quickForm = document.getElementById('quickForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    quickForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const loc = document.querySelector('input[name="loc"]:checked')?.value || 'Praxis Fritzens';
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const email = document.getElementById('email').value;
+      const msg = document.getElementById('msg').value;
+
+      const subject = encodeURIComponent(`Terminanfrage Physiotherapie (${loc}) - ${name}`);
+      const body = encodeURIComponent(
+        `Hallo Monia,\n\nich möchte gerne einen Termin anfragen.\n\n` +
+        `Ort: ${loc}\n` +
+        `Name: ${name}\n` +
+        `Telefon: ${phone}\n` +
+        `E-Mail: ${email}\n` +
+        `Anliegen:\n${msg}\n\n` +
+        `Viele Grüße,\n${name}`
+      );
+
+      window.location.href = `mailto:kontakt@physio-monia.at?subject=${subject}&body=${body}`;
+      formSuccess.classList.remove('hidden');
+    });
+  </script>
+
+  <!-- Leaflet Map Script & Markers -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // Initialisierung der interaktiven Karte mit CI-Pins und ÖBB-Bahnhof
+    function initMap() {
+      const mapContainer = document.getElementById('interactiveMap');
+      if (!mapContainer || typeof L === 'undefined') return;
+
+      const isDesktop = window.innerWidth >= 1024;
+      // Präzises Zentrum für Zoom 17: optimal ausgerichtet für freie Sicht rechts
+      const centerLat = 47.3026;
+      const centerLng = isDesktop ? 11.5872 : 11.5893;
+      const zoomLevel = 17; // Noch näherer Zoom (Stufe 17) für maximale Nahsicht und Details
+
+      const map = L.map('interactiveMap', {
+        center: [centerLat, centerLng],
+        zoom: zoomLevel,
+        zoomControl: false,
+        attributionControl: false,
+        scrollWheelZoom: false,
+        dragging: false,
+        touchZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        keyboard: false
+      });
+
+      // 100% freie Kartenkacheln ohne API-Key und ohne Wasserzeichen
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap',
+        maxZoom: 19
+      }).addTo(map);
+
+      // Marker 1: Praxis Physiotherapie Monia Berger (Bichlweg 17b)
+      const physioHtml = `
+        <div class="flex flex-col items-center select-none group cursor-pointer" style="width: 140px;">
+          <!-- Puls-Effekt & Medaillon -->
+          <div class="relative flex items-center justify-center">
+            <div class="absolute -inset-1 rounded-full bg-[#4D5847]/20 animate-ping"></div>
+            <div class="relative w-11 h-11 rounded-full bg-white shadow-xl border-2 border-[#4D5847] flex items-center justify-center p-1 group-hover:scale-110 transition-transform">
+              <svg style="width: 26px; height: 26px;" class="text-[#4D5847]" viewBox="240 195 544 415" fill="none" stroke="currentColor" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 318 413 A 194 194 0 1 1 704 413" />
+                <path d="M 698 451 A 194 194 0 0 1 324 451" />
+                <path d="M 250 432 H 376 L 392 391 L 409 481 L 425 432 H 454 L 477 388 L 486 398 L 530 331 L 586 411 L 610 378 L 655 432 H 770" />
+              </svg>
+            </div>
+          </div>
+          <!-- Beschriftung unter dem Logo -->
+          <div class="mt-1 bg-[#4D5847] text-white text-[10px] font-semibold px-2.5 py-0.5 rounded-full shadow-md whitespace-nowrap border border-white/20">
+            Monia Berger · Bichlweg 17b
+          </div>
+        </div>
+      `;
+      const physioIcon = L.divIcon({
+        className: 'custom-physio-logo-pin',
+        html: physioHtml,
+        iconSize: [140, 65],
+        iconAnchor: [70, 22] // Exakter Mittelpunkt des Logo-Kreises auf den Koordinaten
+      });
+
+      const physioMarker = L.marker([47.30356, 11.58972], { icon: physioIcon }).addTo(map);
+      physioMarker.bindPopup(`
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; padding: 4px;">
+          <strong style="color: #4D5847; font-size: 13px; display: block;">Physiotherapie Monia Berger</strong>
+          <span style="font-size: 11px; color: #626E60;">Bichlweg 17b, 6122 Fritzens</span><br>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Bichlweg+17b,+6122+Fritzens" target="_blank" style="display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 600; color: #4D5847; text-decoration: underline;">Route in Google Maps öffnen →</a>
+        </div>
+      `);
+
+      // Marker 2: Bahnhof Fritzens-Wattens mit originalem ÖBB Logo direkt am Bahnsteig
+      const oebbHtml = `
+        <div class="flex flex-col items-center select-none group cursor-pointer" style="width: 150px;">
+          <!-- Badge oberhalb des Pins -->
+          <div class="mb-1 bg-white text-[#2D352B] text-[10px] font-semibold px-2 py-0.5 rounded-full shadow-md whitespace-nowrap border border-[#E2E6DF] flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#E2001A]"></span>
+            <span>Bahnhof Fritzens-Wattens</span>
+            <span class="text-[9px] text-[#626E60] font-normal">· 6 Min.</span>
+          </div>
+          <!-- ÖBB Pin -->
+          <div class="w-8 h-8 rounded-full bg-[#E2001A] text-white flex items-center justify-center shadow-lg border-2 border-white ring-2 ring-[#E2001A]/25 group-hover:scale-110 transition-transform">
+            <span style="font-size: 10px; font-weight: 800; letter-spacing: -0.04em; font-family: 'Plus Jakarta Sans', sans-serif;">ÖBB</span>
+          </div>
+          <div style="width: 8px; height: 8px; background: #E2001A; transform: rotate(45deg); margin-top: -4px; border-right: 2px solid white; border-bottom: 2px solid white;"></div>
+        </div>
+      `;
+      const oebbIcon = L.divIcon({
+        className: 'custom-oebb-pin',
+        html: oebbHtml,
+        iconSize: [150, 58],
+        iconAnchor: [75, 54] // Pin-Spitze sitzt präzise auf dem Bahnhofsgelände
+      });
+
+      const oebbMarker = L.marker([47.30160, 11.58886], { icon: oebbIcon }).addTo(map);
+      oebbMarker.bindPopup(`
+        <div style="font-family: 'Plus Jakarta Sans', sans-serif; padding: 4px;">
+          <strong style="color: #E2001A; font-size: 13px; display: block;">Bahnhof Fritzens-Wattens (ÖBB / S-Bahn)</strong>
+          <span style="font-size: 11px; color: #626E60;">Dichte Taktung aus Hall in Tirol, Schwaz &amp; Innsbruck</span><br>
+          <span style="font-size: 11px; color: #4D5847; font-weight: 600;">Ca. 6 Minuten Fußweg zur Praxis.</span><br>
+          <a href="https://smartride.vvt.at/?destination=Bichlweg+17b,+6122+Fritzens" target="_blank" style="display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 600; color: #E2001A; text-decoration: underline;">VVT Fahrplan aufrufen →</a>
+        </div>
+      `);
+
+      // Feine Fußweg-Linie zwischen Bahnhof und Praxis entlang der Straßenführung
+      L.polyline([
+        [47.30160, 11.58886],
+        [47.30210, 11.58895],
+        [47.30275, 11.58875],
+        [47.30325, 11.58935],
+        [47.30356, 11.58972]
+      ], {
+        color: '#4D5847',
+        weight: 3.5,
+        opacity: 0.7,
+        dashArray: '5, 8',
+        lineCap: 'round'
+      }).addTo(map);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMap);
+    } else {
+      initMap();
+    }
+  </script>
+</body>
+</html>
