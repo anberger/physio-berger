@@ -32,7 +32,8 @@ Eine moderne, minimalistische und suchmaschinenoptimierte Website für Monia Ber
 
 In der Datei [`index.html`](file:///C:/Software/physio-berger/index.html) können folgende Platzhalter mit Monias realen Daten ersetzt werden:
 
-- **E-Mail-Adresse:** `kontakt@physio-monia.at`
+- **E-Mail-Adresse:** `monia.berger@outlook.com`
+- **Domain:** `monia.at`
 - **Adresse:** `Bichlweg 17b, 6122 Fritzens`
 - **Therapeutin:** *Monia Berger*
 
@@ -53,9 +54,9 @@ Die Website ist vollständig für das Hosting auf **GitHub Pages** vorbereitet:
 
 2. **GitHub Pages aktivieren (falls nicht automatisch aktiv):**
    - Gehe im GitHub Repository auf **Settings** → **Pages**.
-   - Unter **Build and deployment** / **Source**: Wähle **GitHub Actions** (oder *Deploy from a branch* -> `main` / `/ (root)`).
-   - Die Website wird bei jedem `git push` auf den `main`-Branch automatisch unter `https://<dein-nutzername>.github.io/physio-berger/` veröffentlicht.
+   - Unter **Build and deployment** / **Source**: Wähle **Deploy from a branch** -> `main` / `/ (root)`.
+   - Die CNAME-Datei mit `monia.at` ist bereits im Projekt hinterlegt.
 
-3. **Eigene Domain verknüpfen (z.B. physio-berger.at):**
-   - Unter **Settings** → **Pages** → **Custom domain** kannst du deine eigene Domain eintragen und HTTPS aktivieren.
+3. **Eigene Domain verknüpfen (`monia.at`):**
+   - Unter **Settings** → **Pages** → **Custom domain** ist `monia.at` hinterlegt; aktiviere dort *Enforce HTTPS*.
 
