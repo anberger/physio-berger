@@ -1145,25 +1145,28 @@
       `;
       if (window.lucide) lucide.createIcons();
 
+      // Google Apps Script Webhook (Läuft über das eigene Google-Konto ohne fremde Drittanbieter)
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxhn11erIVniIknEWo_wSrsnj9Z3q3AMYq7Gz3-JCnVtL0vhEwlJjy_hUIQbOB33kYj/exec";
+
       const payload = {
         name: name,
         phone: phone,
         email: email,
-        Behandlungsort: loc,
-        Adresse: (loc === 'Hausbesuch' && addressVal) ? addressVal : 'Praxis Fritzens (Bichlweg 17b)',
-        Nachricht: msg || 'Keine zusätzliche Nachricht angegeben.',
-        _subject: `Neue Terminanfrage von ${name} (${loc})`,
-        _replyto: email,
-        _template: 'table',
-        _captcha: 'false'
+        loc: loc,
+        address: (loc === 'Hausbesuch' && addressVal) ? addressVal : 'Praxis Fritzens (Bichlweg 17b)',
+        message: msg || 'Keine zusätzliche Nachricht angegeben.'
       };
 
       try {
-        await fetch('https://formsubmit.co/ajax/monia@physioberger.at', {
+        if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("HIER_GOOGLE_SCRIPT_URL")) {
+          throw new Error("URL_NOT_CONFIGURED");
+        }
+
+        await fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
+          mode: 'no-cors',
           headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Content-Type': 'text/plain;charset=utf-8'
           },
           body: JSON.stringify(payload)
         });
@@ -1172,7 +1175,7 @@
         quickForm.reset();
         hideHomeVisitAddress();
 
-        // Reine Erfolgsmeldung für den Besucher (keine Freischalt-Box)
+        // Reine Erfolgsmeldung für den Besucher
         formSuccess.innerHTML = `
           <div class="flex items-start gap-3.5 text-left">
             <div class="w-8 h-8 rounded-full bg-headerSage/35 flex items-center justify-center shrink-0 mt-0.5 text-darkMoss">
@@ -1181,7 +1184,7 @@
             <div class="space-y-1.5">
               <strong class="block text-sm sm:text-base font-semibold text-charcoal">Vielen Dank für deine Anfrage, ${name}!</strong>
               <p class="text-xs sm:text-[13px] text-mutedText leading-relaxed">
-                Deine Nachricht wurde erfolgreich übermittelt. Ich melde mich so schnell wie möglich persönlich bei dir!
+                Deine Terminanfrage wurde erfolgreich übermittelt. Eine Bestätigung wurde an <strong>${email}</strong> gesendet. Ich melde mich so schnell wie möglich persönlich bei dir!
               </p>
             </div>
           </div>
@@ -1190,11 +1193,20 @@
         formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         if (window.lucide) lucide.createIcons();
       } catch (err) {
-        formSuccess.innerHTML = `
-          <div class="p-4 rounded-xl bg-red-50 text-red-800 text-xs text-center">
-            Die Anfrage konnte leider nicht gesendet werden. Bitte kurz telefonisch melden: <a href="tel:+436604054510" class="font-bold underline">+43 660 4054510</a>
-          </div>
-        `;
+        if (err.message === "URL_NOT_CONFIGURED") {
+          formSuccess.innerHTML = `
+            <div class="p-4 rounded-xl bg-amber-50 text-amber-900 text-xs text-center space-y-1 border border-amber-200">
+              <p><strong>Google Script URL noch nicht hinterlegt:</strong> Bitte die Web-App-URL in index.html eintragen.</p>
+              <p class="text-mutedText">Alternativ direkt erreichbar: <a href="tel:+436604054510" class="font-bold underline text-darkMoss">+43 660 4054510</a> oder <a href="mailto:monia@physioberger.at" class="underline text-darkMoss">monia@physioberger.at</a></p>
+            </div>
+          `;
+        } else {
+          formSuccess.innerHTML = `
+            <div class="p-4 rounded-xl bg-red-50 text-red-800 text-xs text-center">
+              Die Anfrage konnte leider nicht gesendet werden. Bitte kurz telefonisch melden: <a href="tel:+436604054510" class="font-bold underline">+43 660 4054510</a>
+            </div>
+          `;
+        }
         formSuccess.classList.remove('hidden');
       } finally {
         submitBtn.disabled = false;
