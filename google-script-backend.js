@@ -1,6 +1,6 @@
 ﻿// =========================================================================
 // GOOGLE APPS SCRIPT: E-Mail-Versand für Physiotherapie Monia Berger
-// Sendet direkt von monia@physioberger.at mit Praxisname & Bestätigung
+// Sendet direkt von monia@physioberger.at über den verknüpften Gmail-Alias
 // =========================================================================
 
 function doPost(e) {
@@ -14,9 +14,19 @@ function doPost(e) {
     var address = data.address || 'Praxis Fritzens (Bichlweg 17b)';
     var message = data.message || 'Keine zusätzliche Nachricht.';
     
+    // Ermittle den verknüpften Alias (monia@physioberger.at)
+    var senderAlias = 'monia@physioberger.at';
+    var aliases = GmailApp.getAliases();
+    for (var i = 0; i < aliases.length; i++) {
+      if (aliases[i].toLowerCase().indexOf('physioberger.at') !== -1) {
+        senderAlias = aliases[i];
+        break;
+      }
+    }
+    
     var recipient = 'monia@physioberger.at';
     
-    // 1. E-Mail an Monia Berger (Terminanfrage-Benachrichtigung)
+    // 1. E-Mail an Monia Berger (Benachrichtigung über die Anfrage)
     var subject = 'Neue Terminanfrage von ' + name + ' (' + loc + ')';
     var body = 'Hallo Monia,\n\n' +
                'du hast eine neue Terminanfrage über deine Website physioberger.at erhalten:\n\n' +
@@ -31,23 +41,11 @@ function doPost(e) {
                'Viele Grüße,\n' +
                'Deine Website physioberger.at';
                
-    // Senden an Monia
-    try {
-      GmailApp.sendEmail(recipient, subject, body, {
-        from: 'monia@physioberger.at',
-        name: 'Physiotherapie Monia Berger Website',
-        replyTo: email
-      });
-    } catch (e1) {
-      // Fallback falls SMTP-Alias noch in Einrichtung ist
-      MailApp.sendEmail({
-        to: recipient,
-        name: 'Physiotherapie Monia Berger Website',
-        subject: subject,
-        body: body,
-        replyTo: email
-      });
-    }
+    GmailApp.sendEmail(recipient, subject, body, {
+      from: senderAlias,
+      name: 'Physiotherapie Monia Berger Website',
+      replyTo: email
+    });
     
     // 2. Automatische Bestätigungs-E-Mail an den Patienten
     if (email && email.indexOf('@') > 0) {
@@ -61,22 +59,11 @@ function doPost(e) {
                         'Telefon: +43 660 4054510\n' +
                         'Website: https://physioberger.at';
                         
-      try {
-        GmailApp.sendEmail(email, confirmSubject, confirmBody, {
-          from: 'monia@physioberger.at',
-          name: 'Physiotherapie Monia Berger',
-          replyTo: 'monia@physioberger.at'
-        });
-      } catch (e2) {
-        // Fallback mit Absendername
-        MailApp.sendEmail({
-          to: email,
-          name: 'Physiotherapie Monia Berger',
-          subject: confirmSubject,
-          body: confirmBody,
-          replyTo: 'monia@physioberger.at'
-        });
-      }
+      GmailApp.sendEmail(email, confirmSubject, confirmBody, {
+        from: senderAlias,
+        name: 'Physiotherapie Monia Berger',
+        replyTo: senderAlias
+      });
     }
     
     return ContentService.createTextOutput(JSON.stringify({ 'result': 'success' }))
@@ -86,4 +73,10 @@ function doPost(e) {
     return ContentService.createTextOutput(JSON.stringify({ 'result': 'error', 'error': error.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
   }
+}
+
+// Hilfsfunktion: 1x im Editor auf 'Ausführen' klicken, um die neue Gmail-Berechtigung zu erteilen
+function testPermissions() {
+  var aliases = GmailApp.getAliases();
+  Logger.log('Gefundene verknüpfte E-Mail-Aliase: ' + JSON.stringify(aliases));
 }
