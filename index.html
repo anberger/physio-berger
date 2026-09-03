@@ -84,6 +84,15 @@
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 5.5rem;
+    }
+    @media (max-width: 640px) {
+      html {
+        scroll-padding-top: 4.5rem;
+      }
+    }
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: #FFFFFF;
@@ -209,23 +218,23 @@
 <body class="selection:bg-headerSage selection:text-white flex flex-col min-h-screen overflow-x-hidden">
 
   <!-- ==================== MINIMAL HEADER (#B0B8A6, oben ausgeblendet, erscheint beim Runterscrollen) ==================== -->
-  <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 bg-headerSage text-white shadow-md transition-all duration-500 ease-in-out -translate-y-full opacity-0 pointer-events-none">
+  <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 bg-headerSage text-charcoal shadow-md transition-all duration-500 ease-in-out -translate-y-full opacity-0 pointer-events-none">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
       
       <!-- Brand Logo (Neues Kreis-Emblem – kräftigere Linienstärke) -->
-      <a href="#" class="flex items-center group text-white hover:opacity-90 transition-opacity" title="Physiotherapie Monia Berger" aria-label="Physiotherapie Monia Berger Startseite">
-        <svg class="h-11 sm:h-12 w-auto text-white shrink-0 drop-shadow-sm" viewBox="240 195 544 415" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+      <a href="#" class="flex items-center group text-charcoal hover:opacity-80 transition-opacity" title="Physiotherapie Monia Berger" aria-label="Physiotherapie Monia Berger Startseite">
+        <svg class="h-11 sm:h-12 w-auto text-charcoal shrink-0" viewBox="240 195 544 415" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
           <path d="M 318 413 A 194 194 0 1 1 704 413" />
           <path d="M 698 451 A 194 194 0 0 1 324 451" />
           <path d="M 250 432 H 376 L 392 391 L 409 481 L 425 432 H 454 L 477 388 L 486 398 L 530 331 L 586 411 L 610 378 L 655 432 H 770" />
         </svg>
       </a>
 
-      <!-- Quick Navigation -->
-      <nav class="hidden md:flex items-center gap-7 lg:gap-8 text-base lg:text-[17px] font-medium text-white">
-        <a href="#ablauf" class="hover:text-white/80 transition-colors py-1">Ablauf & Kasse</a>
-        <a href="#hausbesuche" class="hover:text-white/80 transition-colors py-1">Hausbesuche</a>
-        <a href="#anreise" class="hover:text-white/80 transition-colors py-1">Lage & S-Bahn</a>
+      <!-- Quick Navigation (Dunkle Schrift für hohen Kontrast) -->
+      <nav class="hidden md:flex items-center gap-7 lg:gap-8 text-base lg:text-[17px] font-semibold text-charcoal">
+        <a href="#ablauf" class="hover:text-darkMoss transition-colors py-1">Ablauf &amp; Kasse</a>
+        <a href="#anreise" class="hover:text-darkMoss transition-colors py-1">Praxis Fritzens</a>
+        <a href="#hausbesuche" class="hover:text-darkMoss transition-colors py-1">Hausbesuche</a>
         <a href="#kontakt" class="px-6 py-2 rounded-full bg-white text-darkMoss text-sm uppercase tracking-wider font-semibold hover:bg-white/90 shadow-sm transition-all">
           Termin anfragen
         </a>
@@ -356,8 +365,8 @@
     </div>
   </section>
 
-  <!-- ==================== PHILOSOPHIE / WILLKOMMEN SECTION (DUNKLE SCHRIFT) ==================== -->
-  <section id="willkommen" class="py-16 sm:py-24 lg:py-28 px-4 text-center bg-headerSage">
+  <!-- ==================== PHILOSOPHIE / WILLKOMMEN SECTION (HELLER SALBEITON) ==================== -->
+  <section id="willkommen" class="py-16 sm:py-24 lg:py-28 px-4 text-center bg-[#F2F5EF] border-y border-[#E4EAE0]/80">
     <div class="max-w-4xl mx-auto space-y-2">
       <span class="font-handwritten text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] block select-none leading-snug py-1 text-charcoal">
         Veränderung beginnt mit Bewegung
@@ -389,9 +398,6 @@
       <div class="lg:col-span-7 px-6 py-12 sm:px-12 sm:py-16 lg:px-16 xl:px-24 flex flex-col justify-center space-y-6">
         
         <div>
-          <span class="text-xs uppercase tracking-widest text-headerSage font-semibold block mb-2">
-            Physiotherapie · Fritzens & Mobil
-          </span>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl text-white font-normal tracking-tight">
             Monia Berger
           </h2>
@@ -400,9 +406,14 @@
           </p>
         </div>
 
-        <p class="text-base sm:text-lg text-white/90 font-light leading-relaxed max-w-2xl">
-          Ganzheitliche physiotherapeutische Betreuung bei orthopädischen Beschwerden, Schmerzen und nach Operationen. In ruhiger Praxisatmosphäre in Fritzens oder im Rahmen von <strong>Hausbesuchen</strong> direkt bei Ihnen vor Ort.
-        </p>
+        <div class="space-y-3 max-w-2xl text-white/90 font-light leading-relaxed text-base sm:text-lg">
+          <p>
+            Bewegung bedeutet für mich Lebensqualität. Seit 2015 begleite ich Menschen als Physiotherapeutin dabei, nach Schmerzen, Beschwerden oder Operationen wieder zu einer gesunden und natürlichen Bewegung zurückzufinden.
+          </p>
+          <p class="text-white font-normal">
+            Persönlich, individuell und mit ausreichend Zeit.
+          </p>
+        </div>
 
         <!-- Direct Contact Triggers (Prominent & Fast) -->
         <div class="pt-2 flex flex-wrap gap-3">
@@ -557,16 +568,16 @@
         <!-- Information, Address & Direct Route Triggers -->
         <div class="space-y-3">
           <div class="flex items-center gap-2 text-darkMoss">
-            <i data-lucide="train" class="w-4.5 h-4.5 text-darkMoss"></i>
-            <span class="text-xs sm:text-[13px] uppercase tracking-wider font-semibold">Öffentliche Erreichbarkeit &amp; Lage</span>
+            <i data-lucide="map-pin" class="w-4.5 h-4.5 text-darkMoss"></i>
+            <span class="text-xs sm:text-[13px] uppercase tracking-wider font-semibold">Standort &amp; Anreise</span>
           </div>
           
           <h3 class="text-3xl sm:text-[2rem] font-normal text-charcoal tracking-tight leading-tight">
-            Nur ca. 5 Minuten Gehweg zur S-Bahn Station Fritzens-Wattens
+            Praxisstandort Fritzens
           </h3>
           
           <p class="text-[15px] sm:text-base text-mutedText leading-relaxed font-light">
-            Die Praxis am <strong>Bichlweg 17b, 6122 Fritzens</strong> liegt in ruhiger Lage und in unmittelbarer Gehdistanz zur S-Bahn. Regelmäßige Züge im dichten Takt aus Richtung Hall/Innsbruck sowie Schwaz/Wörgl. Kostenfreie Parkmöglichkeiten direkt vor Ort.
+            Die Praxis am <strong>Bichlweg 17b, 6122 Fritzens</strong> liegt in ruhiger, angenehmer Lage. Kostenfreie Parkmöglichkeiten finden Sie direkt vor Ort – sowie eine bequeme Anbindung mit nur ca. 5 Minuten Gehweg zur S-Bahn Station Fritzens-Wattens.
           </p>
         </div>
 
@@ -917,6 +928,36 @@
     window.addEventListener('scroll', handleHeaderScroll, { passive: true });
     handleHeaderScroll(); // Initiale Prüfung beim Laden
 
+    // Weicher Scroll-Versatz: Zieht die Höhe des fixierten Headers automatisch ab
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#' || targetId === '') {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          const header = document.getElementById('mainHeader');
+          // Exakte Menühöhe abziehen + 14px feiner Abstand für perfekte Sicht
+          const headerHeight = header && header.offsetHeight ? header.offsetHeight : 76;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 14;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+
+          if (history.pushState) {
+            history.pushState(null, null, targetId);
+          }
+        }
+      });
+    });
+
     // Hero Slider Functionality
     let currentSlide = 0;
     const slides = document.querySelectorAll('.hero-slide');
@@ -1091,7 +1132,7 @@
       const email = document.getElementById('email').value.trim();
       const addressVal = homeAddress.value.trim();
       const msg = document.getElementById('msg').value.trim();
-      
+
       // Spam-Schutz (Honeypot)
       const honeypot = document.getElementById('_honey')?.value;
       if (honeypot) return;
@@ -1100,11 +1141,9 @@
       submitBtn.disabled = true;
       submitBtn.innerHTML = `
         <i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>
-        <span>Anfrage wird gesendet...</span>
+        <span>Wird gesendet...</span>
       `;
       if (window.lucide) lucide.createIcons();
-
-      const autoresponseMsg = `Liebe/r ${name},\n\nvielen Dank für deine Terminanfrage bei Physiotherapie Monia Berger!\n\nIch habe deine Nachricht erhalten und werde mich so schnell wie möglich persönlich bei dir melden, um einen passenden Termin zu vereinbaren.\n\nHerzliche Grüße,\nMonia Berger\nPhysiotherapie Fritzens & Hausbesuche\nTelefon: +43 660 4054510\nWebsite: https://physioberger.at`;
 
       const payload = {
         name: name,
@@ -1115,13 +1154,12 @@
         Nachricht: msg || 'Keine zusätzliche Nachricht angegeben.',
         _subject: `Neue Terminanfrage von ${name} (${loc})`,
         _replyto: email,
-        _autoresponse: autoresponseMsg,
         _template: 'table',
         _captcha: 'false'
       };
 
       try {
-        const res = await fetch('https://formsubmit.co/ajax/monia@physioberger.at', {
+        await fetch('https://formsubmit.co/ajax/monia@physioberger.at', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -1130,39 +1168,31 @@
           body: JSON.stringify(payload)
         });
 
-        if (res.ok) {
-          quickForm.reset();
-          hideHomeVisitAddress();
-          formSuccess.innerHTML = `
-            <div class="flex items-start gap-3.5 text-left">
-              <div class="w-8 h-8 rounded-full bg-headerSage/35 flex items-center justify-center shrink-0 mt-0.5 text-darkMoss">
-                <i data-lucide="check" class="w-5 h-5"></i>
-              </div>
-              <div class="space-y-1.5">
-                <strong class="block text-sm sm:text-base font-semibold text-charcoal">Vielen Dank für deine Anfrage, ${name}!</strong>
-                <p class="text-xs sm:text-[13px] text-mutedText leading-relaxed">
-                  Deine Terminanfrage wurde erfolgreich an mich übermittelt. Eine Bestätigungsnachricht wurde soeben an <strong>${email}</strong> gesendet. Ich melde mich so schnell wie möglich bei dir!
-                </p>
-              </div>
-            </div>
-          `;
-          formSuccess.classList.remove('hidden');
-          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          if (window.lucide) lucide.createIcons();
-        } else {
-          throw new Error('Server antwortete mit Fehler');
-        }
-      } catch (err) {
-        // Fallback: Öffnet E-Mail-Programm bei Verbindungsabbruch
-        const subject = encodeURIComponent(`Terminanfrage Physiotherapie (${loc}) - ${name}`);
-        const body = encodeURIComponent(
-          `Hallo Monia,\n\nich möchte gerne einen Termin anfragen.\n\nOrt: ${loc}\n${loc === 'Hausbesuch' && addressVal ? `Adresse: ${addressVal}\n` : ''}Name: ${name}\nTelefon: ${phone}\nE-Mail: ${email}\nAnliegen:\n${msg}\n\nViele Grüße,\n${name}`
-        );
-        window.location.href = `mailto:monia@physioberger.at?subject=${subject}&body=${body}`;
+        // Formular leeren
+        quickForm.reset();
+        hideHomeVisitAddress();
+
+        // Reine Erfolgsmeldung für den Besucher (keine Freischalt-Box)
         formSuccess.innerHTML = `
-          <div class="space-y-1 text-center text-charcoal">
-            <strong class="block text-sm font-semibold">E-Mail-Programm vorbereitet</strong>
-            <p class="text-xs text-mutedText">Deine Terminanfrage wurde in deinem E-Mail-Programm geöffnet, um direkt an monia@physioberger.at gesendet zu werden.</p>
+          <div class="flex items-start gap-3.5 text-left">
+            <div class="w-8 h-8 rounded-full bg-headerSage/35 flex items-center justify-center shrink-0 mt-0.5 text-darkMoss">
+              <i data-lucide="check" class="w-5 h-5"></i>
+            </div>
+            <div class="space-y-1.5">
+              <strong class="block text-sm sm:text-base font-semibold text-charcoal">Vielen Dank für deine Anfrage, ${name}!</strong>
+              <p class="text-xs sm:text-[13px] text-mutedText leading-relaxed">
+                Deine Nachricht wurde erfolgreich übermittelt. Ich melde mich so schnell wie möglich persönlich bei dir!
+              </p>
+            </div>
+          </div>
+        `;
+        formSuccess.classList.remove('hidden');
+        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (window.lucide) lucide.createIcons();
+      } catch (err) {
+        formSuccess.innerHTML = `
+          <div class="p-4 rounded-xl bg-red-50 text-red-800 text-xs text-center">
+            Die Anfrage konnte leider nicht gesendet werden. Bitte kurz telefonisch melden: <a href="tel:+436604054510" class="font-bold underline">+43 660 4054510</a>
           </div>
         `;
         formSuccess.classList.remove('hidden');
@@ -1278,19 +1308,26 @@
         </div>
       `);
 
-      // Feine Fußweg-Linie zwischen Bahnhof und Praxis entlang der Straßenführung
+      // Fußweg-Linie exakt wie der tatsächliche Gehweg (Bahnhof Unterführung -> Unterdorf -> Fußweg östlich von Haus 9 -> Bichlweg 17b)
       L.polyline([
-        [47.30191, 11.58855],
-        [47.30215, 11.58870],
-        [47.30275, 11.58875],
-        [47.30325, 11.58935],
-        [47.30356, 11.58972]
+        [47.30191, 11.58855], // Bahnhof Fritzens-Wattens Bahnsteig
+        [47.30197, 11.58874], // Unterführung Nordausgang
+        [47.30214, 11.58875], // Fußweg nordwärts
+        [47.30232, 11.58877], // Einmündung Straße Unterdorf
+        [47.30238, 11.58883], // Gehweg entlang Unterdorf
+        [47.30241, 11.58913], // Fußweg vor Haus 19/21
+        [47.30250, 11.58914], // Verbindungsweg
+        [47.30256, 11.58953], // Weg südöstlich von Haus 9
+        [47.30338, 11.58915], // Diagonaler Gehweg nordwestlich an Haus 9 vorbei zu Haus 7
+        [47.30348, 11.58945], // Bichlweg zur Praxis
+        [47.30356, 11.58972]  // Eingang Physiotherapie Monia Berger (Bichlweg 17b)
       ], {
         color: '#5A6753',
         weight: 3.5,
-        opacity: 0.7,
-        dashArray: '5, 8',
-        lineCap: 'round'
+        opacity: 0.85,
+        dashArray: '5, 7',
+        lineCap: 'round',
+        lineJoin: 'round'
       }).addTo(map);
     }
 
