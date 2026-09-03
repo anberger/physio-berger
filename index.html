@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<html lang="de" class="scroll-smooth overflow-x-hidden">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,8 +16,8 @@
   <meta property="og:title" content="Physiotherapie Monia Berger | Fritzens & Hausbesuche">
   <meta property="og:description" content="Physiotherapie in Fritzens, Wattens & Hausbesuche (Hall, Schwaz & Umgebung). Wahltherapie aller Kassen.">
   <meta property="og:image" content="images/monia-berger.jpeg">
-  <meta property="og:url" content="https://monia.at/">
-  <link rel="canonical" href="https://monia.at/">
+  <meta property="og:url" content="https://physioberger.at/">
+  <link rel="canonical" href="https://physioberger.at/">
   
   <!-- Favicon / Logo Icon -->
   <link rel="icon" type="image/svg+xml" href="images/logo-mountain-pulse.svg">
@@ -25,10 +25,10 @@
   <!-- Leaflet Map CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   
-  <!-- Google Fonts: Plus Jakarta Sans & Allison (Moderne, elegante Signatur-Handschrift) -->
+  <!-- Google Fonts: Plus Jakarta Sans & Oooh Baby (Moderne, filigrane Handschrift) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Allison&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oooh+Baby&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -49,7 +49,7 @@
           },
           fontFamily: {
             sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-            handwritten: ['Allison', 'cursive']
+            handwritten: ['"Oooh Baby"', 'cursive']
           }
         }
       }
@@ -67,7 +67,7 @@
       -webkit-font-smoothing: antialiased;
     }
     .font-handwritten {
-      font-family: 'Allison', cursive;
+      font-family: 'Oooh Baby', cursive;
     }
     .clean-card-shadow {
       box-shadow: 0 4px 20px -4px rgba(77, 88, 71, 0.06);
@@ -96,7 +96,7 @@
     "@context": "https://schema.org",
     "@type": "Physiotherapist",
     "name": "Physiotherapie Monia Berger",
-    "url": "https://monia.at",
+    "url": "https://physioberger.at",
     "image": "images/monia-berger.jpeg",
     "description": "Ganzheitliche Physiotherapie & Hausbesuche in Fritzens, Wattens, Hall in Tirol, Schwaz und Umgebung. Wahltherapeutin aller Kassen.",
     "address": {
@@ -115,7 +115,7 @@
   }
   </script>
 </head>
-<body class="selection:bg-headerSage selection:text-white flex flex-col min-h-screen">
+<body class="selection:bg-headerSage selection:text-white flex flex-col min-h-screen overflow-x-hidden">
 
   <!-- ==================== MINIMAL HEADER (#B0B8A6, oben ausgeblendet, erscheint beim Runterscrollen) ==================== -->
   <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 bg-headerSage text-white shadow-md transition-all duration-500 ease-in-out -translate-y-full opacity-0 pointer-events-none">
@@ -135,20 +135,20 @@
         <a href="#ablauf" class="hover:text-white/80 transition-colors py-1">Ablauf & Kasse</a>
         <a href="#hausbesuche" class="hover:text-white/80 transition-colors py-1">Hausbesuche</a>
         <a href="#anreise" class="hover:text-white/80 transition-colors py-1">Lage & S-Bahn</a>
-        <a href="#kontakt" class="px-5 py-2 rounded-md bg-white text-darkMoss text-sm uppercase tracking-wider font-semibold hover:bg-white/90 shadow-sm transition-all">
+        <a href="#kontakt" class="px-6 py-2 rounded-full bg-white text-darkMoss text-sm uppercase tracking-wider font-semibold hover:bg-white/90 shadow-sm transition-all">
           Termin anfragen
         </a>
       </nav>
 
       <!-- Mobile Button -->
-      <a href="#kontakt" class="md:hidden px-4 py-1.5 rounded-md bg-white text-darkMoss text-sm font-semibold shadow-sm">
+      <a href="#kontakt" class="md:hidden px-4 py-1.5 rounded-full bg-white text-darkMoss text-sm font-semibold shadow-sm">
         Termin anfragen
       </a>
     </div>
   </header>
 
-  <!-- ==================== FULLSCREEN HERO SLIDER (ECHTER VOLLBILD-HERO) ==================== -->
-  <section class="relative w-full h-screen min-h-[560px] overflow-hidden bg-darkMoss select-none">
+  <!-- ==================== FULLSCREEN HERO SLIDER (EXAKT BILDSCHIRMHÖHE 100dvh) ==================== -->
+  <section class="relative w-full h-[100dvh] overflow-hidden bg-darkMoss select-none" style="height: 100vh; height: 100dvh;">
     <div id="heroSlider" class="relative w-full h-full group">
       
       <!-- Slide 1: Close-up Cervical Spine & Neck Mobilization (An 1. Stelle) -->
@@ -225,33 +225,40 @@
         <i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.5]"></i>
       </button>
 
-      <!-- Pagination Indicators (Dezent unten rechts in Weiß) -->
-      <div class="absolute bottom-6 sm:bottom-8 right-6 sm:right-10 flex items-center gap-1.5 z-30">
-        <button class="slider-dot w-7 h-2 rounded-full bg-white transition-all cursor-pointer" aria-label="Folie 1"></button>
-        <button class="slider-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all cursor-pointer" aria-label="Folie 2"></button>
-        <button class="slider-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all cursor-pointer" aria-label="Folie 3"></button>
-      </div>
+      <!-- Bottom Controls Bar (Slider-Punkte & Schrift "Scroll nach unten" exakt auf einer Höhe) -->
+      <div class="absolute bottom-6 sm:bottom-8 inset-x-0 z-30 pointer-events-none">
+        <div class="relative w-full h-full">
+          
+          <!-- Pagination Indicators (Links - exakt auf gleicher vertikaler Höhe wie die Schrift) -->
+          <div class="absolute left-6 sm:left-8 md:left-10 top-0 flex items-center h-4 gap-1.5 pointer-events-auto">
+            <button class="slider-dot w-7 h-2 rounded-full bg-white transition-all cursor-pointer shadow-xs" aria-label="Folie 1"></button>
+            <button class="slider-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all cursor-pointer shadow-xs" aria-label="Folie 2"></button>
+            <button class="slider-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all cursor-pointer shadow-xs" aria-label="Folie 3"></button>
+          </div>
 
-      <!-- Bouncing Scroll Down Indicator (Zentriert mit großzügigem Freiraum) -->
-      <div class="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-30">
-        <a href="#willkommen" class="flex flex-col items-center gap-2 text-white/85 hover:text-white transition-all cursor-pointer group" aria-label="Nach unten scrollen">
-          <span class="text-[10px] sm:text-xs uppercase tracking-[0.28em] font-medium text-white/90 group-hover:text-white transition-colors">
-            Scroll nach unten
-          </span>
-          <i data-lucide="chevron-down" class="w-4 h-4 text-white animate-bounce"></i>
-        </a>
+          <!-- Bouncing Scroll Down Indicator (Zentriert) -->
+          <div class="flex flex-col items-center pointer-events-auto">
+            <a href="#willkommen" class="flex flex-col items-center gap-2 text-white/85 hover:text-white transition-all cursor-pointer group" aria-label="Nach unten scrollen">
+              <span class="text-[10px] sm:text-xs uppercase tracking-[0.28em] font-medium text-white/90 group-hover:text-white transition-colors h-4 flex items-center">
+                Scroll nach unten
+              </span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-white animate-bounce"></i>
+            </a>
+          </div>
+
+        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ==================== PHILOSOPHIE / WILLKOMMEN SECTION ==================== -->
-  <section id="willkommen" class="py-16 sm:py-24 lg:py-28 px-4 text-center bg-[#F2F5EF] border-y border-[#E5EAE2]/60">
-    <div class="max-w-4xl mx-auto space-y-1">
-      <span class="font-handwritten text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] block select-none leading-tight py-1" style="color: #485542;">
+  <!-- ==================== PHILOSOPHIE / WILLKOMMEN SECTION (DUNKLE SCHRIFT) ==================== -->
+  <section id="willkommen" class="py-16 sm:py-24 lg:py-28 px-4 text-center bg-headerSage">
+    <div class="max-w-4xl mx-auto space-y-2">
+      <span class="font-handwritten text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] block select-none leading-snug py-1 text-charcoal">
         Veränderung beginnt mit Bewegung
       </span>
-      <p class="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold pt-1" style="color: #485542;">
+      <p class="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold pt-1 text-charcoal/80">
         Praxis in Fritzens &amp; Hausbesuche · Wahltherapeutin aller Kassen
       </p>
     </div>
@@ -292,17 +299,17 @@
 
         <!-- Direct Contact Triggers (Prominent & Fast) -->
         <div class="pt-2 flex flex-wrap gap-3">
-          <a href="tel:+436604054510" class="inline-flex items-center gap-2 px-5 py-3 rounded bg-white text-darkMoss text-xs sm:text-sm uppercase tracking-wider font-semibold hover:bg-white/90 shadow-sm transition-all">
+          <a href="tel:+436604054510" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-darkMoss text-xs sm:text-sm uppercase tracking-wider font-semibold hover:bg-white/90 shadow-sm transition-all">
             <i data-lucide="phone" class="w-4 h-4"></i>
             <span>+43 660 4054510</span>
           </a>
-          <a href="https://wa.me/436604054510?text=Hallo%20Monia,%20ich%20m%C3%B6chte%20gerne%20einen%20Physiotherapie-Termin%20anfragen." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 rounded bg-headerSage/25 border border-headerSage/50 text-white text-xs sm:text-sm uppercase tracking-wider font-medium hover:bg-headerSage/40 transition-all">
+          <a href="https://wa.me/436604054510?text=Hallo%20Monia,%20ich%20m%C3%B6chte%20gerne%20einen%20Physiotherapie-Termin%20anfragen." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-headerSage/25 border border-headerSage/50 text-white text-xs sm:text-sm uppercase tracking-wider font-medium hover:bg-headerSage/40 transition-all">
             <svg class="w-4 h-4 text-white shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12.01 2c-5.49 0-9.95 4.46-9.95 9.95 0 1.77.47 3.49 1.35 5.01L2 22l5.18-1.36a9.9 9.9 0 0 0 4.83 1.25c5.49 0 9.95-4.46 9.95-9.95A9.95 9.95 0 0 0 12.01 2zm5.79 14.13c-.24.68-1.4 1.3-1.94 1.38-.51.08-1.15.11-3.69-.94-3.25-1.34-5.32-4.66-5.48-4.87-.16-.22-1.31-1.74-1.31-3.32 0-1.58.83-2.36 1.12-2.68.29-.32.64-.4.85-.4.22 0 .43 0 .62.01.2.01.46-.07.72.55.27.65.92 2.24 1 2.4.08.16.14.35.03.57-.11.21-.16.35-.32.54-.16.19-.34.42-.48.56-.16.16-.33.34-.14.66.19.32.84 1.79 2.06 2.88 1.58 1.41 2.91 1.84 3.32 2.05.42.21.66.18.91-.1.25-.28 1.05-1.22 1.33-1.64.28-.42.56-.35.94-.21.38.14 2.41 1.13 2.82 1.34.42.21.69.31.79.48.1.18.1.99-.14 1.67z"/>
             </svg>
             <span>WhatsApp</span>
           </a>
-          <a href="mailto:monia.berger@outlook.com?subject=Terminanfrage%20Physiotherapie" class="inline-flex items-center gap-2 px-5 py-3 rounded border border-white/30 text-white text-xs sm:text-sm uppercase tracking-wider font-medium hover:bg-white/10 transition-all">
+          <a href="mailto:monia.berger@outlook.com?subject=Terminanfrage%20Physiotherapie" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/30 text-white text-xs sm:text-sm uppercase tracking-wider font-medium hover:bg-white/10 transition-all">
             <i data-lucide="mail" class="w-4 h-4"></i>
             <span>E-Mail senden</span>
           </a>
@@ -324,12 +331,11 @@
         <div class="relative bg-white rounded-3xl p-8 lg:p-10 border border-[#E2E8DE]/90 shadow-[0_4px_25px_-4px_rgba(77,88,71,0.06)] hover:shadow-[0_20px_45px_-12px_rgba(77,88,71,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
           
           <div>
-            <!-- Kopfzeile: Kategorie & Nummer auf gleicher Höhe (ohne Icon-Box) -->
-            <div class="flex items-center justify-between pb-1">
+            <!-- Kopfzeile: Kategorie -->
+            <div class="pb-1">
               <span class="text-xs uppercase tracking-[0.2em] text-mutedText/80 font-semibold block">
                 Erstbehandlung
               </span>
-              <span class="text-2xl sm:text-3xl font-light text-headerSage/40 group-hover:text-headerSage/70 transition-colors select-none font-serif tracking-tighter">01</span>
             </div>
 
             <h2 class="text-2xl sm:text-[1.65rem] font-normal text-charcoal tracking-tight mt-2 min-h-[3.25rem] flex items-center">
@@ -356,25 +362,17 @@
             </ul>
           </div>
 
-          <div class="pt-6 mt-8 border-t border-borderMuted/40 flex items-center justify-between">
-            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-headerSage/15 text-darkMoss text-xs sm:text-[13px] font-medium">
-              <i data-lucide="clock" class="w-4 h-4 text-darkMoss"></i>
-              <span>45 oder 60 Min. Einheiten</span>
-            </span>
-          </div>
-
         </div>
 
         <!-- Box 2: Kostenübernahme (Wahlarztprinzip) -->
         <div class="relative bg-white rounded-3xl p-8 lg:p-10 border border-[#E2E8DE]/90 shadow-[0_4px_25px_-4px_rgba(77,88,71,0.06)] hover:shadow-[0_20px_45px_-12px_rgba(77,88,71,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
           
           <div>
-            <!-- Kopfzeile: Kategorie & Nummer auf gleicher Höhe (ohne Icon-Box) -->
-            <div class="flex items-center justify-between pb-1">
+            <!-- Kopfzeile: Kategorie -->
+            <div class="pb-1">
               <span class="text-xs uppercase tracking-[0.2em] text-mutedText/80 font-semibold block">
                 Rückerstattung
               </span>
-              <span class="text-2xl sm:text-3xl font-light text-headerSage/40 group-hover:text-headerSage/70 transition-colors select-none font-serif tracking-tighter">02</span>
             </div>
 
             <h2 class="text-2xl sm:text-[1.65rem] font-normal text-charcoal tracking-tight mt-2 min-h-[3.25rem] flex items-center">
@@ -397,25 +395,17 @@
             </ul>
           </div>
 
-          <div class="pt-6 mt-8 border-t border-borderMuted/40 flex items-center justify-between">
-            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-headerSage/15 text-darkMoss text-xs sm:text-[13px] font-medium">
-              <i data-lucide="smartphone" class="w-4 h-4 text-darkMoss"></i>
-              <span>Bequem per App einreichbar</span>
-            </span>
-          </div>
-
         </div>
 
         <!-- Box 3: Hausbesuche -->
         <div id="hausbesuche" class="relative bg-white rounded-3xl p-8 lg:p-10 border border-[#E2E8DE]/90 shadow-[0_4px_25px_-4px_rgba(77,88,71,0.06)] hover:shadow-[0_20px_45px_-12px_rgba(77,88,71,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
           
           <div>
-            <!-- Kopfzeile: Kategorie & Nummer auf gleicher Höhe (ohne Icon-Box) -->
-            <div class="flex items-center justify-between pb-1">
+            <!-- Kopfzeile: Kategorie -->
+            <div class="pb-1">
               <span class="text-xs uppercase tracking-[0.2em] text-mutedText/80 font-semibold block">
                 Vor Ort bei Ihnen
               </span>
-              <span class="text-2xl sm:text-3xl font-light text-headerSage/40 group-hover:text-headerSage/70 transition-colors select-none font-serif tracking-tighter">03</span>
             </div>
 
             <h2 class="text-2xl sm:text-[1.65rem] font-normal text-charcoal tracking-tight mt-2 min-h-[3.25rem] flex items-center">
@@ -435,13 +425,6 @@
               <strong class="text-charcoal font-medium block mb-0.5">Praxis-Tipp:</strong>
               Vermerk <em>„Hausbesuch erforderlich“</em> auf der Verordnung sichert die anteilige Kassenübernahme der Wegpauschale.
             </div>
-          </div>
-
-          <div class="pt-6 mt-8 border-t border-borderMuted/40 flex items-center justify-between">
-            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-headerSage/15 text-darkMoss text-xs sm:text-[13px] font-medium">
-              <i data-lucide="map-pin" class="w-4 h-4 text-darkMoss"></i>
-              <span>Fritzens &amp; Umgebung</span>
-            </span>
           </div>
 
         </div>
@@ -508,12 +491,12 @@
 
         <!-- Buttons 50/50 links und rechts auf einer Höhe -->
         <div class="pt-1 grid grid-cols-2 gap-3">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Bichlweg+17b,+6122+Fritzens" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-3 sm:px-4 py-3 rounded-xl bg-darkMoss hover:bg-darkMossDeep text-white text-xs sm:text-sm font-medium shadow-sm transition-all group cursor-pointer text-center" title="Route in Google Maps planen">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Bichlweg+17b,+6122+Fritzens" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-darkMoss hover:bg-darkMossDeep text-white text-xs sm:text-sm font-medium shadow-sm transition-all group cursor-pointer text-center" title="Route in Google Maps planen">
             <i data-lucide="map" class="w-4 h-4 text-headerSage group-hover:text-white transition-colors shrink-0"></i>
             <span class="truncate">Google Maps</span>
             <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-70 shrink-0 hidden sm:inline-block"></i>
           </a>
-          <a href="https://fahrplan.oebb.at/bin/query.exe/dn?REQ0JourneyStopsZ0A=1&REQ0JourneyStopsZ0G=Fritzens-Wattens" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-3 sm:px-4 py-3 rounded-xl bg-headerSage/20 hover:bg-headerSage/35 text-darkMoss border border-headerSage/50 text-xs sm:text-sm font-medium transition-all group cursor-pointer text-center" title="ÖBB Website mit vorausgewählter Haltestelle Fritzens-Wattens">
+          <a href="https://fahrplan.oebb.at/bin/query.exe/dn?REQ0JourneyStopsZ0A=1&REQ0JourneyStopsZ0G=Fritzens-Wattens" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-headerSage/20 hover:bg-headerSage/35 text-darkMoss border border-headerSage/50 text-xs sm:text-sm font-medium transition-all group cursor-pointer text-center" title="ÖBB Website mit vorausgewählter Haltestelle Fritzens-Wattens">
             <i data-lucide="train" class="w-4 h-4 text-darkMoss shrink-0"></i>
             <span class="truncate">ÖBB Website</span>
             <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-70 shrink-0 hidden sm:inline-block"></i>
@@ -540,64 +523,66 @@
         
         <!-- Behandlungsart Umschalter -->
         <div class="grid grid-cols-2 gap-3 pb-1">
-          <label class="cursor-pointer text-center p-3 rounded-xl border border-[#D5DDD1] bg-white text-sm sm:text-[15px] font-semibold text-charcoal hover:border-darkMoss has-[:checked]:bg-darkMoss has-[:checked]:text-white has-[:checked]:border-darkMoss transition-all shadow-2xs">
+          <label class="cursor-pointer text-center p-3 rounded-full border border-[#D5DDD1] bg-white text-sm sm:text-[15px] font-semibold text-charcoal hover:border-darkMoss has-[:checked]:bg-darkMoss has-[:checked]:text-white has-[:checked]:border-darkMoss transition-all shadow-2xs">
             <input type="radio" name="loc" value="Praxis Fritzens" class="sr-only" checked>
             <span>Praxis Fritzens</span>
           </label>
-          <label class="cursor-pointer text-center p-3 rounded-xl border border-[#D5DDD1] bg-white text-sm sm:text-[15px] font-semibold text-charcoal hover:border-darkMoss has-[:checked]:bg-darkMoss has-[:checked]:text-white has-[:checked]:border-darkMoss transition-all shadow-2xs">
+          <label class="cursor-pointer text-center p-3 rounded-full border border-[#D5DDD1] bg-white text-sm sm:text-[15px] font-semibold text-charcoal hover:border-darkMoss has-[:checked]:bg-darkMoss has-[:checked]:text-white has-[:checked]:border-darkMoss transition-all shadow-2xs">
             <input type="radio" name="loc" value="Hausbesuch" class="sr-only">
             <span>Hausbesuch</span>
           </label>
         </div>
 
-        <!-- Adresse für Hausbesuch (Erscheint nur wenn Hausbesuch gewählt ist) -->
-        <div id="homeVisitAddressWrapper" class="hidden space-y-2 transition-all duration-300 pb-1">
-          <label for="homeAddress" class="block text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-charcoal mb-2 flex items-center justify-between">
-            <span class="flex items-center gap-1.5">
-              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-headerSage"></i>
-              <span>Adresse für den Hausbesuch *</span>
-            </span>
-            <span class="text-[11px] font-normal text-mutedText lowercase">z.B. Wattens, Fritzens, Hall, Schwaz...</span>
-          </label>
-          <div class="relative">
-            <input type="text" id="homeAddress" autocomplete="street-address" placeholder="Straße, Hausnummer, PLZ &amp; Ort" class="w-full px-4 py-3 rounded-xl border border-[#D5DDD1] text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-darkMoss/30 focus:border-darkMoss bg-white shadow-2xs">
-            
-            <!-- Autocomplete Suggestion Dropdown -->
-            <div id="addressSuggestions" class="hidden absolute left-0 right-0 top-full mt-1 bg-white rounded-xl border border-borderMuted shadow-xl z-30 max-h-56 overflow-y-auto divide-y divide-borderMuted/40"></div>
+        <!-- Adresse für Hausbesuch (Erscheint sanft mit Fade- & Slide-Effekt) -->
+        <div id="homeVisitAddressWrapper" class="overflow-hidden transition-all duration-500 ease-out max-h-0 opacity-0 -translate-y-3 pointer-events-none">
+          <div class="space-y-2 pb-1 pt-1">
+            <label for="homeAddress" class="block text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-charcoal mb-2 flex items-center justify-between">
+              <span class="flex items-center gap-1.5">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-headerSage"></i>
+                <span>Ihre Adresse für den Hausbesuch:</span>
+              </span>
+              <span class="text-xs text-mutedText/80 font-normal">Fritzens &amp; Umgebung</span>
+            </label>
+            <div class="relative">
+              <input type="text" id="homeAddress" autocomplete="street-address" placeholder="Straße, Hausnummer, PLZ &amp; Ort" class="w-full px-4 py-3 rounded-xl border border-[#D5DDD1] text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-darkMoss/30 focus:border-darkMoss bg-white shadow-2xs">
+              <div id="addressLoading" class="hidden absolute right-3.5 top-1/2 -translate-y-1/2">
+                <i data-lucide="loader-2" class="w-4 h-4 text-headerSage animate-spin"></i>
+              </div>
+              <div id="addressSuggestions" class="hidden absolute left-0 right-0 top-full mt-1 bg-white rounded-xl border border-borderMuted shadow-xl z-30 max-h-56 overflow-y-auto divide-y divide-borderMuted/40"></div>
+            </div>
+            <p class="text-xs text-mutedText font-light">
+              Automatische Adressvorschläge für Tirol während der Eingabe.
+            </p>
           </div>
-          <p class="text-[11px] text-mutedText flex items-center gap-1 pt-1">
-            <i data-lucide="info" class="w-3 h-3 text-headerSage shrink-0"></i>
-            <span>Automatische Adressvervollständigung: Vorschläge werden beim Tippen angezeigt.</span>
-          </p>
         </div>
 
-        <!-- Name & Telefon -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label for="name" class="block text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-charcoal mb-2">Name *</label>
+        <!-- Name & Telefon (2 Spalten auf Desktop) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div class="space-y-1.5">
+            <label for="name" class="block text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-charcoal">Ihr Name *</label>
             <input type="text" id="name" required placeholder="Vor- und Nachname" class="w-full px-4 py-3 rounded-xl border border-[#D5DDD1] text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-darkMoss/30 focus:border-darkMoss bg-white shadow-2xs">
           </div>
-          <div>
-            <label for="phone" class="block text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-charcoal mb-2">Telefon *</label>
+          <div class="space-y-1.5">
+            <label for="phone" class="block text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-charcoal">Telefonnummer *</label>
             <input type="tel" id="phone" required placeholder="+43 6xx ..." class="w-full px-4 py-3 rounded-xl border border-[#D5DDD1] text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-darkMoss/30 focus:border-darkMoss bg-white shadow-2xs">
           </div>
         </div>
 
         <!-- E-Mail -->
-        <div>
-          <label for="email" class="block text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-charcoal mb-2">E-Mail *</label>
+        <div class="space-y-1.5">
+          <label for="email" class="block text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-charcoal">E-Mail-Adresse *</label>
           <input type="email" id="email" required placeholder="ihre.email@beispiel.at" class="w-full px-4 py-3 rounded-xl border border-[#D5DDD1] text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-darkMoss/30 focus:border-darkMoss bg-white shadow-2xs">
         </div>
 
         <!-- Nachricht -->
-        <div>
-          <label for="msg" class="block text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-charcoal mb-2">Anliegen (optional)</label>
+        <div class="space-y-1.5">
+          <label for="msg" class="block text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-charcoal">Ihr Anliegen (optional)</label>
           <textarea id="msg" rows="3" placeholder="z.B. Schulterschmerzen, Verordnung für 6x Physiotherapie liegt vor..." class="w-full px-4 py-3 rounded-xl border border-[#D5DDD1] text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-darkMoss/30 focus:border-darkMoss bg-white shadow-2xs"></textarea>
         </div>
 
         <!-- Submit -->
         <div class="pt-2">
-          <button type="submit" class="w-full py-3.5 rounded-xl bg-darkMoss hover:bg-darkMossLight text-white text-sm sm:text-base uppercase tracking-wider font-semibold shadow-sm transition-colors flex items-center justify-center gap-2 cursor-pointer">
+          <button type="submit" class="w-full py-3.5 rounded-full bg-darkMoss hover:bg-darkMossLight text-white text-sm sm:text-base uppercase tracking-wider font-semibold shadow-sm transition-colors flex items-center justify-center gap-2 cursor-pointer">
             <i data-lucide="send" class="w-4 h-4"></i>
             <span>Termin unverbindlich anfragen</span>
           </button>
@@ -652,17 +637,17 @@
 
       </div>
 
-      <!-- Footer Bottom Row: Copyright, Großes Emblem Logo & Rechtliches auf einer Linie -->
-      <div class="flex flex-col sm:flex-row items-center justify-between text-xs sm:text-[13px] text-mutedText/85 gap-6 pt-4">
+      <!-- Footer Bottom Row: Copyright, Großes Emblem Logo & Rechtliches auf einer Linie (Exakt zentriert) -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 items-center text-xs sm:text-[13px] text-mutedText/85 gap-4 sm:gap-6 pt-4">
         
         <!-- Left: Copyright -->
         <div class="order-2 sm:order-1 text-center sm:text-left font-light">
           &copy; 2026 Physiotherapie Monia Berger
         </div>
 
-        <!-- Center: Großes Logo Emblem -->
+        <!-- Center: Großes Logo Emblem (Mathematisch & visuell exakt zentriert) -->
         <div class="order-1 sm:order-2 flex justify-center">
-          <svg class="w-24 sm:w-28 md:w-32 h-auto text-darkMoss/75 hover:text-darkMoss transition-colors" viewBox="240 195 544 415" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="w-24 sm:w-28 md:w-32 h-auto text-darkMoss/75 hover:text-darkMoss transition-colors" viewBox="238 195 544 415" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
             <path d="M 318 413 A 194 194 0 1 1 704 413" />
             <path d="M 698 451 A 194 194 0 0 1 324 451" />
             <path d="M 250 432 H 376 L 392 391 L 409 481 L 425 432 H 454 L 477 388 L 486 398 L 530 331 L 586 411 L 610 378 L 655 432 H 770" />
@@ -670,7 +655,7 @@
         </div>
 
         <!-- Right: Legal Links -->
-        <div class="order-3 flex gap-6 text-center sm:text-right font-light">
+        <div class="order-3 flex justify-center sm:justify-end gap-6 font-light">
           <button onclick="openLegalModal('impressum')" class="hover:text-charcoal transition-colors cursor-pointer">Impressum</button>
           <button onclick="openLegalModal('datenschutz')" class="hover:text-charcoal transition-colors cursor-pointer">Datenschutz</button>
         </div>
@@ -681,8 +666,8 @@
   </footer>
 
   <!-- ==================== FLOATING WHATSAPP BUTTON (DEZENT & HARMONISCH) ==================== -->
-  <a href="https://wa.me/436604054510?text=Hallo%20Monia,%20ich%20m%C3%B6chte%20gerne%20einen%20Physiotherapie-Termin%20anfragen." target="_blank" rel="noopener noreferrer" class="fixed bottom-5 right-5 z-40 flex items-center justify-center gap-2 p-3 sm:px-4 sm:py-2.5 rounded-full bg-darkMoss text-white border border-white/20 text-xs uppercase tracking-wider font-medium shadow-md hover:bg-darkMossDeep hover:shadow-lg transition-all" title="WhatsApp Chat">
-    <svg class="w-[18px] h-[18px] sm:w-[19px] sm:h-[19px] text-white shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+  <a href="https://wa.me/436604054510?text=Hallo%20Monia,%20ich%20m%C3%B6chte%20gerne%20einen%20Physiotherapie-Termin%20anfragen." target="_blank" rel="noopener noreferrer" class="fixed bottom-5 right-5 z-40 flex items-center justify-center gap-2.5 p-3 sm:px-4.5 sm:py-2.5 rounded-full bg-darkMoss text-white border border-white/20 text-xs sm:text-[13px] uppercase tracking-wider font-semibold shadow-md hover:bg-darkMossDeep hover:shadow-lg transition-all" title="WhatsApp Chat">
+    <svg class="w-[22px] h-[22px] sm:w-6 sm:h-6 text-white shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12.01 2c-5.49 0-9.95 4.46-9.95 9.95 0 1.77.47 3.49 1.35 5.01L2 22l5.18-1.36a9.9 9.9 0 0 0 4.83 1.25c5.49 0 9.95-4.46 9.95-9.95A9.95 9.95 0 0 0 12.01 2zm5.79 14.13c-.24.68-1.4 1.3-1.94 1.38-.51.08-1.15.11-3.69-.94-3.25-1.34-5.32-4.66-5.48-4.87-.16-.22-1.31-1.74-1.31-3.32 0-1.58.83-2.36 1.12-2.68.29-.32.64-.4.85-.4.22 0 .43 0 .62.01.2.01.46-.07.72.55.27.65.92 2.24 1 2.4.08.16.14.35.03.57-.11.21-.16.35-.32.54-.16.19-.34.42-.48.56-.16.16-.33.34-.14.66.19.32.84 1.79 2.06 2.88 1.58 1.41 2.91 1.84 3.32 2.05.42.21.66.18.91-.1.25-.28 1.05-1.22 1.33-1.64.28-.42.56-.35.94-.21.38.14 2.41 1.13 2.82 1.34.42.21.69.31.79.48.1.18.1.99-.14 1.67z"/>
     </svg>
     <span class="hidden sm:inline text-xs tracking-wider">WhatsApp</span>
@@ -733,7 +718,7 @@
             <strong class="block text-charcoal font-semibold">Kontakt:</strong>
             <p>Telefon: <a href="tel:+436604054510" class="text-darkMoss underline hover:text-charcoal font-medium">+43 660 4054510</a></p>
             <p>E-Mail: <a href="mailto:monia.berger@outlook.com" class="text-darkMoss underline hover:text-charcoal font-medium">monia.berger@outlook.com</a></p>
-            <p>Website: <a href="https://monia.at" class="text-darkMoss underline hover:text-charcoal font-medium">monia.at</a></p>
+            <p>Website: <a href="https://physioberger.at" class="text-darkMoss underline hover:text-charcoal font-medium">physioberger.at</a></p>
           </div>
 
           <div class="space-y-1">
@@ -798,7 +783,7 @@
 
       <!-- Modal Footer -->
       <div class="px-6 py-3.5 border-t border-borderMuted bg-[#FAFBF9] flex justify-end">
-        <button onclick="closeLegalModal()" class="px-5 py-2 rounded-lg bg-darkMoss text-white text-xs font-semibold hover:bg-darkMossDeep transition-colors cursor-pointer">
+        <button onclick="closeLegalModal()" class="px-6 py-2 rounded-full bg-darkMoss text-white text-xs font-semibold hover:bg-darkMossDeep transition-colors cursor-pointer">
           Schließen
         </button>
       </div>
@@ -895,18 +880,33 @@
     const addressSuggestions = document.getElementById('addressSuggestions');
     const locRadios = document.querySelectorAll('input[name="loc"]');
 
-    // Umschalten des Adressfelds je nach Behandlungsort
+    // Umschalten des Adressfelds je nach Behandlungsort mit sanftem Fade- & Slide-In Effekt
+    function showHomeVisitAddress() {
+      homeVisitAddressWrapper.style.overflow = 'hidden';
+      homeVisitAddressWrapper.classList.remove('max-h-0', 'opacity-0', '-translate-y-3', 'pointer-events-none');
+      homeVisitAddressWrapper.classList.add('max-h-60', 'opacity-100', 'translate-y-0', 'pointer-events-auto');
+      homeAddress.setAttribute('required', 'true');
+      if (window.lucide) lucide.createIcons();
+      setTimeout(() => {
+        homeVisitAddressWrapper.style.overflow = 'visible';
+        homeAddress.focus();
+      }, 500);
+    }
+
+    function hideHomeVisitAddress() {
+      homeVisitAddressWrapper.style.overflow = 'hidden';
+      homeVisitAddressWrapper.classList.remove('max-h-60', 'opacity-100', 'translate-y-0', 'pointer-events-auto');
+      homeVisitAddressWrapper.classList.add('max-h-0', 'opacity-0', '-translate-y-3', 'pointer-events-none');
+      homeAddress.removeAttribute('required');
+      addressSuggestions.classList.add('hidden');
+    }
+
     locRadios.forEach(radio => {
       radio.addEventListener('change', () => {
         if (radio.value === 'Hausbesuch' && radio.checked) {
-          homeVisitAddressWrapper.classList.remove('hidden');
-          homeAddress.setAttribute('required', 'true');
-          if (window.lucide) lucide.createIcons();
-          setTimeout(() => homeAddress.focus(), 150);
+          showHomeVisitAddress();
         } else if (radio.value === 'Praxis Fritzens' && radio.checked) {
-          homeVisitAddressWrapper.classList.add('hidden');
-          homeAddress.removeAttribute('required');
-          addressSuggestions.classList.add('hidden');
+          hideHomeVisitAddress();
         }
       });
     });
