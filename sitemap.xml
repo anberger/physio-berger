@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://physioberger.at/</loc>
+    <lastmod>2026-09-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://physioberger.at/images/monia-berger.jpeg</image:loc>
+      <image:title>Monia Berger - Physiotherapeutin</image:title>
+      <image:caption>Physiotherapeutin Monia Berger in Fritzens, Tirol</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://physioberger.at/images/hero-close-neck.jpg</image:loc>
+      <image:title>Manuelle Therapie &amp; HWS-Mobilisation</image:title>
+      <image:caption>Physiotherapie und manuelle Mobilisation bei Physiotherapie Monia Berger</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://physioberger.at/images/hero-close-spine.jpg</image:loc>
+      <image:title>Wirbelsäulentherapie &amp; Rückenschmerzbehandlung</image:title>
+      <image:caption>Gezielte Behandlung von Wirbelsäule und Rücken</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://physioberger.at/images/hero-close-joint.jpg</image:loc>
+      <image:title>Gelenksmobilisation &amp; Rehabilitation</image:title>
+      <image:caption>Bewegungstherapie und Gelenkmobilisation in Fritzens &amp; bei Hausbesuchen</image:caption>
+    </image:image>
+  </url>
+</urlset>

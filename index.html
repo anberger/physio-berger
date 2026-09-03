@@ -6,28 +6,52 @@
   <title>Physiotherapie Monia Berger | Fritzens & Hausbesuche</title>
   
   <!-- SEO & Local Search Meta Tags -->
-  <meta name="description" content="Ganzheitliche Physiotherapie in Fritzens, Wattens, Hall in Tirol & Schwaz. Praxisbehandlungen & Hausbesuche. Wahltherapeutin aller Kassen. Gehdistanz zur S-Bahn Fritzens-Wattens.">
-  <meta name="keywords" content="Physiotherapie Fritzens, Physiotherapeutin Fritzens, Physiotherapie Wattens, Physiotherapie Hall in Tirol, Physiotherapie Schwaz, Hausbesuche Physiotherapie Fritzens, Monia Berger, Wahltherapie ÖGK BVAEB SVS, S-Bahn Fritzens-Wattens">
+  <meta name="description" content="Ganzheitliche Physiotherapie in Fritzens &amp; Wattens sowie mobile Hausbesuche (Hall in Tirol, Schwaz &amp; Umgebung). Wahltherapeutin aller Kassen. Jetzt anfragen!">
+  <meta name="keywords" content="Physiotherapie Fritzens, Physiotherapeutin Monia Berger, Physiotherapie Wattens, Physiotherapie Hall in Tirol, Physiotherapie Schwaz, Hausbesuche Physiotherapie Tirol, Wahltherapie ÖGK BVAEB SVS, S-Bahn Fritzens-Wattens, Manuelle Therapie, Schmerztherapie Tirol">
   <meta name="author" content="Monia Berger - Physiotherapie">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   
+  <!-- Geo-Tags für Local SEO Tirol -->
+  <meta name="geo.region" content="AT-7">
+  <meta name="geo.placename" content="Fritzens">
+  <meta name="geo.position" content="47.30356;11.58972">
+  <meta name="ICBM" content="47.30356, 11.58972">
+
+  <!-- OpenGraph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_AT">
-  <meta property="og:title" content="Physiotherapie Monia Berger | Fritzens & Hausbesuche">
-  <meta property="og:description" content="Physiotherapie in Fritzens, Wattens & Hausbesuche (Hall, Schwaz & Umgebung). Wahltherapie aller Kassen.">
-  <meta property="og:image" content="images/monia-berger.jpeg">
+  <meta property="og:site_name" content="Physiotherapie Monia Berger">
+  <meta property="og:title" content="Physiotherapie Monia Berger | Fritzens &amp; Hausbesuche">
+  <meta property="og:description" content="Ganzheitliche Physiotherapie in Fritzens, Wattens &amp; Hausbesuche (Hall, Schwaz &amp; Umgebung). Wahltherapie aller Kassen.">
+  <meta property="og:image" content="https://physioberger.at/images/monia-berger.jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="857">
   <meta property="og:url" content="https://physioberger.at/">
+  
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Physiotherapie Monia Berger | Fritzens &amp; Hausbesuche">
+  <meta name="twitter:description" content="Ganzheitliche Physiotherapie in Fritzens, Wattens sowie mobile Hausbesuche in Tirol. Wahltherapeutin aller Kassen.">
+  <meta name="twitter:image" content="https://physioberger.at/images/monia-berger.jpeg">
+
   <link rel="canonical" href="https://physioberger.at/">
   
   <!-- Favicon / Logo Icon -->
   <link rel="icon" type="image/svg+xml" href="images/logo-mountain-pulse.svg">
   
-  <!-- Leaflet Map CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  
-  <!-- Google Fonts: Plus Jakarta Sans & Oooh Baby (Moderne, filigrane Handschrift) -->
+  <!-- Performance: Resource Hints & LCP Image Preload -->
+  <link rel="preload" as="image" href="images/hero-close-neck.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://unpkg.com">
+  <link rel="dns-prefetch" href="https://tile.openstreetmap.org">
+  <link rel="dns-prefetch" href="https://photon.komoot.io">
+  
+  <!-- Leaflet Map CSS (Asynchron geladen fÃ¼r blitzschnellen First Paint) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /></noscript>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Oooh Baby -->
   <link href="https://fonts.googleapis.com/css2?family=Oooh+Baby&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
@@ -90,28 +114,95 @@
     }
   </style>
 
-  <!-- Structured Data JSON-LD (SEO) -->
+  <!-- Structured Data JSON-LD (Rich Snippets & Local Business SEO) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Physiotherapist",
-    "name": "Physiotherapie Monia Berger",
-    "url": "https://physioberger.at",
-    "image": "images/monia-berger.jpeg",
-    "description": "Ganzheitliche Physiotherapie & Hausbesuche in Fritzens, Wattens, Hall in Tirol, Schwaz und Umgebung. Wahltherapeutin aller Kassen.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Bichlweg 17b",
-      "addressLocality": "Fritzens",
-      "postalCode": "6122",
-      "addressRegion": "Tirol",
-      "addressCountry": "AT"
-    },
-    "areaServed": ["Fritzens", "Wattens", "Hall in Tirol", "Schwaz", "Volders", "Baumkirchen"],
-    "medicalSpecialty": "Physiotherapy",
-    "telephone": "+436604054510",
-    "email": "monia.berger@outlook.com",
-    "priceRange": "$$"
+    "@graph": [
+      {
+        "@type": ["Physiotherapist", "MedicalBusiness", "HealthAndBeautyBusiness"],
+        "@id": "https://physioberger.at/#business",
+        "name": "Physiotherapie Monia Berger",
+        "alternateName": "Monia Berger Physiotherapie",
+        "url": "https://physioberger.at",
+        "logo": "https://physioberger.at/images/logo-brand.jpg",
+        "image": [
+          "https://physioberger.at/images/monia-berger.jpeg",
+          "https://physioberger.at/images/hero-close-neck.jpg"
+        ],
+        "description": "Ganzheitliche Physiotherapie & mobile Hausbesuche in Fritzens, Wattens, Hall in Tirol, Schwaz und Umgebung. Wahltherapeutin aller Kassen. Behandlung von orthopädischen Beschwerden, Schmerzen und Rehabilitation.",
+        "telephone": "+436604054510",
+        "email": "monia@physioberger.at",
+        "priceRange": "€€",
+        "currenciesAccepted": "EUR",
+        "paymentAccepted": "Barzahlung, Überweisung",
+        "medicalSpecialty": "Physiotherapy",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Bichlweg 17b",
+          "addressLocality": "Fritzens",
+          "postalCode": "6122",
+          "addressRegion": "Tirol",
+          "addressCountry": "AT"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 47.30356,
+          "longitude": 11.58972
+        },
+        "areaServed": [
+          { "@type": "AdministrativeArea", "name": "Fritzens" },
+          { "@type": "AdministrativeArea", "name": "Wattens" },
+          { "@type": "AdministrativeArea", "name": "Volders" },
+          { "@type": "AdministrativeArea", "name": "Baumkirchen" },
+          { "@type": "AdministrativeArea", "name": "Hall in Tirol" },
+          { "@type": "AdministrativeArea", "name": "Schwaz" },
+          { "@type": "AdministrativeArea", "name": "Innsbruck-Land" },
+          { "@type": "AdministrativeArea", "name": "Tirol" }
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "description": "Termine nach telefonischer Vereinbarung"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Physiotherapeutische Leistungen",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Physiotherapie & Befundung"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Manuelle Therapie & Gelenksmobilisation"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Mobile Hausbesuche in Tirol"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Rehabilitation nach Verletzungen & Operationen"
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
   </script>
 </head>
@@ -155,9 +246,13 @@
       <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100">
         <img 
           src="images/hero-close-neck.jpg" 
-          alt="Sanfte Mobilisation der Halswirbelsäule – Nahaufnahme Hände" 
+          alt="Sanfte Mobilisation der Halswirbelsäule – Physiotherapie Monia Berger Fritzens" 
           class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
           loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          width="1376"
+          height="768"
         >
         <div class="absolute inset-0 bg-black/25"></div>
       </div>
@@ -166,9 +261,12 @@
       <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none">
         <img 
           src="images/hero-close-spine.jpg" 
-          alt="Gezielte manuelle Physiotherapie – Nahaufnahme Hände und Rücken" 
+          alt="Gezielte manuelle Physiotherapie der Wirbelsäule – Behandlung in Fritzens &amp; Hausbesuche" 
           class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
           loading="lazy"
+          decoding="async"
+          width="1376"
+          height="768"
         >
         <div class="absolute inset-0 bg-black/25"></div>
       </div>
@@ -177,9 +275,12 @@
       <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none">
         <img 
           src="images/hero-close-joint.jpg" 
-          alt="Gelenkmobilisation und Bewegungstherapie – Nahaufnahme Kniegelenk" 
+          alt="Gelenkmobilisation und Bewegungstherapie – Physiotherapiepraxis Fritzens" 
           class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
           loading="lazy"
+          decoding="async"
+          width="1376"
+          height="768"
         >
         <div class="absolute inset-0 bg-black/25"></div>
       </div>
@@ -190,6 +291,9 @@
       <!-- Fullscreen Hero Content Overlay: WEISSES LOGO MIT DUNKLEM HINTERGRUND -->
       <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 sm:px-6 pointer-events-none">
         
+        <!-- Semantische H1-Überschrift für Google & Screenreader (barrierefrei & SEO-relevant) -->
+        <h1 class="sr-only">Physiotherapie Monia Berger – Wahltherapeutin in Fritzens &amp; mobile Hausbesuche in Tirol</h1>
+
         <!-- Das vollständige Logo (Strahlendes Weiß mit dezentem Schatten) -->
         <div class="w-full max-w-[320px] sm:max-w-[440px] md:max-w-[540px] lg:max-w-[620px] mx-auto text-white drop-shadow-lg select-none">
           <svg class="w-full h-auto text-white" viewBox="100 170 824 720" fill="none">
@@ -272,9 +376,12 @@
       <div class="lg:col-span-5 relative min-h-[380px] sm:min-h-[460px] lg:min-h-full">
         <img 
           src="images/monia-berger.jpeg" 
-          alt="Monia Berger – Physiotherapeutin in Fritzens" 
+          alt="Monia Berger – Physiotherapeutin und Wahltherapeutin in Fritzens, Tirol" 
           class="absolute inset-0 w-full h-full object-cover object-center"
-          loading="eager"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="857"
         >
       </div>
 
@@ -309,7 +416,7 @@
             </svg>
             <span>WhatsApp</span>
           </a>
-          <a href="mailto:monia.berger@outlook.com?subject=Terminanfrage%20Physiotherapie" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/30 text-white text-xs sm:text-sm uppercase tracking-wider font-medium hover:bg-white/10 transition-all">
+          <a href="mailto:monia@physioberger.at?subject=Terminanfrage%20Physiotherapie" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/30 text-white text-xs sm:text-sm uppercase tracking-wider font-medium hover:bg-white/10 transition-all">
             <i data-lucide="mail" class="w-4 h-4"></i>
             <span>E-Mail senden</span>
           </a>
@@ -520,6 +627,8 @@
       </div>
 
       <form id="quickForm" class="space-y-6">
+        <!-- Anti-Spam Honeypot -->
+        <input type="text" name="_honey" id="_honey" style="display:none" tabindex="-1" autocomplete="off">
         
         <!-- Behandlungsart Umschalter -->
         <div class="grid grid-cols-2 gap-3 pb-1">
@@ -594,9 +703,7 @@
       </form>
 
       <!-- Success note -->
-      <div id="formSuccess" class="hidden p-4 rounded-xl bg-white border border-headerSage text-xs text-darkMoss text-center shadow-xs">
-        Vielen Dank! Ihr E-Mail-Entwurf wurde vorbereitet / Ihre Anfrage wird zeitnah beantwortet.
-      </div>
+      <div id="formSuccess" class="hidden p-5 sm:p-6 rounded-2xl bg-white border border-[#D5DDD1] shadow-md transition-all duration-500"></div>
 
     </div>
   </section>
@@ -628,11 +735,11 @@
 
         <!-- Col 3: Email -->
         <div class="space-y-1.5">
-          <a href="mailto:monia.berger@outlook.com" class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-headerSage/25 hover:bg-darkMoss text-darkMoss hover:text-white flex items-center justify-center mx-auto mb-2.5 transition-all shadow-2xs hover:scale-105 cursor-pointer" title="E-Mail schreiben an monia.berger@outlook.com">
+          <a href="mailto:monia@physioberger.at" class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-headerSage/25 hover:bg-darkMoss text-darkMoss hover:text-white flex items-center justify-center mx-auto mb-2.5 transition-all shadow-2xs hover:scale-105 cursor-pointer" title="E-Mail schreiben an monia@physioberger.at">
             <i data-lucide="mail" class="w-5 h-5 sm:w-5.5 sm:h-5.5"></i>
           </a>
           <strong class="block text-sm sm:text-[15px] text-charcoal font-semibold tracking-tight">E-Mail</strong>
-          <a href="mailto:monia.berger@outlook.com" class="text-xs sm:text-sm text-charcoal/85 hover:text-darkMoss transition-colors font-medium">monia.berger@outlook.com</a>
+          <a href="mailto:monia@physioberger.at" class="text-xs sm:text-sm text-charcoal/85 hover:text-darkMoss transition-colors font-medium">monia@physioberger.at</a>
         </div>
 
       </div>
@@ -717,7 +824,7 @@
           <div class="space-y-1">
             <strong class="block text-charcoal font-semibold">Kontakt:</strong>
             <p>Telefon: <a href="tel:+436604054510" class="text-darkMoss underline hover:text-charcoal font-medium">+43 660 4054510</a></p>
-            <p>E-Mail: <a href="mailto:monia.berger@outlook.com" class="text-darkMoss underline hover:text-charcoal font-medium">monia.berger@outlook.com</a></p>
+            <p>E-Mail: <a href="mailto:monia@physioberger.at" class="text-darkMoss underline hover:text-charcoal font-medium">monia@physioberger.at</a></p>
             <p>Website: <a href="https://physioberger.at" class="text-darkMoss underline hover:text-charcoal font-medium">physioberger.at</a></p>
           </div>
 
@@ -748,7 +855,7 @@
           <div class="space-y-1">
             <strong class="block text-charcoal font-semibold">1. Verantwortliche:</strong>
             <p>Monia Berger, Bichlweg 17b, 6122 Fritzens, Österreich</p>
-            <p>E-Mail: <a href="mailto:monia.berger@outlook.com" class="text-darkMoss underline hover:text-charcoal font-medium">monia.berger@outlook.com</a></p>
+            <p>E-Mail: <a href="mailto:monia@physioberger.at" class="text-darkMoss underline hover:text-charcoal font-medium">monia@physioberger.at</a></p>
             <p>Telefon: <a href="tel:+436604054510" class="text-darkMoss underline hover:text-charcoal font-medium">+43 660 4054510</a></p>
           </div>
 
@@ -972,34 +1079,103 @@
       }
     });
 
-    quickForm.addEventListener('submit', (e) => {
+    quickForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      
+      const submitBtn = quickForm.querySelector('button[type="submit"]');
+      const originalBtnContent = submitBtn.innerHTML;
+      
       const loc = document.querySelector('input[name="loc"]:checked')?.value || 'Praxis Fritzens';
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
-      const email = document.getElementById('email').value;
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
       const addressVal = homeAddress.value.trim();
-      const msg = document.getElementById('msg').value;
+      const msg = document.getElementById('msg').value.trim();
+      
+      // Spam-Schutz (Honeypot)
+      const honeypot = document.getElementById('_honey')?.value;
+      if (honeypot) return;
 
-      const subject = encodeURIComponent(`Terminanfrage Physiotherapie (${loc}) - ${name}`);
-      const body = encodeURIComponent(
-        `Hallo Monia,\n\nich möchte gerne einen Termin anfragen.\n\n` +
-        `Ort: ${loc}\n` +
-        (loc === 'Hausbesuch' && addressVal ? `Adresse für Hausbesuch: ${addressVal}\n` : '') +
-        `Name: ${name}\n` +
-        `Telefon: ${phone}\n` +
-        `E-Mail: ${email}\n` +
-        `Anliegen:\n${msg}\n\n` +
-        `Viele Grüße,\n${name}`
-      );
+      // Button in Ladezustand versetzen
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>
+        <span>Anfrage wird gesendet...</span>
+      `;
+      if (window.lucide) lucide.createIcons();
 
-      window.location.href = `mailto:monia.berger@outlook.com?subject=${subject}&body=${body}`;
-      formSuccess.classList.remove('hidden');
+      const autoresponseMsg = `Liebe/r ${name},\n\nvielen Dank für deine Terminanfrage bei Physiotherapie Monia Berger!\n\nIch habe deine Nachricht erhalten und werde mich so schnell wie möglich persönlich bei dir melden, um einen passenden Termin zu vereinbaren.\n\nHerzliche Grüße,\nMonia Berger\nPhysiotherapie Fritzens & Hausbesuche\nTelefon: +43 660 4054510\nWebsite: https://physioberger.at`;
+
+      const payload = {
+        name: name,
+        phone: phone,
+        email: email,
+        Behandlungsort: loc,
+        Adresse: (loc === 'Hausbesuch' && addressVal) ? addressVal : 'Praxis Fritzens (Bichlweg 17b)',
+        Nachricht: msg || 'Keine zusätzliche Nachricht angegeben.',
+        _subject: `Neue Terminanfrage von ${name} (${loc})`,
+        _replyto: email,
+        _autoresponse: autoresponseMsg,
+        _template: 'table',
+        _captcha: 'false'
+      };
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/monia@physioberger.at', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          quickForm.reset();
+          hideHomeVisitAddress();
+          formSuccess.innerHTML = `
+            <div class="flex items-start gap-3.5 text-left">
+              <div class="w-8 h-8 rounded-full bg-headerSage/35 flex items-center justify-center shrink-0 mt-0.5 text-darkMoss">
+                <i data-lucide="check" class="w-5 h-5"></i>
+              </div>
+              <div class="space-y-1.5">
+                <strong class="block text-sm sm:text-base font-semibold text-charcoal">Vielen Dank für deine Anfrage, ${name}!</strong>
+                <p class="text-xs sm:text-[13px] text-mutedText leading-relaxed">
+                  Deine Terminanfrage wurde erfolgreich an mich übermittelt. Eine Bestätigungsnachricht wurde soeben an <strong>${email}</strong> gesendet. Ich melde mich so schnell wie möglich bei dir!
+                </p>
+              </div>
+            </div>
+          `;
+          formSuccess.classList.remove('hidden');
+          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          if (window.lucide) lucide.createIcons();
+        } else {
+          throw new Error('Server antwortete mit Fehler');
+        }
+      } catch (err) {
+        // Fallback: Öffnet E-Mail-Programm bei Verbindungsabbruch
+        const subject = encodeURIComponent(`Terminanfrage Physiotherapie (${loc}) - ${name}`);
+        const body = encodeURIComponent(
+          `Hallo Monia,\n\nich möchte gerne einen Termin anfragen.\n\nOrt: ${loc}\n${loc === 'Hausbesuch' && addressVal ? `Adresse: ${addressVal}\n` : ''}Name: ${name}\nTelefon: ${phone}\nE-Mail: ${email}\nAnliegen:\n${msg}\n\nViele Grüße,\n${name}`
+        );
+        window.location.href = `mailto:monia@physioberger.at?subject=${subject}&body=${body}`;
+        formSuccess.innerHTML = `
+          <div class="space-y-1 text-center text-charcoal">
+            <strong class="block text-sm font-semibold">E-Mail-Programm vorbereitet</strong>
+            <p class="text-xs text-mutedText">Deine Terminanfrage wurde in deinem E-Mail-Programm geöffnet, um direkt an monia@physioberger.at gesendet zu werden.</p>
+          </div>
+        `;
+        formSuccess.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnContent;
+        if (window.lucide) lucide.createIcons();
+      }
     });
   </script>
 
-  <!-- Leaflet Map Script & Markers -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- Leaflet Map Script & Markers (Deferred) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
   <script>
     // Initialisierung der interaktiven Karte mit CI-Pins und ÖBB-Bahnhof
     function initMap() {
@@ -1118,10 +1294,20 @@
       }).addTo(map);
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initMap);
+    // Performance-optimiert: Karte erst initialisieren, wenn der Anreisebereich in die NÃ¤he scrollt (IntersectionObserver)
+    const anreiseSection = document.getElementById('anreise');
+    if ('IntersectionObserver' in window && anreiseSection) {
+      const mapObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            initMap();
+            observer.disconnect();
+          }
+        });
+      }, { rootMargin: '350px' });
+      mapObserver.observe(anreiseSection);
     } else {
-      initMap();
+      window.addEventListener('load', initMap);
     }
 
     // ==================== LEGAL MODAL (IMPRESSUM & DATENSCHUTZ) ====================
