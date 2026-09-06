@@ -1,15 +1,25 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://physioberger.at/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://physioberger.at/images/monia-berger.jpeg</image:loc>
       <image:title>Monia Berger - Physiotherapeutin</image:title>
       <image:caption>Physiotherapeutin Monia Berger in Fritzens, Tirol</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://physioberger.at/images/praxis-behandlungsraum-bg.jpg</image:loc>
+      <image:title>Praxis- und Behandlungsraum Fritzens</image:title>
+      <image:caption>Moderner, heller Behandlungsraum für Physiotherapie in Fritzens</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://physioberger.at/images/praxis-detail-bg.jpg</image:loc>
+      <image:title>Praxisdetails &amp; Trainingsausstattung</image:title>
+      <image:caption>Hochwertige Ausstattung für aktive Bewegungstherapie und Rehabilitation</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://physioberger.at/images/hero-close-neck.jpg</image:loc>
@@ -19,12 +29,7 @@
     <image:image>
       <image:loc>https://physioberger.at/images/hero-close-spine.jpg</image:loc>
       <image:title>Wirbelsäulentherapie &amp; Rückenschmerzbehandlung</image:title>
-      <image:caption>Gezielte Behandlung von Wirbelsäule und Rücken</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://physioberger.at/images/hero-close-joint.jpg</image:loc>
-      <image:title>Gelenksmobilisation &amp; Rehabilitation</image:title>
-      <image:caption>Bewegungstherapie und Gelenkmobilisation in Fritzens &amp; bei Hausbesuchen</image:caption>
+      <image:caption>Gezielte Behandlung von Wirbelsäule und Rücken in Fritzens &amp; bei Hausbesuchen</image:caption>
     </image:image>
   </url>
 </urlset>
