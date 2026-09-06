@@ -363,24 +363,7 @@
         <div class="absolute inset-0 bg-black/25"></div>
       </div>
 
-      <!-- Slide 2: Close-up Spine & Back Therapy (An 2. Stelle) -->
-      <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none">
-        <picture class="w-full h-full block">
-          <source srcset="images/hero-close-spine.webp" type="image/webp">
-          <img 
-            src="images/hero-close-spine.jpg" 
-            alt="Gezielte manuelle Physiotherapie der Wirbelsäule – Behandlung in Fritzens &amp; Hausbesuche" 
-            class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
-            loading="lazy"
-            decoding="async"
-            width="1376"
-            height="768"
-          >
-        </picture>
-        <div class="absolute inset-0 bg-black/25"></div>
-      </div>
-
-      <!-- Slide 3: Moderner Behandlungsraum & Praxisatmosphäre -->
+      <!-- Slide 2: Moderner Behandlungsraum & Praxisatmosphäre (An 2. Stelle) -->
       <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none">
         <picture class="w-full h-full block">
           <source srcset="images/praxis-behandlungsraum-bg.webp" type="image/webp">
@@ -392,6 +375,23 @@
             decoding="async"
             width="2402"
             height="1760"
+          >
+        </picture>
+        <div class="absolute inset-0 bg-black/25"></div>
+      </div>
+
+      <!-- Slide 3: Close-up Spine & Back Therapy (An 3. Stelle) -->
+      <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none">
+        <picture class="w-full h-full block">
+          <source srcset="images/hero-close-spine.webp" type="image/webp">
+          <img 
+            src="images/hero-close-spine.jpg" 
+            alt="Gezielte manuelle Physiotherapie der Wirbelsäule – Behandlung in Fritzens &amp; Hausbesuche" 
+            class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
+            loading="lazy"
+            decoding="async"
+            width="1376"
+            height="768"
           >
         </picture>
         <div class="absolute inset-0 bg-black/25"></div>
@@ -540,8 +540,11 @@
     </div>
   </section>
 
-  <!-- ==================== MAIN CONTENT: 3 PRAXISINFOS (PARALLAX-HINTERGRUND MIT PRAXIS-DETAIL PUR OHNE OVERLAY) ==================== -->
+  <!-- ==================== MAIN CONTENT: 3 PRAXISINFOS (PARALLAX-HINTERGRUND MIT SANFTEM SALBEI-OVERLAY) ==================== -->
   <section class="relative w-full py-16 sm:py-28 overflow-hidden bg-fixed bg-cover bg-center border-b-4 border-darkMoss" style="background-image: url('images/praxis-detail-bg.jpg');">
+    <!-- Sanftes Farboverlay im hellen Salbeigrün (#F2F5EF) mit erhöhter Transparenz -->
+    <div class="absolute inset-0 backdrop-blur-[0.5px]" style="background-color: rgba(242, 245, 239, 0.60);"></div>
+
     <div class="relative max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 w-full">
 
       <!-- ==================== DIE 3 WICHTIGSTEN PRAXISINFOS ==================== -->
@@ -720,7 +723,7 @@
 
       <!-- Rechts: Interaktive Karte (Diagonaler Rahmen: links oben Hintergrundfarbe, rechts unten hell) -->
       <div class="lg:col-span-6 flex items-center justify-center p-6 sm:p-8 lg:p-10 xl:p-12">
-        <div class="relative z-0 isolate w-full max-w-xl lg:max-w-[600px] aspect-[1215/891] overflow-hidden rounded-none p-[6px] bg-gradient-to-br from-[#7D8B75] via-[#8B9A83] to-[#9BAA93]">
+        <div class="relative z-0 isolate w-full max-w-xl lg:max-w-[600px] h-[380px] sm:h-[440px] lg:h-auto lg:aspect-[1215/891] overflow-hidden rounded-none p-[6px] bg-gradient-to-br from-[#7D8B75] via-[#8B9A83] to-[#9BAA93]">
           <div id="interactiveMap" class="w-full h-full"></div>
         </div>
       </div>
@@ -735,7 +738,7 @@
   <!-- ==================== TERMINVEREINBARUNG & FORMULAR (PARALLAX-STANDBILD MIT FARBOVERLAY) ==================== -->
   <section id="kontakt" class="relative w-full py-16 sm:py-24 overflow-hidden bg-fixed bg-cover bg-center" style="background-image: url('images/praxis-behandlungsraum-bg.jpg?v=2');">
     <!-- Farboverlay im selben hellen Salbeigrün (#F2F5EF) mit hoher Deckkraft (Bild nur ganz dezent sichtbar) -->
-    <div class="absolute inset-0 bg-[#F2F5EF]/92 sm:bg-[#F2F5EF]/90 backdrop-blur-[0.5px]"></div>
+    <div class="absolute inset-0 backdrop-blur-[0.5px]" style="background-color: rgba(242, 245, 239, 0.92);"></div>
 
     <div class="relative max-w-xl mx-auto px-4 sm:px-6 space-y-8">
       
@@ -1410,9 +1413,9 @@
       if (!mapContainer || typeof L === 'undefined') return;
 
       const isDesktop = window.innerWidth >= 1024;
-      // Präzises Zentrum für das Split-Layout: Praxis und Bahnhof perfekt im rechten Kartenteil zentriert
-      const centerLat = 47.3026;
-      const centerLng = 11.5894;
+      // Präzises Zentrum: Auf Mobilgeräten etwas höher/nördlicher zentriert, damit der Praxis-Pin oben nicht abgeschnitten wird
+      const centerLat = isDesktop ? 47.3026 : 47.3028;
+      const centerLng = isDesktop ? 11.5894 : 11.5892;
       const zoomLevel = 17; // Noch näherer Zoom (Stufe 17) für maximale Nahsicht und Details
 
       const map = L.map('interactiveMap', {
