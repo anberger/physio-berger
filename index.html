@@ -61,11 +61,11 @@
       theme: {
         extend: {
           colors: {
-            headerSage: '#B7BFB0',     // Minimal aufgehelltes, frisches Salbeigrün
-            headerSageDark: '#A2AB9A',
-            darkMoss: '#5A6753',       // Minimal aufgehelltes, warmes Waldmoosgrün
-            darkMossLight: '#697762',
-            darkMossDeep: '#495443',
+            headerSage: '#B0B8A6',     // Hellere Grünton laut Benutzer-Vorlage (oben)
+            headerSageDark: '#9FA795',
+            darkMoss: '#7D8B75',       // Dunkelgrün laut Benutzer-Vorlage (unten)
+            darkMossLight: '#8C9A84',
+            darkMossDeep: '#6A7762',
             cardBg: '#FAFBF9',         // Sanfter, heller Hintergrundton
             borderMuted: '#E4E8E1',
             charcoal: '#313A2F',
@@ -109,9 +109,11 @@
     .leaflet-tile-pane {
       filter: saturate(35%) sepia(10%) hue-rotate(10deg) contrast(96%) brightness(99%);
     }
-    /* Scroll-Interception auf der Karte komplett verhindern */
+    /* Scroll-Interception auf der Karte komplett verhindern & Stacking Context isolieren */
     #interactiveMap {
       pointer-events: none;
+      isolation: isolate;
+      z-index: 1;
     }
     .leaflet-marker-icon, .leaflet-popup {
       pointer-events: auto;
@@ -218,7 +220,7 @@
 <body class="selection:bg-headerSage selection:text-white flex flex-col min-h-screen overflow-x-hidden">
 
   <!-- ==================== MINIMAL HEADER (#B0B8A6, oben ausgeblendet, erscheint beim Runterscrollen) ==================== -->
-  <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 bg-headerSage text-charcoal shadow-md transition-all duration-500 ease-in-out -translate-y-full opacity-0 pointer-events-none">
+  <header id="mainHeader" class="fixed top-0 left-0 right-0 z-[100] bg-headerSage text-charcoal shadow-md transition-all duration-500 ease-in-out -translate-y-full opacity-0 pointer-events-none">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
       
       <!-- Brand Logo (Neues Kreis-Emblem – kräftigere Linienstärke) -->
@@ -365,13 +367,13 @@
     </div>
   </section>
 
-  <!-- ==================== PHILOSOPHIE / WILLKOMMEN SECTION (HELLER SALBEITON) ==================== -->
-  <section id="willkommen" class="py-16 sm:py-24 lg:py-28 px-4 text-center bg-[#F2F5EF] border-y border-[#E4EAE0]/80">
+  <!-- ==================== PHILOSOPHIE / WILLKOMMEN SECTION (HELLES GRÜN IM HINTERGRUND, DUNKELGRÜNER TEXT) ==================== -->
+  <section id="willkommen" class="py-16 sm:py-24 lg:py-28 px-4 text-center bg-[#B0B8A6] border-y border-[#9FA795]/50">
     <div class="max-w-4xl mx-auto space-y-2">
-      <span class="font-handwritten text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] block select-none leading-snug py-1 text-charcoal">
+      <span class="font-handwritten text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] block select-none leading-snug py-1 text-[#273523]">
         Veränderung beginnt mit Bewegung
       </span>
-      <p class="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold pt-1 text-charcoal/80">
+      <p class="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold pt-1 text-[#273523]/90">
         Praxis in Fritzens &amp; Hausbesuche · Wahltherapeutin aller Kassen
       </p>
     </div>
@@ -381,17 +383,19 @@
   <section id="profil" class="w-full bg-darkMoss text-white overflow-hidden">
     <div class="w-full grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[480px] lg:min-h-[560px]">
       
-      <!-- Left: Authentic Portrait / Treatment Photo (Fullscreen Edge-to-Edge) -->
-      <div class="lg:col-span-5 relative min-h-[380px] sm:min-h-[460px] lg:min-h-full">
-        <img 
-          src="images/monia-berger.jpeg" 
-          alt="Monia Berger – Physiotherapeutin und Wahltherapeutin in Fritzens, Tirol" 
-          class="absolute inset-0 w-full h-full object-cover object-center"
-          loading="lazy"
-          decoding="async"
-          width="1200"
-          height="857"
-        >
+      <!-- Left: Portrait Monia Berger (Diagonaler Rahmen: links oben hell, rechts unten Hintergrundfarbe) -->
+      <div class="lg:col-span-5 flex items-center justify-center p-6 sm:p-8 lg:p-10 xl:p-12">
+        <div class="w-full max-w-lg overflow-hidden rounded-none p-[6px] bg-gradient-to-br from-[#9BAA93] via-[#8B9A83] to-[#7D8B75]">
+          <img 
+            src="images/monia-berger.jpeg" 
+            alt="Monia Berger – Physiotherapeutin und Wahltherapeutin in Fritzens, Tirol" 
+            class="w-full h-auto block"
+            loading="lazy"
+            decoding="async"
+            width="1215"
+            height="891"
+          >
+        </div>
       </div>
 
       <!-- Right: Core Information & Quick Actions -->
@@ -438,15 +442,18 @@
     </div>
   </section>
 
-  <!-- ==================== MAIN CONTENT: 3 PRAXISINFOS (DEZENTER GRÜNER HINTERGRUND) ==================== -->
-  <section class="w-full bg-[#F2F5EF] border-b border-[#E5EAE2]/70 py-16 sm:py-24">
-    <div class="max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 w-full">
+  <!-- ==================== MAIN CONTENT: 3 PRAXISINFOS (PARALLAX-CLOSEUP MIT HELLEM SALBEI-OVERLAY WIE ELEMENT 2) ==================== -->
+  <section class="relative w-full py-16 sm:py-28 overflow-hidden bg-fixed bg-cover bg-center border-b-4 border-darkMoss" style="background-image: url('images/praxis-treatment-bg.jpg');">
+    <!-- Farboverlay im selben hellen Salbeigrün (#F2F5EF) wie Element 2 mit Transparenz -->
+    <div class="absolute inset-0 bg-[#F2F5EF]/80 sm:bg-[#F2F5EF]/75 backdrop-blur-[0.5px]"></div>
+
+    <div class="relative max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 w-full">
 
       <!-- ==================== DIE 3 WICHTIGSTEN PRAXISINFOS ==================== -->
       <section id="ablauf" class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
         
         <!-- Box 1: Beim ersten Termin -->
-        <div class="relative bg-white rounded-3xl p-8 lg:p-10 border border-[#E2E8DE]/90 shadow-[0_4px_25px_-4px_rgba(77,88,71,0.06)] hover:shadow-[0_20px_45px_-12px_rgba(77,88,71,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+        <div class="relative bg-white/95 backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-white/90 shadow-[0_8px_30px_-4px_rgba(77,88,71,0.09)] hover:shadow-[0_20px_45px_-10px_rgba(77,88,71,0.16)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
           
           <div>
             <!-- Kopfzeile: Kategorie -->
@@ -483,7 +490,7 @@
         </div>
 
         <!-- Box 2: Kostenübernahme (Wahlarztprinzip) -->
-        <div class="relative bg-white rounded-3xl p-8 lg:p-10 border border-[#E2E8DE]/90 shadow-[0_4px_25px_-4px_rgba(77,88,71,0.06)] hover:shadow-[0_20px_45px_-12px_rgba(77,88,71,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+        <div class="relative bg-white/95 backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-white/90 shadow-[0_8px_30px_-4px_rgba(77,88,71,0.09)] hover:shadow-[0_20px_45px_-10px_rgba(77,88,71,0.16)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
           
           <div>
             <!-- Kopfzeile: Kategorie -->
@@ -516,7 +523,7 @@
         </div>
 
         <!-- Box 3: Hausbesuche -->
-        <div id="hausbesuche" class="relative bg-white rounded-3xl p-8 lg:p-10 border border-[#E2E8DE]/90 shadow-[0_4px_25px_-4px_rgba(77,88,71,0.06)] hover:shadow-[0_20px_45px_-12px_rgba(77,88,71,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+        <div id="hausbesuche" class="relative bg-white/95 backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-white/90 shadow-[0_8px_30px_-4px_rgba(77,88,71,0.09)] hover:shadow-[0_20px_45px_-10px_rgba(77,88,71,0.16)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
           
           <div>
             <!-- Kopfzeile: Kategorie -->
@@ -552,78 +559,78 @@
     </div>
   </section>
 
-  <!-- ==================== FULLSCREEN MAP & ANREISE SECTION ==================== -->
-  <section id="anreise" class="w-full relative min-h-[600px] sm:min-h-[680px] flex items-center overflow-hidden">
-    
-    <!-- Fullscreen Interactive Leaflet Map -->
-    <div id="interactiveMap" class="absolute inset-0 w-full h-full z-10"></div>
-    
-    <!-- Feiner Helligkeitsverlauf (kein grüner Schleier) -->
-    <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/10 pointer-events-none z-[11]"></div>
-
-    <!-- Floating Content Overlay auf der linken Seite (Rechts frei für volle Sicht auf den Marker) -->
-    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 w-full py-10 sm:py-16 pointer-events-none">
-      <div class="w-full max-w-md lg:max-w-xl bg-white/95 backdrop-blur-md rounded-2xl border border-white/80 shadow-[0_16px_40px_-8px_rgba(45,53,43,0.22)] p-6 sm:p-8 space-y-5 pointer-events-auto">
+  <!-- ==================== STANDORT & ANREISE SECTION (SPLIT-LAYOUT WIE ÜBER MICH) ==================== -->
+  <section id="anreise" class="w-full bg-darkMoss text-white overflow-hidden relative z-0 isolate">
+    <div class="w-full grid grid-cols-1 lg:grid-cols-12 items-stretch min-h-[480px] lg:min-h-[560px]">
+      
+      <!-- Links: Text & Informationen -->
+      <div class="lg:col-span-6 px-6 py-12 sm:px-10 sm:py-16 lg:px-12 xl:px-16 flex flex-col justify-center space-y-6">
         
-        <!-- Information, Address & Direct Route Triggers -->
         <div class="space-y-3">
-          <div class="flex items-center gap-2 text-darkMoss">
-            <i data-lucide="map-pin" class="w-4.5 h-4.5 text-darkMoss"></i>
-            <span class="text-xs sm:text-[13px] uppercase tracking-wider font-semibold">Standort &amp; Anreise</span>
+          <div class="flex items-center gap-2 text-headerSage">
+            <i data-lucide="map-pin" class="w-4 h-4 text-headerSage"></i>
+            <span class="text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-white/80">Standort &amp; Anreise</span>
           </div>
           
-          <h3 class="text-3xl sm:text-[2rem] font-normal text-charcoal tracking-tight leading-tight">
-            Praxisstandort Fritzens
-          </h3>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-normal text-white tracking-tight leading-tight">
+            Praxis Fritzens
+          </h2>
           
-          <p class="text-[15px] sm:text-base text-mutedText leading-relaxed font-light">
-            Die Praxis am <strong>Bichlweg 17b, 6122 Fritzens</strong> liegt in ruhiger, angenehmer Lage. Kostenfreie Parkmöglichkeiten finden Sie direkt vor Ort – sowie eine bequeme Anbindung mit nur ca. 5 Minuten Gehweg zur S-Bahn Station Fritzens-Wattens.
+          <p class="text-[15px] sm:text-base text-white/85 leading-relaxed font-light">
+            Die Praxis am <strong class="text-white font-medium">Bichlweg 17b, 6122 Fritzens</strong> liegt in ruhiger, angenehmer Lage. Kostenfreie Parkmöglichkeiten finden Sie direkt vor Ort – sowie eine bequeme Anbindung mit nur ca. 5 Minuten Gehweg zur S-Bahn Station Fritzens-Wattens.
           </p>
         </div>
 
-        <!-- Kompakte S-Bahn Fahrzeiten -->
-        <div class="bg-cardBg/95 p-4 sm:p-5 rounded-xl border border-borderMuted space-y-3 text-sm">
-          <div class="text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-mutedText pb-1.5 border-b border-borderMuted flex items-center justify-between">
+        <!-- Kompakte S-Bahn Fahrzeiten (Passend zum dunklen Hintergrund) -->
+        <div class="bg-black/20 border border-white/15 p-4 sm:p-5 rounded-2xl space-y-3 text-sm backdrop-blur-xs">
+          <div class="text-xs sm:text-[13px] uppercase tracking-wider font-semibold text-white/80 pb-1.5 border-b border-white/10 flex items-center justify-between">
             <span>S-Bahn Fahrzeiten</span>
-            <span class="text-darkMoss font-bold">Linie S4</span>
+            <span class="text-headerSage font-bold">Linie S4</span>
           </div>
-          <div class="grid grid-cols-3 gap-2.5 text-center pt-0.5">
-            <div class="p-2.5 rounded-lg bg-white border border-borderMuted/60 shadow-xs">
-              <span class="block text-xs text-mutedText">Hall i. T.</span>
-              <span class="font-bold text-darkMoss text-sm sm:text-[15px]">ca. 8 Min.</span>
+          <div class="grid grid-cols-3 gap-2 text-center pt-0.5">
+            <div class="p-2.5 rounded-xl bg-white/10 border border-white/10">
+              <span class="block text-xs text-white/70">Hall i. T.</span>
+              <span class="font-bold text-white text-sm sm:text-[15px]">ca. 8 Min.</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-white border border-borderMuted/60 shadow-xs">
-              <span class="block text-xs text-mutedText">Schwaz</span>
-              <span class="font-bold text-darkMoss text-sm sm:text-[15px]">ca. 10 Min.</span>
+            <div class="p-2.5 rounded-xl bg-white/10 border border-white/10">
+              <span class="block text-xs text-white/70">Schwaz</span>
+              <span class="font-bold text-white text-sm sm:text-[15px]">ca. 10 Min.</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-white border border-borderMuted/60 shadow-xs">
-              <span class="block text-xs text-mutedText">Innsbruck</span>
-              <span class="font-bold text-darkMoss text-sm sm:text-[15px]">ca. 16 Min.</span>
+            <div class="p-2.5 rounded-xl bg-white/10 border border-white/10">
+              <span class="block text-xs text-white/70">Innsbruck</span>
+              <span class="font-bold text-white text-sm sm:text-[15px]">ca. 16 Min.</span>
             </div>
           </div>
-          <div class="flex items-center justify-between pt-1 text-mutedText text-xs sm:text-[13px]">
+          <div class="flex items-center justify-between pt-1 text-white/80 text-xs sm:text-[13px]">
             <span class="flex items-center gap-1.5"><i data-lucide="footprints" class="w-4 h-4 text-headerSage"></i> Gehweg ab Bahnhof Fritzens-Wattens:</span>
-            <span class="font-semibold text-charcoal">ca. 5 Minuten</span>
+            <span class="font-semibold text-white">ca. 5 Minuten</span>
           </div>
         </div>
 
-        <!-- Buttons 50/50 links und rechts auf einer Höhe -->
-        <div class="pt-1 grid grid-cols-2 gap-3">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Bichlweg+17b,+6122+Fritzens" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-darkMoss hover:bg-darkMossDeep text-white text-xs sm:text-sm font-medium shadow-sm transition-all group cursor-pointer text-center" title="Route in Google Maps planen">
-            <i data-lucide="map" class="w-4 h-4 text-headerSage group-hover:text-white transition-colors shrink-0"></i>
-            <span class="truncate">Google Maps</span>
-            <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-70 shrink-0 hidden sm:inline-block"></i>
+        <!-- Buttons Links und Rechts -->
+        <div class="pt-1 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Bichlweg+17b,+6122+Fritzens" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-white text-darkMoss hover:bg-white/90 text-xs sm:text-sm font-semibold shadow-sm transition-all group cursor-pointer text-center" title="Route in Google Maps planen">
+            <i data-lucide="map" class="w-4 h-4 text-darkMoss shrink-0"></i>
+            <span>Google Maps</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-70 shrink-0"></i>
           </a>
-          <a href="https://fahrplan.oebb.at/bin/query.exe/dn?REQ0JourneyStopsZ0A=1&REQ0JourneyStopsZ0G=Fritzens-Wattens" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-4 sm:px-5 py-3 rounded-full bg-headerSage/20 hover:bg-headerSage/35 text-darkMoss border border-headerSage/50 text-xs sm:text-sm font-medium transition-all group cursor-pointer text-center" title="ÖBB Website mit vorausgewählter Haltestelle Fritzens-Wattens">
-            <i data-lucide="train" class="w-4 h-4 text-darkMoss shrink-0"></i>
-            <span class="truncate">ÖBB Website</span>
-            <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-70 shrink-0 hidden sm:inline-block"></i>
+          <a href="https://fahrplan.oebb.at/bin/query.exe/dn?REQ0JourneyStopsZ0A=1&REQ0JourneyStopsZ0G=Fritzens-Wattens" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-headerSage/25 hover:bg-headerSage/40 text-white border border-headerSage/50 text-xs sm:text-sm font-medium transition-all group cursor-pointer text-center" title="ÖBB Website mit vorausgewählter Haltestelle Fritzens-Wattens">
+            <i data-lucide="train" class="w-4 h-4 text-white shrink-0"></i>
+            <span>ÖBB Fahrplan</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5 opacity-70 shrink-0"></i>
           </a>
         </div>
 
       </div>
-    </div>
 
+      <!-- Rechts: Interaktive Karte (Diagonaler Rahmen: links oben Hintergrundfarbe, rechts unten hell) -->
+      <div class="lg:col-span-6 flex items-center justify-center p-6 sm:p-8 lg:p-10 xl:p-12">
+        <div class="relative z-0 isolate w-full max-w-xl lg:max-w-[600px] aspect-[1215/891] overflow-hidden rounded-none p-[6px] bg-gradient-to-br from-[#7D8B75] via-[#8B9A83] to-[#9BAA93]">
+          <div id="interactiveMap" class="w-full h-full"></div>
+        </div>
+      </div>
+
+    </div>
   </section>
 
   <!-- ==================== TERMINVEREINBARUNG & FORMULAR (OFFEN & DEZENTES GRÜN) ==================== -->
@@ -792,7 +799,7 @@
   </a>
 
   <!-- ==================== MODAL: IMPRESSUM & DATENSCHUTZ ==================== -->
-  <div id="legalModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-opacity duration-300" role="dialog" aria-modal="true">
+  <div id="legalModal" class="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 opacity-0 pointer-events-none transition-opacity duration-300" role="dialog" aria-modal="true">
     <!-- Backdrop Blur -->
     <div id="legalModalBackdrop" class="absolute inset-0 bg-charcoal/60 backdrop-blur-xs cursor-pointer"></div>
 
@@ -1184,7 +1191,7 @@
             <div class="space-y-1.5">
               <strong class="block text-sm sm:text-base font-semibold text-charcoal">Vielen Dank für deine Anfrage, ${name}!</strong>
               <p class="text-xs sm:text-[13px] text-mutedText leading-relaxed">
-                Deine Terminanfrage wurde erfolgreich übermittelt. Eine Bestätigung wurde an <strong>${email}</strong> gesendet. Ich melde mich so schnell wie möglich persönlich bei dir!
+                Deine Terminanfrage wurde erfolgreich an mich übermittelt. Ich melde mich so schnell wie möglich persönlich bei dir!
               </p>
             </div>
           </div>
@@ -1225,9 +1232,9 @@
       if (!mapContainer || typeof L === 'undefined') return;
 
       const isDesktop = window.innerWidth >= 1024;
-      // Präzises Zentrum für Zoom 17: optimal ausgerichtet für freie Sicht rechts
+      // Präzises Zentrum für das Split-Layout: Praxis und Bahnhof perfekt im rechten Kartenteil zentriert
       const centerLat = 47.3026;
-      const centerLng = isDesktop ? 11.5872 : 11.5893;
+      const centerLng = 11.5894;
       const zoomLevel = 17; // Noch näherer Zoom (Stufe 17) für maximale Nahsicht und Details
 
       const map = L.map('interactiveMap', {
@@ -1294,7 +1301,7 @@
           <div class="mb-1 bg-white text-[#313A2F] text-[10px] font-semibold px-2 py-0.5 rounded-full shadow-md whitespace-nowrap border border-[#E4E8E1] flex items-center gap-1">
             <span class="w-1.5 h-1.5 rounded-full bg-[#E2001A]"></span>
             <span>Bahnhof Fritzens-Wattens</span>
-            <span class="text-[9px] text-[#6B7769] font-normal">· 6 Min.</span>
+            <span class="text-[9px] text-[#6B7769] font-normal">· 5 Min.</span>
           </div>
           <!-- ÖBB Pin -->
           <div class="w-8 h-8 rounded-full bg-[#E2001A] text-white flex items-center justify-center shadow-lg border-2 border-white ring-2 ring-[#E2001A]/25 group-hover:scale-110 transition-transform">
@@ -1334,13 +1341,17 @@
         [47.30348, 11.58945], // Bichlweg zur Praxis
         [47.30356, 11.58972]  // Eingang Physiotherapie Monia Berger (Bichlweg 17b)
       ], {
-        color: '#5A6753',
+        color: '#7D8B75',
         weight: 3.5,
-        opacity: 0.85,
+        opacity: 0.9,
         dashArray: '5, 7',
         lineCap: 'round',
         lineJoin: 'round'
       }).addTo(map);
+
+      setTimeout(() => { map.invalidateSize(); }, 100);
+      setTimeout(() => { map.invalidateSize(); }, 500);
+      window.addEventListener('resize', () => { map.invalidateSize(); });
     }
 
     // Performance-optimiert: Karte erst initialisieren, wenn der Anreisebereich in die NÃ¤he scrollt (IntersectionObserver)
