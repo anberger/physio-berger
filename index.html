@@ -38,24 +38,24 @@
 
   <link rel="canonical" href="https://physioberger.at/">
   
-  <!-- Favicon / Logo Icon -->
+  <!-- Favicon, App Icons & PWA Manifest -->
   <link rel="icon" type="image/svg+xml" href="images/logo-mountain-pulse.svg">
+  <link rel="apple-touch-icon" href="images/logo-mountain-pulse.svg">
+  <link rel="manifest" href="site.webmanifest">
   
-  <!-- Performance: Resource Hints & LCP Image Preload -->
-  <link rel="preload" as="image" href="images/hero-close-neck.jpg" fetchpriority="high">
+  <!-- Performance: Resource Hints & LCP WebP Image Preload -->
+  <link rel="preload" as="image" href="images/hero-close-neck.webp" type="image/webp" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link rel="dns-prefetch" href="https://unpkg.com">
   <link rel="dns-prefetch" href="https://tile.openstreetmap.org">
   <link rel="dns-prefetch" href="https://photon.komoot.io">
   
-  <!-- Leaflet Map CSS (Asynchron geladen fÃ¼r blitzschnellen First Paint) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" /></noscript>
+  <!-- Leaflet Map CSS (Lokal gehostet für 100% Zuverlässigkeit) -->
+  <link rel="stylesheet" href="leaflet.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="leaflet.css" /></noscript>
   
-  <!-- Google Fonts: Plus Jakarta Sans & Oooh Baby -->
-  <link href="https://fonts.googleapis.com/css2?family=Oooh+Baby&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Plus Jakarta Sans & Sacramento -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -76,15 +76,15 @@
           },
           fontFamily: {
             sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-            handwritten: ['"Oooh Baby"', 'cursive']
+            sacramento: ['Sacramento', 'cursive']
           }
         }
       }
     }
   </script>
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Micro Icon Engine (Ultra-schlanke ~2.5 KB Vektor-Engine statt 429 KB Bibliothek) -->
+  <script src="icons.min.js"></script>
 
   <style>
     html {
@@ -102,8 +102,10 @@
       color: #2D352B;
       -webkit-font-smoothing: antialiased;
     }
-    .font-handwritten {
-      font-family: 'Oooh Baby', cursive;
+    .font-sacramento { font-family: 'Sacramento', cursive; }
+    #spruchText {
+      font-size: clamp(1.85rem, 5.5vw, 69px);
+      line-height: 1.25;
     }
     .clean-card-shadow {
       box-shadow: 0 4px 20px -4px rgba(77, 88, 71, 0.06);
@@ -228,6 +230,80 @@
             }
           ]
         }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://physioberger.at/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Brauche ich für die Physiotherapie eine ärztliche Verordnung?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja, für eine physiotherapeutische Behandlung benötigen Sie eine Verordnung (Überweisung) von Ihrer Hausärztin, Ihrem Hausarzt oder einer Fachärztin bzw. einem Facharzt. Bei rein präventiven Einheiten ist keine ärztliche Verordnung erforderlich."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie funktioniert die Kostenrückerstattung bei einer Wahltherapeutin?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Als Wahltherapeutin aller Kassen (ÖGK, BVAEB, SVS) erhalten Sie nach der Behandlung eine Honorarnote. Diese reichen Sie gemeinsam mit der ärztlichen Verordnung bei Ihrer zuständigen Krankenkasse ein, um den gesetzlichen Kostenzuschuss rückerstattet zu bekommen. Eine private Zusatzversicherung übernimmt häufig den verbleibenden Selbstbehalt."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bietet Monia Berger auch mobile Hausbesuche in Tirol an?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja, mobile Hausbesuche sind in Fritzens, Wattens, Volders, Baumkirchen, Hall in Tirol, Schwaz und naher Umgebung möglich. Bitte achten Sie darauf, dass der Hausbesuch auf Ihrer ärztlichen Verordnung vermerkt ist."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie erreiche ich die Praxis in Fritzens (Parken & Öffis)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Die Praxis befindet sich im Bichlweg 17b, 6122 Fritzens. Kostenlose Parkplätze stehen direkt vor dem Haus zur Verfügung. Die S-Bahn-Station Fritzens-Wattens (Linie S4) ist nur ca. 5 Gehminuten entfernt mit schnellen Verbindungen nach Hall in Tirol (ca. 8 Min.), Schwaz (ca. 10 Min.) und Innsbruck (ca. 16 Min.)."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://physioberger.at/#breadcrumbs",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Startseite",
+            "item": "https://physioberger.at/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Ablauf & Kasse",
+            "item": "https://physioberger.at/#ablauf"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Praxis Fritzens",
+            "item": "https://physioberger.at/#anreise"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Hausbesuche",
+            "item": "https://physioberger.at/#hausbesuche"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Termin anfragen",
+            "item": "https://physioberger.at/#kontakt"
+          }
+        ]
       }
     ]
   }
@@ -271,44 +347,53 @@
       
       <!-- Slide 1: Close-up Cervical Spine & Neck Mobilization (An 1. Stelle) -->
       <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-100">
-        <img 
-          src="images/hero-close-neck.jpg" 
-          alt="Sanfte Mobilisation der Halswirbelsäule – Physiotherapie Monia Berger Fritzens" 
-          class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-          width="1376"
-          height="768"
-        >
+        <picture class="w-full h-full block">
+          <source srcset="images/hero-close-neck.webp" type="image/webp">
+          <img 
+            src="images/hero-close-neck.jpg" 
+            alt="Sanfte Mobilisation der Halswirbelsäule – Physiotherapie Monia Berger Fritzens" 
+            class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            width="1376"
+            height="768"
+          >
+        </picture>
         <div class="absolute inset-0 bg-black/25"></div>
       </div>
 
       <!-- Slide 2: Close-up Spine & Back Therapy (An 2. Stelle) -->
       <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none">
-        <img 
-          src="images/hero-close-spine.jpg" 
-          alt="Gezielte manuelle Physiotherapie der Wirbelsäule – Behandlung in Fritzens &amp; Hausbesuche" 
-          class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
-          loading="lazy"
-          decoding="async"
-          width="1376"
-          height="768"
-        >
+        <picture class="w-full h-full block">
+          <source srcset="images/hero-close-spine.webp" type="image/webp">
+          <img 
+            src="images/hero-close-spine.jpg" 
+            alt="Gezielte manuelle Physiotherapie der Wirbelsäule – Behandlung in Fritzens &amp; Hausbesuche" 
+            class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
+            loading="lazy"
+            decoding="async"
+            width="1376"
+            height="768"
+          >
+        </picture>
         <div class="absolute inset-0 bg-black/25"></div>
       </div>
 
       <!-- Slide 3: Moderner Behandlungsraum & Praxisatmosphäre -->
       <div class="hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out opacity-0 pointer-events-none">
-        <img 
-          src="images/praxis-behandlungsraum-bg.jpg?v=2" 
-          alt="Moderner Praxis- &amp; Behandlungsraum – Physiotherapie Monia Berger Fritzens" 
-          class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
-          loading="lazy"
-          decoding="async"
-          width="2402"
-          height="1760"
-        >
+        <picture class="w-full h-full block">
+          <source srcset="images/praxis-behandlungsraum-bg.webp" type="image/webp">
+          <img 
+            src="images/praxis-behandlungsraum-bg.jpg" 
+            alt="Moderner Praxis- &amp; Behandlungsraum – Physiotherapie Monia Berger Fritzens" 
+            class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-[10000ms] ease-out"
+            loading="lazy"
+            decoding="async"
+            width="2402"
+            height="1760"
+          >
+        </picture>
         <div class="absolute inset-0 bg-black/25"></div>
       </div>
 
@@ -349,10 +434,10 @@
       </div>
 
       <!-- Navigation Arrows (Dezent & filigran in Weiß) -->
-      <button id="sliderPrev" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/20 hover:bg-black/45 backdrop-blur-xs text-white/80 hover:text-white flex items-center justify-center transition-all opacity-60 hover:opacity-100 cursor-pointer shadow-sm" aria-label="Vorheriges Bild">
+      <button type="button" id="sliderPrev" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/20 hover:bg-black/45 backdrop-blur-xs text-white/80 hover:text-white flex items-center justify-center transition-all opacity-60 hover:opacity-100 cursor-pointer shadow-sm focus-visible:ring-2 focus-visible:ring-white" aria-label="Vorheriges Bild">
         <i data-lucide="chevron-left" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.5]"></i>
       </button>
-      <button id="sliderNext" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/20 hover:bg-black/45 backdrop-blur-xs text-white/80 hover:text-white flex items-center justify-center transition-all opacity-60 hover:opacity-100 cursor-pointer shadow-sm" aria-label="Nächstes Bild">
+      <button type="button" id="sliderNext" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/20 hover:bg-black/45 backdrop-blur-xs text-white/80 hover:text-white flex items-center justify-center transition-all opacity-60 hover:opacity-100 cursor-pointer shadow-sm focus-visible:ring-2 focus-visible:ring-white" aria-label="Nächstes Bild">
         <i data-lucide="chevron-right" class="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.5]"></i>
       </button>
 
@@ -362,9 +447,9 @@
           
           <!-- Pagination Indicators (Links - exakt auf gleicher vertikaler Höhe wie die Schrift) -->
           <div class="absolute left-6 sm:left-8 md:left-10 top-0 flex items-center h-4 gap-1.5 pointer-events-auto">
-            <button class="slider-dot w-7 h-2 rounded-full bg-white transition-all cursor-pointer shadow-xs" aria-label="Folie 1"></button>
-            <button class="slider-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all cursor-pointer shadow-xs" aria-label="Folie 2"></button>
-            <button class="slider-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all cursor-pointer shadow-xs" aria-label="Folie 3"></button>
+            <button type="button" class="slider-dot w-7 h-2 rounded-full bg-white transition-all cursor-pointer shadow-xs focus-visible:ring-2 focus-visible:ring-white" aria-label="Folie 1"></button>
+            <button type="button" class="slider-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all cursor-pointer shadow-xs focus-visible:ring-2 focus-visible:ring-white" aria-label="Folie 2"></button>
+            <button type="button" class="slider-dot w-2 h-2 rounded-full bg-white/40 hover:bg-white/70 transition-all cursor-pointer shadow-xs focus-visible:ring-2 focus-visible:ring-white" aria-label="Folie 3"></button>
           </div>
 
           <!-- Bouncing Scroll Down Indicator (Zentriert) -->
@@ -383,15 +468,12 @@
     </div>
   </section>
 
-  <!-- ==================== PHILOSOPHIE / WILLKOMMEN SECTION (HELLES GRÜN IM HINTERGRUND, DUNKELGRÜNER TEXT) ==================== -->
-  <section id="willkommen" class="py-16 sm:py-24 lg:py-28 px-4 text-center bg-[#B0B8A6] border-y border-[#9FA795]/50">
-    <div class="max-w-4xl mx-auto space-y-2">
-      <span class="font-handwritten text-3xl sm:text-4xl md:text-5xl lg:text-[3.4rem] block select-none leading-snug py-1 text-[#273523]">
+  <!-- ==================== PHILOSOPHIE / WILLKOMMEN SECTION (HELLES NATÜRTLICHES SALBEIGRÜN) ==================== -->
+  <section id="willkommen" class="py-20 sm:py-24 md:py-28 lg:py-32 px-4 sm:px-6 text-center bg-[#EFF3EA] border-b border-[#DCE4D6]">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="spruchText" class="font-sacramento text-[#4D5D46] leading-normal select-none py-1 transition-all duration-200 whitespace-nowrap block w-full overflow-visible">
         Veränderung beginnt mit Bewegung
-      </span>
-      <p class="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold pt-1 text-[#273523]/90">
-        Praxis in Fritzens &amp; Hausbesuche · Wahltherapeutin aller Kassen
-      </p>
+      </h2>
     </div>
   </section>
 
@@ -402,15 +484,18 @@
       <!-- Left: Portrait Monia Berger (Diagonaler Rahmen: links oben hell, rechts unten Hintergrundfarbe) -->
       <div class="lg:col-span-5 flex items-center justify-center p-6 sm:p-8 lg:p-10 xl:p-12">
         <div class="w-full max-w-lg overflow-hidden rounded-none p-[6px] bg-gradient-to-br from-[#9BAA93] via-[#8B9A83] to-[#7D8B75]">
-          <img 
-            src="images/monia-berger.jpeg" 
-            alt="Monia Berger – Physiotherapeutin und Wahltherapeutin in Fritzens, Tirol" 
-            class="w-full h-auto block"
-            loading="lazy"
-            decoding="async"
-            width="1215"
-            height="891"
-          >
+          <picture>
+            <source srcset="images/monia-berger.webp" type="image/webp">
+            <img 
+              src="images/monia-berger.jpeg" 
+              alt="Monia Berger – Physiotherapeutin und Wahltherapeutin in Fritzens, Tirol" 
+              class="w-full h-auto block"
+              loading="lazy"
+              decoding="async"
+              width="1215"
+              height="891"
+            >
+          </picture>
         </div>
       </div>
 
@@ -455,18 +540,15 @@
     </div>
   </section>
 
-  <!-- ==================== MAIN CONTENT: 3 PRAXISINFOS (PARALLAX-HINTERGRUND MIT PRAXIS-DETAIL & HELLEM SALBEI-OVERLAY) ==================== -->
+  <!-- ==================== MAIN CONTENT: 3 PRAXISINFOS (PARALLAX-HINTERGRUND MIT PRAXIS-DETAIL PUR OHNE OVERLAY) ==================== -->
   <section class="relative w-full py-16 sm:py-28 overflow-hidden bg-fixed bg-cover bg-center border-b-4 border-darkMoss" style="background-image: url('images/praxis-detail-bg.jpg');">
-    <!-- Farboverlay im selben hellen Salbeigrün (#F2F5EF) wie Element 2 mit Transparenz -->
-    <div class="absolute inset-0 bg-[#F2F5EF]/80 sm:bg-[#F2F5EF]/75 backdrop-blur-[0.5px]"></div>
-
     <div class="relative max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-8 w-full">
 
       <!-- ==================== DIE 3 WICHTIGSTEN PRAXISINFOS ==================== -->
       <section id="ablauf" class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
         
         <!-- Box 1: Beim ersten Termin -->
-        <div class="relative bg-white/95 backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-white/90 shadow-[0_8px_30px_-4px_rgba(77,88,71,0.09)] hover:shadow-[0_20px_45px_-10px_rgba(77,88,71,0.16)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+        <div class="relative bg-white/80 hover:bg-white/90 backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-white/80 shadow-[0_8px_30px_-4px_rgba(77,88,71,0.09)] hover:shadow-[0_20px_45px_-10px_rgba(77,88,71,0.16)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
           
           <div>
             <!-- Kopfzeile: Kategorie -->
@@ -503,7 +585,7 @@
         </div>
 
         <!-- Box 2: Kostenübernahme (Wahlarztprinzip) -->
-        <div class="relative bg-white/95 backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-white/90 shadow-[0_8px_30px_-4px_rgba(77,88,71,0.09)] hover:shadow-[0_20px_45px_-10px_rgba(77,88,71,0.16)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+        <div class="relative bg-white/80 hover:bg-white/90 backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-white/80 shadow-[0_8px_30px_-4px_rgba(77,88,71,0.09)] hover:shadow-[0_20px_45px_-10px_rgba(77,88,71,0.16)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
           
           <div>
             <!-- Kopfzeile: Kategorie -->
@@ -536,7 +618,7 @@
         </div>
 
         <!-- Box 3: Hausbesuche -->
-        <div id="hausbesuche" class="relative bg-white/95 backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-white/90 shadow-[0_8px_30px_-4px_rgba(77,88,71,0.09)] hover:shadow-[0_20px_45px_-10px_rgba(77,88,71,0.16)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+        <div id="hausbesuche" class="relative bg-white/80 hover:bg-white/90 backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-white/80 shadow-[0_8px_30px_-4px_rgba(77,88,71,0.09)] hover:shadow-[0_20px_45px_-10px_rgba(77,88,71,0.16)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
           
           <div>
             <!-- Kopfzeile: Kategorie -->
@@ -646,6 +728,10 @@
     </div>
   </section>
 
+  <!-- ==================== PRAXIS IMPRESSION (PUR OHNE FARBOVERLAY) ==================== -->
+  <section class="relative w-full h-48 sm:h-64 md:h-[320px] lg:h-[380px] overflow-hidden bg-cover bg-center bg-fixed" style="background-image: url('images/praxis-behandlungsraum-bg.jpg?v=2');" aria-label="Praxis- und Behandlungsraum">
+  </section>
+
   <!-- ==================== TERMINVEREINBARUNG & FORMULAR (PARALLAX-STANDBILD MIT FARBOVERLAY) ==================== -->
   <section id="kontakt" class="relative w-full py-16 sm:py-24 overflow-hidden bg-fixed bg-cover bg-center" style="background-image: url('images/praxis-behandlungsraum-bg.jpg?v=2');">
     <!-- Farboverlay im selben hellen Salbeigrün (#F2F5EF) mit hoher Deckkraft (Bild nur ganz dezent sichtbar) -->
@@ -751,7 +837,7 @@
         
         <!-- Col 1: Phone -->
         <div class="space-y-1.5">
-          <a href="tel:+436604054510" class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-headerSage/25 hover:bg-darkMoss text-darkMoss hover:text-white flex items-center justify-center mx-auto mb-2.5 transition-all shadow-2xs hover:scale-105 cursor-pointer" title="Telefonisch anrufen oder WhatsApp: +43 660 4054510">
+          <a href="tel:+436604054510" aria-label="Telefonisch anrufen oder WhatsApp: +43 660 4054510" class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-headerSage/25 hover:bg-darkMoss text-darkMoss hover:text-white flex items-center justify-center mx-auto mb-2.5 transition-all shadow-2xs hover:scale-105 cursor-pointer focus-visible:ring-2 focus-visible:ring-darkMoss" title="Telefonisch anrufen oder WhatsApp: +43 660 4054510">
             <i data-lucide="phone" class="w-5 h-5 sm:w-5.5 sm:h-5.5"></i>
           </a>
           <strong class="block text-sm sm:text-[15px] text-charcoal font-semibold tracking-tight">Telefon / WhatsApp</strong>
@@ -760,7 +846,7 @@
 
         <!-- Col 2: Address -->
         <div class="space-y-1.5">
-          <a href="https://www.google.com/maps/dir/?api=1&destination=Bichlweg+17b,+6122+Fritzens" target="_blank" rel="noopener noreferrer" class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-headerSage/25 hover:bg-darkMoss text-darkMoss hover:text-white flex items-center justify-center mx-auto mb-2.5 transition-all shadow-2xs hover:scale-105 cursor-pointer" title="Standort auf Google Maps öffnen">
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Bichlweg+17b,+6122+Fritzens" target="_blank" rel="noopener noreferrer" aria-label="Praxisstandort in Google Maps öffnen" class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-headerSage/25 hover:bg-darkMoss text-darkMoss hover:text-white flex items-center justify-center mx-auto mb-2.5 transition-all shadow-2xs hover:scale-105 cursor-pointer focus-visible:ring-2 focus-visible:ring-darkMoss" title="Standort auf Google Maps öffnen">
             <i data-lucide="map-pin" class="w-5 h-5 sm:w-5.5 sm:h-5.5"></i>
           </a>
           <strong class="block text-sm sm:text-[15px] text-charcoal font-semibold tracking-tight">Praxisstandort</strong>
@@ -769,7 +855,7 @@
 
         <!-- Col 3: Email -->
         <div class="space-y-1.5">
-          <a href="mailto:monia@physioberger.at" class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-headerSage/25 hover:bg-darkMoss text-darkMoss hover:text-white flex items-center justify-center mx-auto mb-2.5 transition-all shadow-2xs hover:scale-105 cursor-pointer" title="E-Mail schreiben an monia@physioberger.at">
+          <a href="mailto:monia@physioberger.at" aria-label="E-Mail schreiben an monia@physioberger.at" class="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-headerSage/25 hover:bg-darkMoss text-darkMoss hover:text-white flex items-center justify-center mx-auto mb-2.5 transition-all shadow-2xs hover:scale-105 cursor-pointer focus-visible:ring-2 focus-visible:ring-darkMoss" title="E-Mail schreiben an monia@physioberger.at">
             <i data-lucide="mail" class="w-5 h-5 sm:w-5.5 sm:h-5.5"></i>
           </a>
           <strong class="block text-sm sm:text-[15px] text-charcoal font-semibold tracking-tight">E-Mail</strong>
@@ -788,7 +874,7 @@
 
         <!-- Center: Großes Logo Emblem (Mathematisch & visuell exakt zentriert) -->
         <div class="order-1 sm:order-2 flex justify-center">
-          <svg class="w-24 sm:w-28 md:w-32 h-auto text-darkMoss/75 hover:text-darkMoss transition-colors" viewBox="238 195 544 415" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="w-24 sm:w-28 md:w-32 h-auto text-darkMoss/75 hover:text-darkMoss transition-colors" viewBox="238 195 544 415" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-label="Monia Berger Physiotherapie Logo">
             <path d="M 318 413 A 194 194 0 1 1 704 413" />
             <path d="M 698 451 A 194 194 0 0 1 324 451" />
             <path d="M 250 432 H 376 L 392 391 L 409 481 L 425 432 H 454 L 477 388 L 486 398 L 530 331 L 586 411 L 610 378 L 655 432 H 770" />
@@ -797,8 +883,8 @@
 
         <!-- Right: Legal Links -->
         <div class="order-3 flex justify-center sm:justify-end gap-6 font-light">
-          <button onclick="openLegalModal('impressum')" class="hover:text-charcoal transition-colors cursor-pointer">Impressum</button>
-          <button onclick="openLegalModal('datenschutz')" class="hover:text-charcoal transition-colors cursor-pointer">Datenschutz</button>
+          <button type="button" onclick="openLegalModal('impressum')" class="hover:text-charcoal transition-colors cursor-pointer">Impressum</button>
+          <button type="button" onclick="openLegalModal('datenschutz')" class="hover:text-charcoal transition-colors cursor-pointer">Datenschutz</button>
         </div>
 
       </div>
@@ -807,7 +893,7 @@
   </footer>
 
   <!-- ==================== FLOATING WHATSAPP BUTTON (DEZENT & HARMONISCH) ==================== -->
-  <a href="https://wa.me/436604054510?text=Hallo%20Monia,%20ich%20m%C3%B6chte%20gerne%20einen%20Physiotherapie-Termin%20anfragen." target="_blank" rel="noopener noreferrer" class="fixed bottom-5 right-5 z-40 flex items-center justify-center gap-2.5 p-3 sm:px-4.5 sm:py-2.5 rounded-full bg-darkMoss text-white border border-white/20 text-xs sm:text-[13px] uppercase tracking-wider font-semibold shadow-md hover:bg-darkMossDeep hover:shadow-lg transition-all" title="WhatsApp Chat">
+  <a href="https://wa.me/436604054510?text=Hallo%20Monia,%20ich%20m%C3%B6chte%20gerne%20einen%20Physiotherapie-Termin%20anfragen." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Chat mit Monia Berger starten" class="fixed bottom-5 right-5 z-40 flex items-center justify-center gap-2.5 p-3 sm:px-4.5 sm:py-2.5 rounded-full bg-darkMoss text-white border border-white/20 text-xs sm:text-[13px] uppercase tracking-wider font-semibold shadow-md hover:bg-darkMossDeep hover:shadow-lg transition-all focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-darkMoss" title="WhatsApp Chat starten">
     <svg class="w-[22px] h-[22px] sm:w-6 sm:h-6 text-white shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12.01 2c-5.49 0-9.95 4.46-9.95 9.95 0 1.77.47 3.49 1.35 5.01L2 22l5.18-1.36a9.9 9.9 0 0 0 4.83 1.25c5.49 0 9.95-4.46 9.95-9.95A9.95 9.95 0 0 0 12.01 2zm5.79 14.13c-.24.68-1.4 1.3-1.94 1.38-.51.08-1.15.11-3.69-.94-3.25-1.34-5.32-4.66-5.48-4.87-.16-.22-1.31-1.74-1.31-3.32 0-1.58.83-2.36 1.12-2.68.29-.32.64-.4.85-.4.22 0 .43 0 .62.01.2.01.46-.07.72.55.27.65.92 2.24 1 2.4.08.16.14.35.03.57-.11.21-.16.35-.32.54-.16.19-.34.42-.48.56-.16.16-.33.34-.14.66.19.32.84 1.79 2.06 2.88 1.58 1.41 2.91 1.84 3.32 2.05.42.21.66.18.91-.1.25-.28 1.05-1.22 1.33-1.64.28-.42.56-.35.94-.21.38.14 2.41 1.13 2.82 1.34.42.21.69.31.79.48.1.18.1.99-.14 1.67z"/>
     </svg>
@@ -825,15 +911,15 @@
       <!-- Modal Header with Tabs and Close Button -->
       <div class="flex items-center justify-between px-6 py-4 border-b border-borderMuted bg-[#FAFBF9]">
         <div class="flex items-center gap-2">
-          <button id="tabImpressumBtn" onclick="switchLegalTab('impressum')" class="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-darkMoss text-white shadow-xs cursor-pointer">
+          <button type="button" id="tabImpressumBtn" onclick="switchLegalTab('impressum')" class="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-darkMoss text-white shadow-xs cursor-pointer">
             Impressum
           </button>
-          <button id="tabDatenschutzBtn" onclick="switchLegalTab('datenschutz')" class="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all text-mutedText hover:text-charcoal hover:bg-headerSage/20 cursor-pointer">
+          <button type="button" id="tabDatenschutzBtn" onclick="switchLegalTab('datenschutz')" class="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all text-mutedText hover:text-charcoal hover:bg-headerSage/20 cursor-pointer">
             Datenschutz
           </button>
         </div>
         
-        <button onclick="closeLegalModal()" class="w-8 h-8 rounded-full flex items-center justify-center text-mutedText hover:text-charcoal hover:bg-black/5 transition-colors cursor-pointer" title="Schließen (ESC)">
+        <button type="button" onclick="closeLegalModal()" aria-label="Modal schließen" class="w-8 h-8 rounded-full flex items-center justify-center text-mutedText hover:text-charcoal hover:bg-black/5 transition-colors cursor-pointer" title="Schließen (ESC)">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
@@ -924,7 +1010,7 @@
 
       <!-- Modal Footer -->
       <div class="px-6 py-3.5 border-t border-borderMuted bg-[#FAFBF9] flex justify-end">
-        <button onclick="closeLegalModal()" class="px-6 py-2 rounded-full bg-darkMoss text-white text-xs font-semibold hover:bg-darkMossDeep transition-colors cursor-pointer">
+        <button type="button" onclick="closeLegalModal()" class="px-6 py-2 rounded-full bg-darkMoss text-white text-xs font-semibold hover:bg-darkMossDeep transition-colors cursor-pointer">
           Schließen
         </button>
       </div>
@@ -934,7 +1020,19 @@
 
   <!-- ==================== SCRIPT ==================== -->
   <script>
-    lucide.createIcons();
+    // ==================== LUCIDE ICONS (SAFE RENDER) ====================
+    function renderIcons() {
+      try {
+        if (typeof lucide !== 'undefined' && lucide && typeof lucide.createIcons === 'function') {
+          lucide.createIcons();
+        }
+      } catch (err) {
+        console.warn('Lucide icons render warning:', err);
+      }
+    }
+    renderIcons();
+    document.addEventListener('DOMContentLoaded', renderIcons);
+    window.addEventListener('load', renderIcons);
 
     // Header Scroll Reveal: oben unsichtbar, erscheint beim Herabscrollen
     const mainHeader = document.getElementById('mainHeader');
@@ -981,11 +1079,11 @@
       });
     });
 
-    // Hero Slider Functionality
+    // ==================== HERO SLIDER ====================
     let currentSlide = 0;
     const slides = document.querySelectorAll('.hero-slide');
     const dots = document.querySelectorAll('.slider-dot');
-    let slideTimer;
+    let slideTimer = null;
 
     function showSlide(index) {
       if (!slides.length) return;
@@ -1015,33 +1113,68 @@
 
     function startAutoSlide() {
       stopAutoSlide();
-      slideTimer = setInterval(nextSlide, 5000);
+      slideTimer = setInterval(nextSlide, 3500);
     }
     function stopAutoSlide() {
-      if (slideTimer) clearInterval(slideTimer);
+      if (slideTimer) {
+        clearInterval(slideTimer);
+        slideTimer = null;
+      }
     }
 
-    document.getElementById('sliderNext')?.addEventListener('click', () => {
-      nextSlide();
-      startAutoSlide();
-    });
-    document.getElementById('sliderPrev')?.addEventListener('click', () => {
-      prevSlide();
-      startAutoSlide();
-    });
+    const sliderNextBtn = document.getElementById('sliderNext');
+    const sliderPrevBtn = document.getElementById('sliderPrev');
+
+    if (sliderNextBtn) {
+      sliderNextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        nextSlide();
+        startAutoSlide();
+      });
+    }
+
+    if (sliderPrevBtn) {
+      sliderPrevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        prevSlide();
+        startAutoSlide();
+      });
+    }
 
     dots.forEach((dot, idx) => {
-      dot.addEventListener('click', () => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
         showSlide(idx);
         startAutoSlide();
       });
     });
 
-    const sliderEl = document.getElementById('heroSlider');
-    sliderEl?.addEventListener('mouseenter', stopAutoSlide);
-    sliderEl?.addEventListener('mouseleave', startAutoSlide);
+    // Mobile Swipe-Unterstützung für den Hero-Slider
+    const heroSliderElem = document.getElementById('heroSlider');
+    if (heroSliderElem) {
+      let touchStartX = 0;
+      let touchEndX = 0;
+      heroSliderElem.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      heroSliderElem.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diffX = touchStartX - touchEndX;
+        if (Math.abs(diffX) > 40) {
+          if (diffX > 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+          startAutoSlide();
+        }
+      }, { passive: true });
+    }
 
     startAutoSlide();
+
+
 
     // ==================== FORM HANDLING & HAUSBESUCH ADRESS-AUTOCOMPLETE ====================
     const quickForm = document.getElementById('quickForm');
@@ -1053,194 +1186,223 @@
 
     // Umschalten des Adressfelds je nach Behandlungsort mit sanftem Fade- & Slide-In Effekt
     function showHomeVisitAddress() {
+      if (!homeVisitAddressWrapper) return;
       homeVisitAddressWrapper.style.overflow = 'hidden';
       homeVisitAddressWrapper.classList.remove('max-h-0', 'opacity-0', '-translate-y-3', 'pointer-events-none');
       homeVisitAddressWrapper.classList.add('max-h-60', 'opacity-100', 'translate-y-0', 'pointer-events-auto');
-      homeAddress.setAttribute('required', 'true');
-      if (window.lucide) lucide.createIcons();
+      if (homeAddress) homeAddress.setAttribute('required', 'true');
+      renderIcons();
       setTimeout(() => {
         homeVisitAddressWrapper.style.overflow = 'visible';
-        homeAddress.focus();
+        if (homeAddress) homeAddress.focus();
       }, 500);
     }
 
     function hideHomeVisitAddress() {
+      if (!homeVisitAddressWrapper) return;
       homeVisitAddressWrapper.style.overflow = 'hidden';
       homeVisitAddressWrapper.classList.remove('max-h-60', 'opacity-100', 'translate-y-0', 'pointer-events-auto');
       homeVisitAddressWrapper.classList.add('max-h-0', 'opacity-0', '-translate-y-3', 'pointer-events-none');
-      homeAddress.removeAttribute('required');
-      addressSuggestions.classList.add('hidden');
+      if (homeAddress) homeAddress.removeAttribute('required');
+      if (addressSuggestions) addressSuggestions.classList.add('hidden');
+    }
+
+    function updateLocationMode() {
+      const checked = document.querySelector('input[name="loc"]:checked');
+      if (checked && checked.value === 'Hausbesuch') {
+        showHomeVisitAddress();
+      } else {
+        hideHomeVisitAddress();
+      }
     }
 
     locRadios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        if (radio.value === 'Hausbesuch' && radio.checked) {
-          showHomeVisitAddress();
-        } else if (radio.value === 'Praxis Fritzens' && radio.checked) {
-          hideHomeVisitAddress();
-        }
-      });
+      radio.addEventListener('change', updateLocationMode);
+      // Zusätzliche Absicherung: Klick auf den umfassenden Label-Button
+      const parentLabel = radio.closest('label');
+      if (parentLabel) {
+        parentLabel.addEventListener('click', () => {
+          setTimeout(updateLocationMode, 15);
+        });
+      }
     });
+
+    // Initiale Prüfung beim Laden (falls der Browser den Status gecacht hat)
+    updateLocationMode();
 
     // Live-Adress-Autocomplete mit Photon (OpenStreetMap Daten, Priorität Tirol)
     let addressDebounceTimer = null;
-    homeAddress.addEventListener('input', (e) => {
-      const query = e.target.value.trim();
-      clearTimeout(addressDebounceTimer);
-      if (query.length < 2) {
-        addressSuggestions.innerHTML = '';
-        addressSuggestions.classList.add('hidden');
-        return;
-      }
-
-      addressDebounceTimer = setTimeout(() => {
-        fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&lat=47.3035&lon=11.5897&limit=5&lang=de`)
-          .then(res => res.json())
-          .then(data => {
-            if (!data.features || data.features.length === 0) {
-              addressSuggestions.innerHTML = '';
-              addressSuggestions.classList.add('hidden');
-              return;
-            }
+    if (homeAddress) {
+      homeAddress.addEventListener('input', (e) => {
+        const query = e.target.value.trim();
+        clearTimeout(addressDebounceTimer);
+        if (query.length < 2) {
+          if (addressSuggestions) {
             addressSuggestions.innerHTML = '';
-            data.features.forEach(feat => {
-              const p = feat.properties;
-              const streetPart = p.street ? (p.street + (p.housenumber ? ' ' + p.housenumber : '')) : (p.name || '');
-              const cityPart = [p.postcode, p.city || p.town || p.village || ''].filter(Boolean).join(' ');
-              const fullDisplay = [streetPart, cityPart].filter(Boolean).join(', ');
+            addressSuggestions.classList.add('hidden');
+          }
+          return;
+        }
 
-              if (!fullDisplay) return;
-
-              const item = document.createElement('div');
-              item.className = 'px-3.5 py-2.5 hover:bg-[#F2F5EF] cursor-pointer text-xs sm:text-sm text-charcoal flex items-center gap-2.5 transition-colors';
-              item.innerHTML = `
-                <i data-lucide="map-pin" class="w-4 h-4 text-headerSage shrink-0"></i>
-                <div class="flex-grow">
-                  <strong class="font-semibold block text-darkMoss text-sm">${streetPart}</strong>
-                  <span class="text-[11px] text-mutedText">${cityPart}${p.state ? ' · ' + p.state : ''}</span>
-                </div>
-              `;
-              item.addEventListener('click', () => {
-                homeAddress.value = fullDisplay;
+        addressDebounceTimer = setTimeout(() => {
+          fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(query)}&lat=47.3035&lon=11.5897&limit=5&lang=de`)
+            .then(res => res.json())
+            .then(data => {
+              if (!addressSuggestions) return;
+              if (!data.features || data.features.length === 0) {
                 addressSuggestions.innerHTML = '';
                 addressSuggestions.classList.add('hidden');
+                return;
+              }
+              addressSuggestions.innerHTML = '';
+              data.features.forEach(feat => {
+                const p = feat.properties;
+                const streetPart = p.street ? (p.street + (p.housenumber ? ' ' + p.housenumber : '')) : (p.name || '');
+                const cityPart = [p.postcode, p.city || p.town || p.village || ''].filter(Boolean).join(' ');
+                const fullDisplay = [streetPart, cityPart].filter(Boolean).join(', ');
+
+                if (!fullDisplay) return;
+
+                const item = document.createElement('div');
+                item.className = 'px-3.5 py-2.5 hover:bg-[#F2F5EF] cursor-pointer text-xs sm:text-sm text-charcoal flex items-center gap-2.5 transition-colors';
+                item.innerHTML = `
+                  <i data-lucide="map-pin" class="w-4 h-4 text-headerSage shrink-0"></i>
+                  <div class="flex-grow">
+                    <strong class="font-semibold block text-darkMoss text-sm">${streetPart}</strong>
+                    <span class="text-[11px] text-mutedText">${cityPart}${p.state ? ' · ' + p.state : ''}</span>
+                  </div>
+                `;
+                item.addEventListener('click', () => {
+                  homeAddress.value = fullDisplay;
+                  addressSuggestions.innerHTML = '';
+                  addressSuggestions.classList.add('hidden');
+                });
+                addressSuggestions.appendChild(item);
               });
-              addressSuggestions.appendChild(item);
+              renderIcons();
+              addressSuggestions.classList.remove('hidden');
+            })
+            .catch(() => {
+              if (addressSuggestions) addressSuggestions.classList.add('hidden');
             });
-            if (window.lucide) lucide.createIcons();
-            addressSuggestions.classList.remove('hidden');
-          })
-          .catch(() => {
-            addressSuggestions.classList.add('hidden');
-          });
-      }, 200);
-    });
+        }, 200);
+      });
+    }
 
     // Klick außerhalb schließt die Vorschläge
     document.addEventListener('click', (e) => {
       if (homeVisitAddressWrapper && !homeVisitAddressWrapper.contains(e.target)) {
-        addressSuggestions.classList.add('hidden');
+        if (addressSuggestions) addressSuggestions.classList.add('hidden');
       }
     });
 
-    quickForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const submitBtn = quickForm.querySelector('button[type="submit"]');
-      const originalBtnContent = submitBtn.innerHTML;
-      
-      const loc = document.querySelector('input[name="loc"]:checked')?.value || 'Praxis Fritzens';
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const addressVal = homeAddress.value.trim();
-      const msg = document.getElementById('msg').value.trim();
+    if (quickForm) {
+      quickForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = quickForm.querySelector('button[type="submit"]');
+        const originalBtnContent = submitBtn ? submitBtn.innerHTML : '';
+        
+        const loc = document.querySelector('input[name="loc"]:checked')?.value || 'Praxis Fritzens';
+        const name = document.getElementById('name')?.value.trim() || '';
+        const phone = document.getElementById('phone')?.value.trim() || '';
+        const email = document.getElementById('email')?.value.trim() || '';
+        const addressVal = homeAddress ? homeAddress.value.trim() : '';
+        const msg = document.getElementById('msg')?.value.trim() || '';
 
-      // Spam-Schutz (Honeypot)
-      const honeypot = document.getElementById('_honey')?.value;
-      if (honeypot) return;
+        // Spam-Schutz (Honeypot)
+        const honeypot = document.getElementById('_honey')?.value;
+        if (honeypot) return;
 
-      // Button in Ladezustand versetzen
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = `
-        <i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>
-        <span>Wird gesendet...</span>
-      `;
-      if (window.lucide) lucide.createIcons();
-
-      // Google Apps Script Webhook (Läuft über das eigene Google-Konto ohne fremde Drittanbieter)
-      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz7f9k1pIcmH2vh_WXspX1YZEO0Sdadl7ie5vAUiYnoOdCVUeCk6FGvEwQFjzai_HjB/exec";
-
-      const payload = {
-        name: name,
-        phone: phone,
-        email: email,
-        loc: loc,
-        address: (loc === 'Hausbesuch' && addressVal) ? addressVal : 'Praxis Fritzens (Bichlweg 17b)',
-        message: msg || 'Keine zusätzliche Nachricht angegeben.'
-      };
-
-      try {
-        if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("HIER_GOOGLE_SCRIPT_URL")) {
-          throw new Error("URL_NOT_CONFIGURED");
+        // Button in Ladezustand versetzen
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = `
+            <i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i>
+            <span>Wird gesendet...</span>
+          `;
+          renderIcons();
         }
 
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8'
-          },
-          body: JSON.stringify(payload)
-        });
+        // Google Apps Script Webhook (Läuft über das eigene Google-Konto ohne fremde Drittanbieter)
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz7f9k1pIcmH2vh_WXspX1YZEO0Sdadl7ie5vAUiYnoOdCVUeCk6FGvEwQFjzai_HjB/exec";
 
-        // Formular leeren
-        quickForm.reset();
-        hideHomeVisitAddress();
+        const payload = {
+          name: name,
+          phone: phone,
+          email: email,
+          loc: loc,
+          address: (loc === 'Hausbesuch' && addressVal) ? addressVal : 'Praxis Fritzens (Bichlweg 17b)',
+          message: msg || 'Keine zusätzliche Nachricht angegeben.'
+        };
 
-        // Reine Erfolgsmeldung für den Besucher
-        formSuccess.innerHTML = `
-          <div class="flex items-start gap-3.5 text-left">
-            <div class="w-8 h-8 rounded-full bg-headerSage/35 flex items-center justify-center shrink-0 mt-0.5 text-darkMoss">
-              <i data-lucide="check" class="w-5 h-5"></i>
-            </div>
-            <div class="space-y-1.5">
-              <strong class="block text-sm sm:text-base font-semibold text-charcoal">Vielen Dank für deine Anfrage, ${name}!</strong>
-              <p class="text-xs sm:text-[13px] text-mutedText leading-relaxed">
-                Deine Terminanfrage wurde erfolgreich an mich übermittelt. Ich melde mich so schnell wie möglich persönlich bei dir!
-              </p>
-            </div>
-          </div>
-        `;
-        formSuccess.classList.remove('hidden');
-        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        if (window.lucide) lucide.createIcons();
-      } catch (err) {
-        if (err.message === "URL_NOT_CONFIGURED") {
-          formSuccess.innerHTML = `
-            <div class="p-4 rounded-xl bg-amber-50 text-amber-900 text-xs text-center space-y-1 border border-amber-200">
-              <p><strong>Google Script URL noch nicht hinterlegt:</strong> Bitte die Web-App-URL in index.html eintragen.</p>
-              <p class="text-mutedText">Alternativ direkt erreichbar: <a href="tel:+436604054510" class="font-bold underline text-darkMoss">+43 660 4054510</a> oder <a href="mailto:monia@physioberger.at" class="underline text-darkMoss">monia@physioberger.at</a></p>
-            </div>
-          `;
-        } else {
-          formSuccess.innerHTML = `
-            <div class="p-4 rounded-xl bg-red-50 text-red-800 text-xs text-center">
-              Die Anfrage konnte leider nicht gesendet werden. Bitte kurz telefonisch melden: <a href="tel:+436604054510" class="font-bold underline">+43 660 4054510</a>
-            </div>
-          `;
+        try {
+          if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("HIER_GOOGLE_SCRIPT_URL")) {
+            throw new Error("URL_NOT_CONFIGURED");
+          }
+
+          await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+              'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          // Formular leeren
+          quickForm.reset();
+          hideHomeVisitAddress();
+
+          // Reine Erfolgsmeldung für den Besucher
+          if (formSuccess) {
+            formSuccess.innerHTML = `
+              <div class="flex items-start gap-3.5 text-left">
+                <div class="w-8 h-8 rounded-full bg-headerSage/35 flex items-center justify-center shrink-0 mt-0.5 text-darkMoss">
+                  <i data-lucide="check" class="w-5 h-5"></i>
+                </div>
+                <div class="space-y-1.5">
+                  <strong class="block text-sm sm:text-base font-semibold text-charcoal">Vielen Dank für deine Anfrage, ${name}!</strong>
+                  <p class="text-xs sm:text-[13px] text-mutedText leading-relaxed">
+                    Deine Terminanfrage wurde erfolgreich an mich übermittelt. Ich melde mich so schnell wie möglich persönlich bei dir!
+                  </p>
+                </div>
+              </div>
+            `;
+            formSuccess.classList.remove('hidden');
+            formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            renderIcons();
+          }
+        } catch (err) {
+          if (formSuccess) {
+            if (err.message === "URL_NOT_CONFIGURED") {
+              formSuccess.innerHTML = `
+                <div class="p-4 rounded-xl bg-amber-50 text-amber-900 text-xs text-center space-y-1 border border-amber-200">
+                  <p><strong>Google Script URL noch nicht hinterlegt:</strong> Bitte die Web-App-URL in index.html eintragen.</p>
+                  <p class="text-mutedText">Alternativ direkt erreichbar: <a href="tel:+436604054510" class="font-bold underline text-darkMoss">+43 660 4054510</a> oder <a href="mailto:monia@physioberger.at" class="underline text-darkMoss">monia@physioberger.at</a></p>
+                </div>
+              `;
+            } else {
+              formSuccess.innerHTML = `
+                <div class="p-4 rounded-xl bg-red-50 text-red-800 text-xs text-center">
+                  Die Anfrage konnte leider nicht gesendet werden. Bitte kurz telefonisch melden: <a href="tel:+436604054510" class="font-bold underline">+43 660 4054510</a>
+                </div>
+              `;
+            }
+            formSuccess.classList.remove('hidden');
+          }
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnContent;
+            renderIcons();
+          }
         }
-        formSuccess.classList.remove('hidden');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnContent;
-        if (window.lucide) lucide.createIcons();
-      }
-    });
+      });
+    }
   </script>
 
-  <!-- Leaflet Map Script & Markers (Deferred) -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <!-- Leaflet Map Script & Markers (On-Demand per IntersectionObserver geladen) -->
   <script>
     // Initialisierung der interaktiven Karte mit CI-Pins und ÖBB-Bahnhof
     function initMap() {
@@ -1370,20 +1532,32 @@
       window.addEventListener('resize', () => { map.invalidateSize(); });
     }
 
-    // Performance-optimiert: Karte erst initialisieren, wenn der Anreisebereich in die NÃ¤he scrollt (IntersectionObserver)
+    // Performance-optimiert: Leaflet Script & Karte erst dynamisch nachladen, wenn der Anreisebereich in die Nähe scrollt (IntersectionObserver)
+    function loadLeafletAndInit() {
+      if (window.L) {
+        initMap();
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = 'leaflet.js';
+      script.async = true;
+      script.onload = () => initMap();
+      document.head.appendChild(script);
+    }
+
     const anreiseSection = document.getElementById('anreise');
     if ('IntersectionObserver' in window && anreiseSection) {
       const mapObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            initMap();
+            loadLeafletAndInit();
             observer.disconnect();
           }
         });
-      }, { rootMargin: '350px' });
+      }, { rootMargin: '450px' });
       mapObserver.observe(anreiseSection);
     } else {
-      window.addEventListener('load', initMap);
+      window.addEventListener('load', loadLeafletAndInit);
     }
 
     // ==================== LEGAL MODAL (IMPRESSUM & DATENSCHUTZ) ====================

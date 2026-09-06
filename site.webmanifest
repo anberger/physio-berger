@@ -1,0 +1,21 @@
+{
+  "name": "Physiotherapie Monia Berger",
+  "short_name": "Physio Berger",
+  "description": "Ganzheitliche Physiotherapie in Fritzens & mobile Hausbesuche in Tirol.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFBF9",
+  "theme_color": "#B0B8A6",
+  "icons": [
+    {
+      "src": "images/logo-mountain-pulse.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "images/logo-brand.jpg",
+      "sizes": "1024x1024",
+      "type": "image/jpeg"
+    }
+  ]
+}

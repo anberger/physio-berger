@@ -2,6 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const zlib = require('zlib');
+const crypto = require('crypto');
 
 const PORT = process.env.PORT || 3001;
 const PUBLIC_DIR = __dirname;
@@ -11,6 +12,7 @@ const MIME_TYPES = {
   '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
+  '.webmanifest': 'application/manifest+json; charset=utf-8',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
@@ -26,6 +28,7 @@ const COMPRESSIBLE = new Set([
   'text/css; charset=utf-8',
   'text/javascript; charset=utf-8',
   'application/json; charset=utf-8',
+  'application/manifest+json; charset=utf-8',
   'image/svg+xml',
   'application/xml; charset=utf-8',
   'text/plain; charset=utf-8'
@@ -67,16 +70,30 @@ const server = http.createServer((req, res) => {
 });
 
 function sendResponse(req, res, status, contentType, content, isStaticAsset) {
+  // Generate ETag for high-efficiency client-side validation
+  const etag = `"${crypto.createHash('md5').update(content).digest('base64').substring(0, 27)}"`;
+
   const headers = {
     'Content-Type': contentType,
+    'ETag': etag,
     'X-Content-Type-Options': 'nosniff',
-    'Referrer-Policy': 'strict-origin-when-cross-origin'
+    'X-Frame-Options': 'SAMEORIGIN',
+    'Referrer-Policy': 'strict-origin-when-cross-origin',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()'
   };
 
   if (isStaticAsset) {
     headers['Cache-Control'] = 'public, max-age=31536000, immutable';
   } else {
     headers['Cache-Control'] = 'public, max-age=0, must-revalidate';
+  }
+
+  // 304 Not Modified check
+  const ifNoneMatch = req.headers['if-none-match'];
+  if (ifNoneMatch && ifNoneMatch === etag) {
+    res.writeHead(304, headers);
+    res.end();
+    return;
   }
 
   const acceptEncoding = req.headers['accept-encoding'] || '';
